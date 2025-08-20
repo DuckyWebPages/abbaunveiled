@@ -1,13 +1,25 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
-  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+  const entries = await getCollection("blog", ({ data }) => !data?.draft);
+
+  // Guard against bad/empty slugs
+  const paths = entries
+    .filter((e) => typeof e.slug === "string" && e.slug.length > 0)
+    .map((e) => ({
+      params: { slug: e.slug },
+      props: { entryId: e.id }, // pass a stable reference, not the whole object
+    }));
+
+  return paths;
 }
 
-const { post } = Astro.props;
+const { entryId } = Astro.props;
+
+// Re-fetch by id inside the page for a clean, predictable object
+const post = await getEntry(entryId);
 const { Content, data } = await post.render();
 
 const title = data.title ?? "Post";
