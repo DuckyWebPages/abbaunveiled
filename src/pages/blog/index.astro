@@ -1,29 +1,30 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from 'astro:content';
 
-// Eagerly import all MDX files from src/content
-const modules = import.meta.glob('../../content/*.mdx', { eager: true });
-
-const posts = Object.entries(modules).map(([path, mod]) => {
-  // @ts-ignore - MDX modules expose frontmatter
-  const fm = mod.frontmatter || {};
-  const slug = path.split('/').pop()?.replace(/\.mdx?$/, '');
-  return { slug, ...fm };
-}).sort((a, b) => new Date(b.date) - new Date(a.date));
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+posts.sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
 ---
 
-<BaseLayout title="Blog — Abba Unveiled">
-  <h1 class="text-2xl font-semibold mb-6">Blog</h1>
-  <ul class="grid gap-6">
-    {posts.map((p) => (
-      <li>
-        <a href={`/blog/${p.slug}/`} class="block">
-          <h2 class="text-xl font-medium">{p.title}</h2>
-          <p class="text-sm text-gray-600">{p.date && new Date(p.date).toLocaleDateString()}</p>
-          <p class="mt-1 text-gray-700">{p.summary}</p>
-        </a>
-      </li>
-    ))}
-  </ul>
-</BaseLayout>
-
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Blog — Abba Unveiled</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <h1 class="text-2xl font-semibold mb-6">Blog</h1>
+    <ul class="grid gap-6" style="list-style:none;padding:0;">
+      {posts.map((post) => (
+        <li style="margin:1.5rem 0;border-bottom:1px solid #eee;padding-bottom:1rem;">
+          <a href={`/blog/${post.slug}/`} class="block">
+            <h2 class="text-xl font-medium">{post.data.title}</h2>
+            <p class="text-sm text-gray-600">
+              {new Date(post.data.pubDate).toLocaleDateString()}
+            </p>
+            {post.data.excerpt && <p class="mt-1 text-gray-700">{post.data.excerpt}</p>}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </body>
+</html>

@@ -1,48 +1,49 @@
 ---
-const posts = [
-  { title: "Face-to-Face: Practicing the Presence", href: "/blog/face-to-face", date: "Aug 2025", cover: "/images/blog/face.jpg" },
-  { title: "Deut 32:8–9 and El Elyon", href: "/blog/deut-32", date: "Aug 2025", cover: "/images/blog/deut32.jpg" },
-  { title: "Order of Melchizedek: What It Changes", href: "/blog/melchizedek-order", date: "Aug 2025", cover: "/images/blog/melch.jpg" },
-];
+import { getCollection } from 'astro:content';
+
+const LIMIT = 3;
+
+// Get non-draft posts, newest first
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate))
+  .slice(0, LIMIT);
 ---
-<section class="blog">
-  <div class="blog__wrap">
-    <div class="blog__head">
-      <h2>Latest from the Blog</h2>
-      <a class="link" href="/blog">View all →</a>
-    </div>
-    <div class="blog__grid">
-      {posts.map(p => (
-        <a class="post" href={p.href}>
-          <div class="post__media">
-            <img src={p.cover} alt={p.title} loading="lazy" />
-          </div>
-          <div class="post__meta">{p.date}</div>
-          <h3 class="post__title">{p.title}</h3>
-        </a>
-      ))}
-    </div>
+
+<section aria-labelledby="home-blog-heading" class="max-w-6xl mx-auto px-4 my-12">
+  <div class="flex items-end justify-between mb-6">
+    <h2 id="home-blog-heading" class="text-2xl font-semibold">Latest from the Blog</h2>
+    <a href="/blog" class="text-sm underline">View all</a>
   </div>
+
+  {posts.length === 0 ? (
+    <p>No posts yet.</p>
+  ) : (
+    <ul class="grid gap-6 md:grid-cols-3">
+      {posts.map((post) => (
+        <li class="rounded-xl border border-gray-200 overflow-hidden">
+          <a href={`/blog/${post.slug}/`} class="block focus:outline-none focus:ring">
+            {post.data.heroImage && (
+              <img
+                src={post.data.heroImage}
+                alt=""
+                width="800"
+                height="420"
+                loading="lazy"
+                style="width:100%;height:auto;display:block;object-fit:cover;"
+              />
+            )}
+            <div class="p-4">
+              <h3 class="text-lg font-medium">{post.data.title}</h3>
+              <p class="text-xs text-gray-600 mt-1">
+                {new Date(post.data.pubDate).toLocaleDateString()}
+              </p>
+              {post.data.excerpt && (
+                <p class="text-sm text-gray-700 mt-2 line-clamp-3">{post.data.excerpt}</p>
+              )}
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
 </section>
-
-<style>
-.blog { padding: 3.5rem 1.25rem; }
-.blog__wrap { max-width: 1100px; margin: 0 auto; }
-.blog__head { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin-bottom:1rem; }
-.blog__head h2 { margin:0; font-size: clamp(1.4rem, 1.4vw + 1rem, 2rem); }
-.link { text-decoration:none; font-weight:600; color:#121212; }
-.blog__grid { display:grid; gap:1rem; grid-template-columns: repeat(1, minmax(0,1fr)); }
-.post {
-  background:#fff; border-radius:16px; overflow:hidden; text-decoration:none; color:inherit;
-  box-shadow: 0 10px 26px rgba(0,0,0,.08);
-  transition: transform .16s ease, box-shadow .16s ease;
-}
-.post:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,.12); }
-.post__media img { width:100%; height:auto; display:block; }
-.post__meta { padding:.75rem 1rem 0; font-size:.9rem; opacity:.65; }
-.post__title { padding: .25rem 1rem 1rem; font-size:1.1rem; line-height:1.4; }
-
-@media (min-width: 720px){
-  .blog__grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
-}
-</style>
