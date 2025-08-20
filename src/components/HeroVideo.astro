@@ -1,0 +1,135 @@
+---
+// Props (optional) if you want to customize later
+const {
+  title = "Abba Unveiled",
+  subtitle = "Exploring intimacy with the Father—and the unveiled story behind the Name.",
+  primaryCta = { href: "/resources", label: "Explore Resources" },
+  secondaryCta = { href: "/blog", label: "Read the Blog" }
+} = Astro.props;
+---
+
+<section class="hero">
+  <!-- Background video -->
+  <video
+    class="hero__video"
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="auto"
+    poster="/images/night-sky-poster.jpg"
+  >
+    <source src="/videos/night-sky.webm" type="video/webm" />
+    <source src="/videos/night-sky.mp4"  type="video/mp4" />
+    <!-- Fallback for very old browsers -->
+    Your browser does not support HTML5 video.
+  </video>
+
+  <!-- Dark overlay for contrast -->
+  <div class="hero__overlay"></div>
+
+  <!-- Centered content -->
+  <div class="hero__content">
+    <h1 class="hero__title">{title}</h1>
+    <p class="hero__subtitle">
+      {subtitle}
+    </p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href={primaryCta.href}>{primaryCta.label}</a>
+      <a class="btn btn--ghost" href={secondaryCta.href}>{secondaryCta.label}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;            /* Tall hero without forcing full viewport on tiny phones */
+    display: grid;
+    place-items: center;
+    overflow: clip;
+    isolation: isolate;          /* keep z-index stacking clean */
+  }
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;           /* fill without distortion */
+    z-index: -2;
+    filter: saturate(1.05);
+  }
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.55),
+      rgba(0,0,0,0.35) 40%,
+      rgba(0,0,0,0.55)
+    );
+    z-index: -1;
+  }
+  .hero__content {
+    text-align: center;
+    color: #fff;
+    max-width: 980px;
+    padding: 6rem 1.25rem 4rem;
+  }
+  .hero__title {
+    font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: 0.2px;
+    margin: 0 0 0.75rem;
+    text-shadow: 0 3px 18px rgba(0,0,0,0.35);
+  }
+  .hero__subtitle {
+    font-size: clamp(1rem, 1.2vw + 0.8rem, 1.25rem);
+    opacity: 0.95;
+    margin: 0 auto 1.75rem;
+    max-width: 48ch;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .hero__actions {
+    display: inline-flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform .16s ease, opacity .16s ease, box-shadow .16s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    will-change: transform;
+  }
+  .btn:hover { transform: translateY(-1px); opacity: 0.96; }
+
+  .btn--primary {
+    color: #fff;
+    background: #121212;
+  }
+  .btn--primary:focus { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,.35); }
+
+  .btn--ghost {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,0.7);
+  }
+  .btn--ghost:hover { border-color: #fff; }
+
+  /* Mobile tweaks */
+  @media (max-width: 640px) {
+    .hero { min-height: 70vh; }
+    .hero__content { padding-top: 4.5rem; }
+  }
+</style>

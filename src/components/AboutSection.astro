@@ -1,0 +1,47 @@
+---
+const {
+  title = "Why Abba Unveiled?",
+  body = "We explore intimacy with the Father revealed by Jesus (the order of Melchizedek), and we examine how textual history may have veiled Him. Expect research, practices for communion with the Father, and resources that empower seekers.",
+  image = "/images/about-stars.jpg" // 1600x900+ recommended
+} = Astro.props;
+---
+<section class="about">
+  <div class="about__wrap">
+    <div class="about__img">
+      <img src={image} alt="Night sky above calm water" loading="lazy" />
+    </div>
+    <div class="about__content">
+      <h2>{title}</h2>
+      <p>{body}</p>
+      <div class="about__actions">
+        <a class="btn" href="/about">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.about { padding: 4rem 1.25rem; }
+.about__wrap {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; gap: 2rem; align-items: center;
+  grid-template-columns: minmax(0,1fr); 
+}
+.about__img img { width: 100%; height: auto; border-radius: 18px; display:block; }
+.about__content h2 { font-size: clamp(1.6rem, 1.6vw + 1rem, 2.2rem); margin: 0 0 .75rem; }
+.about__content p { font-size: 1.05rem; line-height: 1.65; opacity: .95; }
+.about__actions { margin-top: 1rem; }
+.btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.8rem 1.2rem; border-radius:9999px; font-weight:600;
+  color:#fff; background:#121212; text-decoration:none; box-shadow:0 6px 18px rgba(0,0,0,.18);
+  transition:transform .16s ease, opacity .16s ease;
+}
+.btn:hover { transform: translateY(-1px); opacity:.96; }
+
+@media (min-width: 860px){
+  .about__wrap { grid-template-columns: 1.2fr .9fr; }
+  .about__img { order:1; }
+  .about__content { order:2; }
+}
+</style>

@@ -1,0 +1,56 @@
+---
+const {
+  eyebrow = "Featured",
+  title = "The Trouble with Yahweh",
+  body = "A research-driven journey separating El Elyon from later redactions, pointing back to the Father Jesus revealed.",
+  image = "/images/featured-book.jpg", // Book cover 900x1200+
+  primary = { href: "/book", label: "Read About the Book" },
+  secondary = { href: "/resources", label: "See Research Notes" }
+} = Astro.props;
+---
+<section class="feat">
+  <div class="feat__wrap">
+    <div class="feat__card">
+      <div class="feat__media">
+        <img src={image} alt="" loading="lazy" />
+      </div>
+      <div class="feat__body">
+        <span class="feat__eyebrow">{eyebrow}</span>
+        <h3>{title}</h3>
+        <p>{body}</p>
+        <div class="feat__actions">
+          <a class="btn btn--primary" href={primary.href}>{primary.label}</a>
+          <a class="btn btn--ghost" href={secondary.href}>{secondary.label}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.feat { padding: 3.5rem 1.25rem; background: rgba(0,0,0,.03); }
+.feat__wrap { max-width: 1100px; margin: 0 auto; }
+.feat__card {
+  display:grid; gap: 1.8rem; align-items:center;
+  grid-template-columns: minmax(0,1fr);
+}
+.feat__media img { width: 100%; height: auto; border-radius: 18px; display:block; }
+.feat__eyebrow { text-transform: uppercase; letter-spacing:.12em; font-size:.8rem; opacity:.7; }
+h3 { font-size: clamp(1.4rem, 1.4vw + 1rem, 2rem); margin:.25rem 0 .5rem; }
+p { font-size:1.05rem; line-height:1.65; opacity:.95; }
+.feat__actions { margin-top: 1rem; display:flex; gap:.75rem; flex-wrap:wrap; }
+.btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.8rem 1.2rem; border-radius:9999px; font-weight:600; text-decoration:none;
+  transition:transform .16s ease, opacity .16s ease, box-shadow .16s ease; border:2px solid transparent;
+  box-shadow:0 6px 18px rgba(0,0,0,.12);
+}
+.btn:hover { transform: translateY(-1px); opacity:.96; }
+.btn--primary { background:#121212; color:#fff; }
+.btn--ghost { background:transparent; color:#121212; border-color:rgba(0,0,0,.5); }
+.btn--ghost:hover { border-color:#121212; }
+
+@media (min-width: 900px){
+  .feat__card { grid-template-columns: .9fr 1.1fr; }
+}
+</style>
