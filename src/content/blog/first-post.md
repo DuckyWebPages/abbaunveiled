@@ -1,16 +1,53 @@
 ---
-title: 'First post'
+title: 'Welcome to Abba Unveiled'
 description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Jul 08 2022'
+pubDate: 'August 19, 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+Welcome to Abba Unveiled
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+When Jesus taught His disciples to pray, He began with a single, radical word: Abba. It was not the distant, fearful title many expected for God—it was intimate, relational, like a child saying, “Daddy.” That one word revealed the heart of the Father in a way that challenged everything religious systems had built.
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+You may have found this website through my book, The Yahweh Deception. I invite you to browse the blogs and other articles as I continue to grow this website as a resource for those who are learning who Jesus's Father is.
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id cursus metus aliquam eleifend mi.
+This website, Abba Unveiled, exists to explore that revelation more deeply. Here, you’ll find two central threads woven together:
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+1. The Journey of Intimacy with the Father
+
+At its core, Abba Unveiled is about drawing near to the One Jesus came to reveal. It’s about peeling back layers of fear, distortion, and misunderstanding to discover the Father who heals, restores, and welcomes us into relationship. You’ll find reflections, spiritual practices, and encouragement for experiencing God not as a distant ruler, but as the ever-present Abba who delights in being known.
+
+This is the Father whose priest was Melchizedek—Jesus’s Father and the reason Jesus came in the line of Melchizedek. The priesthood of Melchizedek is a priesthood of relationship, not ritual; of communion, not condemnation. It points us back to the true Father who has always desired connection rather than control.
+
+
+2. Theological Exploration: Rethinking Yahweh
+
+Alongside this journey, I’m sharing my research and writing from my upcoming book, The Trouble with Yahweh. This project wrestles with hard questions many believers hesitate to ask:
+
+Is Yahweh truly the Father Jesus revealed?
+
+How have translations, redactions, and centuries of tradition shaped (and sometimes distorted) our understanding of God’s name and character?
+
+What happens when we measure the actions attributed to Yahweh against the life and teachings of Jesus—the visible image of the invisible God (Colossians 1:15)?
+
+These are not just academic questions. They matter because our picture of God shapes the way we live, the way we love, and the way we relate to Him.
+
+Why “Unveiled”?
+
+The word “unveiled” carries the sense of removing barriers, lifting blinders, and allowing light to flood in. Many of us have inherited a picture of God clouded by fear, law, or retribution. But the New Testament insists that in Christ, the veil is removed, and we see the Father clearly. This site is a space to seek that clarity together.
+
+What You’ll Find Here
+
+Blog posts unpacking theological insights, scriptural studies, and fresh perspectives on ancient texts.
+
+Reflections and practices for cultivating intimacy with the Father in daily life.
+
+Updates and excerpts from my ongoing book project, inviting you into the process of discovery.
+
+Conversations and community for those hungry to know the Father as He truly is.
+
+If you’ve ever felt the tension between the God of the Old Testament and the Father Jesus revealed, or if you simply long to go deeper in relationship with Abba, you’re in the right place.
+
+Thank you for beginning this journey with me. My prayer is that as we seek truth together, what is unveiled will not only challenge old assumptions but also awaken greater love, trust, and intimacy with the Father.
+
+Welcome to Abba Unveiled. Let’s explore Him together.
