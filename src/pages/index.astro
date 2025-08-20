@@ -1,34 +1,5 @@
 ---
-import HeroVideo from "../components/HeroVideo.astro";
-import AboutSection from "../components/AboutSection.astro";
-import FeaturedShowcase from "../components/FeaturedShowcase.astro";
-import BlogGrid from "../components/BlogGrid.astro";
-import StoreStrip from "../components/StoreStrip.astro";
-import Newsletter from "../components/Newsletter.astro";
-
-const pageTitle = "Abba Unveiled — Home";
----
-
----
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>{pageTitle}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Abba Unveiled: intimacy with the Father and unveiling the story behind the Name." />
-    <link rel="preload" href="/images/night-sky-poster.jpg" as="image" />
-  </head>
-  <body>
-    <HeroVideo
-      title="Abba Unveiled"
-      subtitle="This is the Father whose priest was Melchizedek—Jesus came in that order to unveil Him."
-      primaryCta={{ href: "/resources", label: "Explore Resources" }}
-      secondaryCta={{ href: "/blog", label: "Visit the Blog" }}
-    />
-    ---
-import HeroVideo from "../components/HeroVideo.astro";   // or "./components/HeroVideo.astro" if index.astro is in src/pages/
-
+import HeroVideo from "@/components/HeroVideo.astro"; // use "@/..." only if your import alias is set; otherwise: "../components/HeroVideo.astro"
 import AboutSection from "@/components/AboutSection.astro";
 import FeaturedShowcase from "@/components/FeaturedShowcase.astro";
 import BlogGrid from "@/components/BlogGrid.astro";
@@ -37,12 +8,16 @@ import Newsletter from "@/components/Newsletter.astro";
 
 const pageTitle = "Abba Unveiled — Home";
 ---
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>{pageTitle}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Abba Unveiled: intimacy with the Father and unveiling the story behind the Name." />
+    <meta
+      name="description"
+      content="Abba Unveiled: intimacy with the Father and unveiling the story behind the Name."
+    />
     <link rel="preload" href="/images/night-sky-poster.jpg" as="image" />
   </head>
   <body>
@@ -64,15 +39,7 @@ const pageTitle = "Abba Unveiled — Home";
     />
 
     <BlogGrid />
-
     <StoreStrip />
-
     <Newsletter />
-  </body>
-</html>
-
-
-    <!-- Below-hero sections go here -->
-    <!-- <About /> <Featured /> <Newsletter /> etc. -->
   </body>
 </html>
