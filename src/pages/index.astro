@@ -19,7 +19,8 @@ const pageTitle = "Abba Unveiled — Home";
       secondaryCta={{ href: "/blog", label: "Visit the Blog" }}
     />
     ---
-import HeroVideo from "@/components/HeroVideo.astro";
+import HeroVideo from "../components/HeroVideo.astro";   // or "./components/HeroVideo.astro" if index.astro is in src/pages/
+
 import AboutSection from "@/components/AboutSection.astro";
 import FeaturedShowcase from "@/components/FeaturedShowcase.astro";
 import BlogGrid from "@/components/BlogGrid.astro";
