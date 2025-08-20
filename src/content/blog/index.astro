@@ -1,24 +1,16 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-// Grab all MDX posts in this folder (not subfolders)
+// Find all posts sitting next to this file
 const modules = import.meta.glob("./*.mdx", { eager: true });
 
-// Turn imported modules into a sorted list of posts
 const posts = Object.entries(modules)
-  // exclude this index page if it exists as MDX (defensive)
   .filter(([path]) => !/index\.mdx$/i.test(path))
   .map(([path, mod]) => {
-    // In MD/MDX, frontmatter is available at mod.frontmatter
     const fm = mod.frontmatter || {};
-    // Build a URL based on file path
-    const slug = path
-      .replace("./", "")
-      .replace(/\.mdx$/i, "");
-    const url = `/blog/${slug}/`;
-
+    const slug = path.replace("./", "").replace(/\.mdx$/i, "");
     return {
-      url,
+      url: `/blog/${slug}/`,
       title: fm.title || slug,
       pubDate: fm.pubDate || "",
       excerpt: fm.excerpt || "",
@@ -28,13 +20,11 @@ const posts = Object.entries(modules)
       tags: fm.tags || [],
     };
   })
-  // Sort newest first if dates are provided
   .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 ---
 
 <BaseLayout title="Blog" description="Latest posts from Abba Unveiled">
   <h1>Blog</h1>
-
   <ul style="list-style:none;padding:0;margin:1rem 0 2rem;">
     {posts.map((post) => (
       <li style="margin:1.25rem 0;border-bottom:1px solid #eee;padding:0 0 1rem;">
