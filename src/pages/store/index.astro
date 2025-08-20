@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// Example products — replace with your real items
+const products = [
+  {
+    name: "Guided Journal (PDF)",
+    price: "$7.77",
+    image: "/images/journal-cover.jpg",
+    url: "#", // replace with Stripe payment link or /store/guided-journal
+    summary: "A 7×10 printable journal to deepen connection with the Father."
+  },
+  {
+    name: "Book: The Trouble with Yahweh (Preorder)",
+    price: "$19.00",
+    image: "/images/tty-cover.jpg",
+    url: "#",
+    summary: "Preorder the upcoming Volume 1 and get launch updates."
+  },
+  {
+    name: "Aromatherapy Course (50-hour, self-paced)",
+    price: "$399.00",
+    image: "/images/aroma-course.jpg",
+    url: "https://thearomascienceacademy.com", // or Stripe checkout
+    summary: "NAHA-standard course with certificate on completion."
+  }
+];
+export const prerender = true;
+---
+
+<BaseLayout title="Store — Abba Unveiled" description="Shop books, courses, and downloads.">
+  <section class="prose max-w-none">
+    <h1>Store</h1>
+    <p>Books, courses, and downloads to support your journey.</p>
+  </section>
+
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-8">
+    {products.map((p) => (
+      <article class="border rounded-lg overflow-hidden">
+        <img src={p.image} alt={p.name} class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <div class="p-4">
+          <h2 class="text-lg font-semibold">{p.name}</h2>
+          <p class="text-sm text-gray-600 mt-1">{p.summary}</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="font-medium">{p.price}</span>
+            <a href={p.url} class="px-4 py-2 rounded-full border hover:shadow-sm">Buy</a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="mt-10 text-sm text-gray-600">
+    <p>Need help with an order? <a href="/contact/">Contact me</a>.</p>
+  </section>
+</BaseLayout>

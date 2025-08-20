@@ -1,15 +1,15 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+export const prerender = true;
 ---
-<BaseLayout title="Abba Unveiled">
-  <section class="grid gap-6">
-    <h1 class="text-3xl md:text-4xl font-semibold">Abba Unveiled</h1>
-    <p class="max-w-3xl">
-      A forward-looking exploration of the Father Jesus revealed—beyond legalism, toward relationship.
-    </p>
-    <div class="grid gap-3 md:flex">
-      <a class="px-5 py-3 rounded-full border inline-block" href="/blog/">Read the Blog</a>
-      <a class="px-5 py-3 rounded-full border inline-block" href="/faq/">FAQ</a>
-    </div>
-  </section>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abba Unveiled</title>
+  </head>
+  <body>
+    <h1>Home builds ✅</h1>
+    <p>If you see this, the site is building correctly.</p>
+  </body>
+</html>

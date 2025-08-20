@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+export const prerender = true;
+---
+<BaseLayout title="Resources — Abba Unveiled" description="Curated tools, references, and links.">
+  <section class="prose max-w-none">
+    <h1>Resources</h1>
+    <p>
+      Curated references, tools, and starting points for research and practical next steps.
+      Update these links as you publish and refine your work.
+    </p>
+  </section>
+
+  <!-- Quick Links Grid -->
+  <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-8">
+    <a href="/faq/" class="block rounded-lg border p-4 hover:shadow-sm">
+      <h3 class="font-semibold">FAQ</h3>
+      <p class="text-sm text-gray-600">Common questions and straight answers.</p>
+    </a>
+    <a href="/blog/" class="block rounded-lg border p-4 hover:shadow-sm">
+      <h3 class="font-semibold">Blog</h3>
+      <p class="text-sm text-gray-600">Latest essays and notes.</p>
+    </a>
+    <a href="/contact/" class="block rounded-lg border p-4 hover:shadow-sm">
+      <h3 class="font-semibold">Contact</h3>
+      <p class="text-sm text-gray-600">Reach out with questions or feedback.</p>
+    </a>
+  </section>
+
+  <!-- Collapsible Sections -->
+  <section class="max-w-3xl mx-auto mt-10">
+    <details class="border-b py-4">
+      <summary class="cursor-pointer font-semibold text-lg">Primary Research & Study Tools</summary>
+      <ul class="mt-3 list-disc pl-6 text-gray-800">
+        <li><a href="https://www.biblegateway.com/" target="_blank" rel="noopener">BibleGateway</a> (translations & parallel reading)</li>
+        <li><a href="https://www.blueletterbible.org/" target="_blank" rel="noopener">Blue Letter Bible</a> (lexicons, interlinear, cross-refs)</li>
+        <li><a href="https://www.stepbible.org/" target="_blank" rel="noopener">STEP Bible</a> (original language tools)</li>
+        <li><a href="https://archive.org/" target="_blank" rel="noopener">Internet Archive</a> (out-of-print resources)</li>
+      </ul>
+    </details>
+
+    <details class="border-b py-4">
+      <summary class="cursor-pointer font-semibold text-lg">Scholarly Orientation & Background</summary>
+      <p class="mt-3 text-gray-800">
+        Introductory materials for textual history, Divine Council context, and Second Temple background.
+      </p>
+      <ul class="mt-2 list-disc pl-6 text-gray-800">
+        <li>Second Temple timelines & glossaries (add your preferred intros)</li>
+        <li>Textual criticism primers (DSS, LXX, MT) — add links you trust</li>
+        <li>Archaeology overviews relevant to ANE context</li>
+      </ul>
+    </details>
+
+    <details class="border-b py-4">
+      <summary class="cursor-pointer font-semibold text-lg">Your Projects & Downloads</summary>
+      <ul class="mt-3 list-disc pl-6 text-gray-800">
+        <li><a href="#" target="_blank" rel="noopener">Abba Unveiled — One-page Overview (PDF)</a></li>
+        <li><a href="#" target="_blank" rel="noopener">Book Outline / Table of Contents (PDF)</a></li>
+        <li><a href="#" target="_blank" rel="noopener">Guided Journal Sample (PDF)</a></li>
+      </ul>
+      <p class="mt-2 text-gray-600 text-sm">Replace <code>#</code> with real file URLs in <code>public/</code> or external drives.</p>
+    </details>
+
+    <details class="border-b py-4">
+      <summary class="cursor-pointer font-semibold text-lg">Community & Channels</summary>
+      <ul class="mt-3 list-disc pl-6 text-gray-800">
+        <li>Podcast: <a href="https://theoilyacademy.com" target="_blank" rel="noopener">The Oily Academy</a></li>
+        <li>YouTube: <a href="#" target="_blank" rel="noopener">Abba Unveiled Channel</a></li>
+        <li>Facebook Group/Page: <a href="#" target="_blank" rel="noopener">Join the discussion</a></li>
+      </ul>
+    </details>
+  </section>
+</BaseLayout>
