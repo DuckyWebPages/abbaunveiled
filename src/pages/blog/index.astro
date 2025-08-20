@@ -1,30 +1,22 @@
 ---
-import { getCollection } from 'astro:content';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
-const posts = await getCollection('blog', ({ data }) => !data.draft);
-posts.sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+posts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Blog — Abba Unveiled</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <h1 class="text-2xl font-semibold mb-6">Blog</h1>
-    <ul class="grid gap-6" style="list-style:none;padding:0;">
-      {posts.map((post) => (
-        <li style="margin:1.5rem 0;border-bottom:1px solid #eee;padding-bottom:1rem;">
-          <a href={`/blog/${post.slug}/`} class="block">
-            <h2 class="text-xl font-medium">{post.data.title}</h2>
-            <p class="text-sm text-gray-600">
-              {new Date(post.data.pubDate).toLocaleDateString()}
-            </p>
-            {post.data.excerpt && <p class="mt-1 text-gray-700">{post.data.excerpt}</p>}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </body>
-</html>
+<BaseLayout title="Blog" description="Latest posts from Abba Unveiled">
+  <h1>Blog</h1>
+  <ul style="list-style:none;padding:0;margin:1rem 0 2rem;">
+    {posts.map((post) => (
+      <li style="margin:1.25rem 0;border-bottom:1px solid #eee;padding:0 0 1rem;">
+        <h2 style="margin:.2rem 0;">
+          <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+        </h2>
+        {post.data.pubDate && <small>{post.data.pubDate.toDateString?.() || post.data.pubDate}</small>}
+        {post.data.excerpt && <p style="margin:.5rem 0 0;">{post.data.excerpt}</p>}
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

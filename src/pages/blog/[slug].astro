@@ -1,19 +1,26 @@
 ---
-import BlogPost from '../../layouts/BlogPost.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
-  return posts.map((post) => ({
-    params: { slug: post.slug.split('/') }, // supports nested slugs
-    props: { post },
-  }));
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content, data } = await post.render();
+
+const title = data.title ?? "Post";
+const description = data.seo ?? data.description ?? "";
+const heroImage = data.heroImage ?? null;
 ---
 
-<BlogPost {...post.data}>
-  <Content />
-</BlogPost>
+<BaseLayout {title} description={description} seo={description} heroImage={heroImage}>
+  <article>
+    <h1>{title}</h1>
+    {heroImage && (
+      <img src={heroImage} alt={title} style="width:100%;height:auto;margin:1rem 0;border-radius:12px;" />
+    )}
+    <Content />
+  </article>
+</BaseLayout>
