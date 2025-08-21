@@ -1,10 +1,10 @@
 ---
-// Props (optional) if you want to customize later
+// src/components/HeroVideo.astro
 const {
   title = "Abba Unveiled",
   subtitle = "Reclaiming the Father Jesus Revealed",
-  primaryCta = { href: "/resources", label: "Explore Resources" },
-  secondaryCta = { href: "/blog", label: "Read the Blog" }
+  bookCtaHref = "/store",
+  bookCtaLabel = "Get the Book! The Yahweh Deception, by WR Selvig",
 } = Astro.props;
 ---
 
@@ -21,22 +21,29 @@ const {
   >
     <source src="/videos/night-sky.webm" type="video/webm" />
     <source src="/videos/night-sky.mp4"  type="video/mp4" />
-    <!-- Fallback for very old browsers -->
     Your browser does not support HTML5 video.
   </video>
 
-  <!-- Dark overlay for contrast -->
+  <!-- Dark overlay -->
   <div class="hero__overlay"></div>
 
   <!-- Centered content -->
   <div class="hero__content">
     <h1 class="hero__title">{title}</h1>
-    <p class="hero__subtitle">
-      {subtitle}
-    </p>
-    <div class="hero__actions">
-      <a class="btn btn--primary" href={primaryCta.href}>{primaryCta.label}</a>
-      <a class="btn btn--ghost" href={secondaryCta.href}>{secondaryCta.label}</a>
+    <p class="hero__subtitle">{subtitle}</p>
+
+    <!-- New front-page nav buttons -->
+    <div class="front-nav">
+      <div class="front-nav__row">
+        <a class="btn-pill" href="/blog">Blog</a>
+        <a class="btn-pill" href="/podcast">Podcast</a>
+        <a class="btn-pill" href="/resources">Resources</a>
+        <a class="btn-pill" href="/contact">Contact</a>
+      </div>
+
+      <a class="btn-cta" href={bookCtaHref}>
+        {bookCtaLabel}
+      </a>
     </div>
   </div>
 </section>
@@ -45,18 +52,18 @@ const {
   .hero {
     position: relative;
     width: 100%;
-    min-height: 80vh;            /* Tall hero without forcing full viewport on tiny phones */
+    min-height: 80vh;
     display: grid;
     place-items: center;
     overflow: clip;
-    isolation: isolate;          /* keep z-index stacking clean */
+    isolation: isolate;
   }
   .hero__video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;           /* fill without distortion */
+    object-fit: cover;
     z-index: -2;
     filter: saturate(1.05);
   }
@@ -80,54 +87,63 @@ const {
   .hero__title {
     font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
     line-height: 1.1;
-    letter-spacing: 0.2px;
     margin: 0 0 0.75rem;
     text-shadow: 0 3px 18px rgba(0,0,0,0.35);
   }
   .hero__subtitle {
     font-size: clamp(1rem, 1.2vw + 0.8rem, 1.25rem);
     opacity: 0.95;
-    margin: 0 auto 1.75rem;
+    margin: 0 auto 1.25rem;
     max-width: 48ch;
     text-shadow: 0 2px 12px rgba(0,0,0,0.3);
   }
-  .hero__actions {
-    display: inline-flex;
-    gap: 0.75rem;
+
+  /* --- Nav buttons --- */
+  .front-nav {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+  .front-nav__row {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: .75rem;
   }
-
-  /* Buttons */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.85rem 1.25rem;
+  .btn-pill {
+    display: inline-block;
+    padding: .7rem 1.1rem;
     border-radius: 9999px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: transform .16s ease, opacity .16s ease, box-shadow .16s ease;
-    border: 2px solid transparent;
-    box-shadow: 0 6px 18px rgba(0,0,0,.18);
-    will-change: transform;
-  }
-  .btn:hover { transform: translateY(-1px); opacity: 0.96; }
-
-  .btn--primary {
-    color: #fff;
     background: #121212;
-  }
-  .btn--primary:focus { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,.35); }
-
-  .btn--ghost {
-    background: transparent;
     color: #fff;
-    border-color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-weight: 600;
+    line-height: 1;
+    box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    transition: transform .15s ease, opacity .15s ease;
+    white-space: nowrap;
   }
-  .btn--ghost:hover { border-color: #fff; }
+  .btn-pill:hover { opacity: .92; transform: translateY(-1px); }
 
-  /* Mobile tweaks */
+  .btn-cta {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    border-radius: 9999px;
+    background: #222;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    line-height: 1.1;
+    box-shadow: 0 10px 24px rgba(0,0,0,.22);
+    transition: transform .15s ease, opacity .15s ease;
+    text-align: center;
+  }
+  .btn-cta:hover { opacity: .95; transform: translateY(-1px); }
+
   @media (max-width: 640px) {
     .hero { min-height: 70vh; }
     .hero__content { padding-top: 4.5rem; }
