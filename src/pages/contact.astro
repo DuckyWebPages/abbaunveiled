@@ -1,127 +1,108 @@
 ---
 const title = "Contact | Abba Unveiled";
-const description = "Get in touch with Abba Unveiled.";
 ---
 
 <html lang="en">
   <head>
     <title>{title}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content="Contact Abba Unveiled" />
   </head>
-  <body>
+  <body style="margin:0;">
     <section class="contact-hero">
-      <!-- Background video -->
-      <video
-        class="contact-video"
-        autoplay
-        loop
-        muted
-        playsinline
-        preload="auto"
-        poster="/images/logcabin-poster.jpg"
-      >
+      <video class="contact-video" autoplay loop muted playsinline>
         <source src="/videos/logcabin.mp4" type="video/mp4" />
         Your browser does not support HTML5 video.
       </video>
 
-      <!-- Dark overlay -->
       <div class="contact-overlay"></div>
 
-      <!-- Contact card -->
-      <div class="contact-card" aria-labelledby="contact-title">
-        <h1 id="contact-title">Contact</h1>
-        <p class="lede">Have a question, comment, or encouragement? Drop me a note below.</p>
+      <div class="contact-box">
+        <h1>Contact Us</h1>
+        <p>Email: <a href="mailto:abbaunveiled@gmail.com">abbaunveiled@gmail.com</a></p>
+        <p>Socials: Only on X — <strong>Abba Unveiled</strong></p>
 
-        <!-- Formspree form -->
         <form
-          class="contact-form"
           action="https://formspree.io/f/xkgzlpgj"
           method="POST"
-          accept-charset="UTF-8"
         >
-          <!-- Redirect after success (make sure /thanks exists) -->
-          <input type="hidden" name="_redirect" value="/thanks" />
-          <!-- Email subject line -->
-          <input type="hidden" name="_subject" value="New message from AbbaUnveiled.com" />
-          <!-- Simple spam honeypot -->
-          <label class="hp" aria-hidden="true">Don’t fill this out:
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
-          </label>
-
           <label>
-            Name
+            Name:<br />
             <input type="text" name="name" required />
           </label>
-
           <label>
-            Email
+            Email:<br />
             <input type="email" name="email" required />
           </label>
-
           <label>
-            Message
+            Message:<br />
             <textarea name="message" rows="6" required></textarea>
           </label>
-
-          <button type="submit" class="btn-submit">Send Message</button>
+          <button type="submit">Send Message</button>
         </form>
-
-        <div class="contact-extra">
-          <p><strong>Email:</strong> <a href="mailto:abbaunveiled@gmail.com">abbaunveiled@gmail.com</a></p>
-          <p><strong>X (Twitter):</strong> <a href="https://x.com/AbbaUnveiled" target="_blank" rel="noopener">@AbbaUnveiled</a></p>
-        </div>
       </div>
     </section>
+
+    <style>
+      .contact-hero {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .contact-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+      }
+      .contact-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: -1;
+      }
+      .contact-box {
+        background: rgba(255, 255, 255, 0.85); /* 👈 semi-transparent white */
+        padding: 2rem;
+        border-radius: 12px;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      }
+      .contact-box h1 {
+        margin-bottom: 1rem;
+      }
+      .contact-box p {
+        margin-bottom: 1rem;
+      }
+      .contact-box form {
+        display: grid;
+        gap: 1rem;
+      }
+      .contact-box input,
+      .contact-box textarea {
+        width: 100%;
+        padding: 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+      .contact-box button {
+        background: #0d1a40; /* dark navy blue */
+        color: #fff;
+        border: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: 9999px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.2s ease;
+      }
+      .contact-box button:hover {
+        background: #132b63;
+      }
+    </style>
   </body>
 </html>
-
-<style>
-  .contact-hero {
-    position: relative;
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    overflow: clip;
-    isolation: isolate;
-    padding: 3rem 1rem;
-  }
-  .contact-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
-  .contact-overlay { position: absolute; inset: 0; z-index: -1;
-    background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.35) 40%, rgba(0,0,0,.55)); }
-
-  .contact-card {
-    width: 100%; max-width: 640px; background: #fff; color: #111;
-    border-radius: 18px; padding: clamp(1.5rem, 4vw, 2.5rem);
-    box-shadow: 0 18px 45px rgba(0,0,0,.25); text-align: center;
-  }
-  .contact-card h1 { margin: 0 0 .5rem; font-size: clamp(1.8rem, 2.2vw + 1rem, 2.6rem); }
-  .contact-card .lede { margin: 0 0 1.25rem; opacity: .9; }
-
-  .contact-form { display: grid; gap: 1rem; text-align: left; margin-bottom: 1.25rem; }
-  .contact-form label { display: flex; flex-direction: column; font-weight: 600; font-size: .9rem; gap: .35rem; }
-  .contact-form input, .contact-form textarea {
-    border: 1px solid #ccc; border-radius: 8px; padding: .75rem 1rem; font-size: 1rem; font-family: inherit;
-  }
-  .contact-form input:focus, .contact-form textarea:focus {
-    outline: none; border-color: #0b5; box-shadow: 0 0 0 2px rgba(0,187,85,.2);
-  }
-
-  /* Honeypot hidden */
-  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-
-  .btn-submit {
-    align-self: start; padding: .9rem 1.5rem; border-radius: 9999px; border: none;
-    background: #0b5; color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer;
-    transition: background .2s ease, transform .2s ease;
-  }
-  .btn-submit:hover { background: #09914b; transform: translateY(-1px); }
-
-  .contact-extra { text-align: center; margin-top: .25rem; font-size: .95rem; }
-  .contact-extra a { color: #0b5; text-decoration: none; font-weight: 600; }
-  .contact-extra a:hover { text-decoration: underline; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .contact-video { display: none; }
-    .contact-overlay, .contact-hero { background: #111; }
-  }
-</style>
