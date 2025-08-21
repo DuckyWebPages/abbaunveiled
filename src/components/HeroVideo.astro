@@ -89,6 +89,97 @@ const {
   .btn-pill:hover { opacity: .92; transform: translateY(-1px); }
 
   /* Bottom CTA */
+  ---
+// src/components/HeroVideo.astro
+const {
+  title = "Abba Unveiled",
+  subtitle = "Reclaiming the Father Jesus Revealed",
+  bookCtaHref = "/store",
+  bookCtaLabel = "Get the Book! The Yahweh Deception, by WR Selvig",
+  overlayImageSrc = "/images/tetrawhite.png" // ensure this exists in /public/images/
+} = Astro.props;
+---
+
+<section class="hero">
+  <!-- Background video -->
+  <video class="hero__video" autoplay loop muted playsinline preload="auto" poster="/images/night-sky-poster.jpg">
+    <source src="/videos/night-sky.webm" type="video/webm" />
+    <source src="/videos/night-sky.mp4"  type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
+
+  <!-- Gradient overlay -->
+  <div class="hero__overlay"></div>
+
+  <!-- Overlay image -->
+  {overlayImageSrc && (
+    <img src={overlayImageSrc} alt="" aria-hidden="true" class="hero__graphic" />
+  )}
+
+  <!-- Centered content -->
+  <div class="hero__content">
+    <h1 class="hero__title">{title}</h1>
+    <p class="hero__subtitle">{subtitle}</p>
+
+    <!-- 4 small nav buttons (CTA moved out) -->
+    <div class="front-nav">
+      <div class="front-nav__row">
+        <a class="btn-pill" href="/blog">Blog</a>
+        <a class="btn-pill" href="/podcast">Podcast</a>
+        <a class="btn-pill" href="/resources">Resources</a>
+        <a class="btn-pill" href="/contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA anchored at the bottom -->
+  <a class="btn-cta hero-cta-bottom" href={bookCtaHref}>
+    {bookCtaLabel}
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    display: grid;
+    place-items: center;
+    overflow: clip;
+    isolation: isolate;
+    padding-bottom: 96px; /* space for bottom CTA */
+  }
+  .hero__video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: -2; filter: saturate(1.05);
+  }
+  .hero__overlay {
+    position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.35) 40%, rgba(0,0,0,.55));
+  }
+
+  /* Overlay graphic */
+  .hero__graphic {
+    position: absolute; inset: 0; margin: auto;
+    width: min(70vmin, 900px); height: auto;
+    opacity: .28; mix-blend-mode: screen; pointer-events: none; z-index: 0;
+  }
+
+  .hero__content { text-align: center; color: #fff; max-width: 980px; padding: 6rem 1.25rem 4rem; z-index: 1; }
+  .hero__title { font-size: clamp(2rem, 4vw + 1rem, 3.5rem); line-height: 1.1; margin: 0 0 .75rem; text-shadow: 0 3px 18px rgba(0,0,0,.35); }
+  .hero__subtitle { font-size: clamp(1rem, 1.2vw + .8rem, 1.25rem); opacity: .95; margin: 0 auto 1.25rem; max-width: 48ch; text-shadow: 0 2px 12px rgba(0,0,0,.3); }
+
+  /* 4-button row */
+  .front-nav { margin-top: 1rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+  .front-nav__row { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
+  .btn-pill {
+    display: inline-block; padding: .7rem 1.1rem; border-radius: 9999px; background: #121212; color: #fff;
+    text-decoration: none; font-weight: 600; line-height: 1; box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    transition: transform .15s ease, opacity .15s ease; white-space: nowrap;
+  }
+  .btn-pill:hover { opacity: .92; transform: translateY(-1px); }
+
+  /* Bottom CTA */
   .btn-cta {
     display: inline-block; padding: 1rem 1.5rem; border-radius: 9999px; background: #222; color: #fff; text-decoration: none;
     font-weight: 700; line-height: 1.1; box-shadow: 0 10px 24px rgba(0,0,0,.22); transition: transform .15s ease, opacity .15s ease; text-align: center;
@@ -97,6 +188,10 @@ const {
   .hero-cta-bottom {
     position: absolute; left: 50%; bottom: clamp(16px, 3vw, 32px); transform: translateX(-50%); z-index: 2;
   }
+
+  @media (max-width: 640px) { .hero { min-height: 70vh; } }
+</style>
+
 
   @media (max-width: 640px) { .hero { min-height: 70vh; } }
 </style>
