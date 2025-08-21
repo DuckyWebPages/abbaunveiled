@@ -21,24 +21,22 @@ const title = "Contact | Abba Unveiled";
         <p>Email: <a href="mailto:abbaunveiled@gmail.com">abbaunveiled@gmail.com</a></p>
         <p>Socials: Only on X — <strong>Abba Unveiled</strong></p>
 
-        <form
-          action="https://formspree.io/f/xkgzlpgj"
-          method="POST"
-        >
-          <label>
-            Name:<br />
-            <input type="text" name="name" required />
-          </label>
-          <label>
-            Email:<br />
-            <input type="email" name="email" required />
-          </label>
-          <label>
-            Message:<br />
-            <textarea name="message" rows="6" required></textarea>
-          </label>
-          <button type="submit">Send Message</button>
-        </form>
+        <form class="contact-form" action="https://formspree.io/f/xkgzlpgj" method="POST">
+  <label>
+    Name:<br />
+    <input type="text" name="name" required />
+  </label>
+  <label>
+    Email:<br />
+    <input type="email" name="email" required />
+  </label>
+  <label>
+    Message:<br />
+    <textarea name="message" rows="6" required></textarea>
+  </label>
+  <button type="submit">Send Message</button>
+</form>
+
       </div>
     </section>
 
@@ -104,5 +102,34 @@ const title = "Contact | Abba Unveiled";
         background: #132b63;
       }
     </style>
+    <script>
+  (function () {
+    const form = document.querySelector('.contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          // force redirect to your local thanks page
+          window.location.href = '/thanks';
+        } else {
+          alert('Sorry, there was an error sending your message. Please email abbaunveiled@gmail.com.');
+        }
+      } catch (err) {
+        alert('Network error. Please email abbaunveiled@gmail.com.');
+      }
+    });
+  })();
+</script>
+
   </body>
 </html>
