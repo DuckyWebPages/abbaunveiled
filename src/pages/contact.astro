@@ -1,85 +1,127 @@
 ---
-const title = "Contact";
-const description = "Get in touch with me";
+const title = "Contact | Abba Unveiled";
+const description = "Get in touch with Abba Unveiled.";
 ---
 
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-
-  <body class="p-6 max-w-xl mx-auto">
-    <h1 class="text-3xl font-bold mb-4">Contact Me</h1>
-    <p class="mb-6 text-gray-700">
-      Have a question about the book, podcast, or speaking? Send me a note below.
-    </p>
-
-    <form
-      action="https://formspree.io/f/xkgzlpgj"
-      method="POST"
-      class="space-y-4"
-      novalidate
-    >
-      <div>
-        <label for="name" class="block mb-1 font-medium">Name</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          required
-          autocomplete="name"
-          class="w-full border border-gray-300 p-2 rounded"
-        />
-      </div>
-
-      <div>
-        <label for="email" class="block mb-1 font-medium">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          autocomplete="email"
-          class="w-full border border-gray-300 p-2 rounded"
-        />
-      </div>
-
-      <div>
-        <label for="message" class="block mb-1 font-medium">Message</label>
-        <textarea
-          id="message"
-          name="message"
-          rows="5"
-          required
-          class="w-full border border-gray-300 p-2 rounded"
-        ></textarea>
-      </div>
-
-      <!-- Subject line in your inbox -->
-      <input type="hidden" name="_subject" value="New contact from abbaunveiled.com" />
-
-      <!-- Redirect after success (local dev: value='/thank-you') -->
-      <input type="hidden" name="_next" value="/thank-you" />
-
-      <!-- Optional autoresponse (uncomment to enable) -->
-      <!-- <input type="hidden" name="_autoresponse" value="Thanks! I've received your message and will reply soon." /> -->
-
-      <!-- Spam honeypot -->
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-
-      <button
-        type="submit"
-        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+  <body>
+    <section class="contact-hero">
+      <!-- Background video -->
+      <video
+        class="contact-video"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="auto"
+        poster="/images/logcabin-poster.jpg"
       >
-        Send
-      </button>
-    </form>
+        <source src="/videos/logcabin.mp4" type="video/mp4" />
+        Your browser does not support HTML5 video.
+      </video>
 
-    <p class="mt-6 text-sm text-gray-500">
-      By submitting this form you agree to be contacted about your inquiry.
-    </p>
+      <!-- Dark overlay -->
+      <div class="contact-overlay"></div>
+
+      <!-- Contact card -->
+      <div class="contact-card" aria-labelledby="contact-title">
+        <h1 id="contact-title">Contact</h1>
+        <p class="lede">Have a question, comment, or encouragement? Drop me a note below.</p>
+
+        <!-- Formspree form -->
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/xkgzlpgj"
+          method="POST"
+          accept-charset="UTF-8"
+        >
+          <!-- Redirect after success (make sure /thanks exists) -->
+          <input type="hidden" name="_redirect" value="/thanks" />
+          <!-- Email subject line -->
+          <input type="hidden" name="_subject" value="New message from AbbaUnveiled.com" />
+          <!-- Simple spam honeypot -->
+          <label class="hp" aria-hidden="true">Don’t fill this out:
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+          </label>
+
+          <label>
+            Name
+            <input type="text" name="name" required />
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" required />
+          </label>
+
+          <label>
+            Message
+            <textarea name="message" rows="6" required></textarea>
+          </label>
+
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+
+        <div class="contact-extra">
+          <p><strong>Email:</strong> <a href="mailto:abbaunveiled@gmail.com">abbaunveiled@gmail.com</a></p>
+          <p><strong>X (Twitter):</strong> <a href="https://x.com/AbbaUnveiled" target="_blank" rel="noopener">@AbbaUnveiled</a></p>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
+
+<style>
+  .contact-hero {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    overflow: clip;
+    isolation: isolate;
+    padding: 3rem 1rem;
+  }
+  .contact-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  .contact-overlay { position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.35) 40%, rgba(0,0,0,.55)); }
+
+  .contact-card {
+    width: 100%; max-width: 640px; background: #fff; color: #111;
+    border-radius: 18px; padding: clamp(1.5rem, 4vw, 2.5rem);
+    box-shadow: 0 18px 45px rgba(0,0,0,.25); text-align: center;
+  }
+  .contact-card h1 { margin: 0 0 .5rem; font-size: clamp(1.8rem, 2.2vw + 1rem, 2.6rem); }
+  .contact-card .lede { margin: 0 0 1.25rem; opacity: .9; }
+
+  .contact-form { display: grid; gap: 1rem; text-align: left; margin-bottom: 1.25rem; }
+  .contact-form label { display: flex; flex-direction: column; font-weight: 600; font-size: .9rem; gap: .35rem; }
+  .contact-form input, .contact-form textarea {
+    border: 1px solid #ccc; border-radius: 8px; padding: .75rem 1rem; font-size: 1rem; font-family: inherit;
+  }
+  .contact-form input:focus, .contact-form textarea:focus {
+    outline: none; border-color: #0b5; box-shadow: 0 0 0 2px rgba(0,187,85,.2);
+  }
+
+  /* Honeypot hidden */
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .btn-submit {
+    align-self: start; padding: .9rem 1.5rem; border-radius: 9999px; border: none;
+    background: #0b5; color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .btn-submit:hover { background: #09914b; transform: translateY(-1px); }
+
+  .contact-extra { text-align: center; margin-top: .25rem; font-size: .95rem; }
+  .contact-extra a { color: #0b5; text-decoration: none; font-weight: 600; }
+  .contact-extra a:hover { text-decoration: underline; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-video { display: none; }
+    .contact-overlay, .contact-hero { background: #111; }
+  }
+</style>
