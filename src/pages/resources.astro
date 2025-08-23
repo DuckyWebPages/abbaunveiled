@@ -1,10 +1,9 @@
 ---
 const title = "Resources | Abba Unveiled";
 
-// Edit these arrays with your own links
 const videoLinks = [
-  { title: "The Old Testament Evil God", url: "https://youtu.be/fXAAavy7g9Q?si=XsyWnt9KxjmFBTM1", note: "Intro overview (replace me)" },
-  { title: "Jesus Exposes Yahweh as the Evil One", url: "https://youtu.be/MrqnxW5V7rg?si=cZzW6Fapg1HXG-i9", note: "Foundations (replace me)" },
+  { title: "The Old Testament Evil God", url: "https://youtu.be/fXAAavy7g9Q?si=XsyWnt9KxjmFBTM1", note: "Intro overview" },
+  { title: "Jesus Exposes Yahweh as the Evil One", url: "https://youtu.be/MrqnxW5V7rg?si=cZzW6Fapg1HXG-i9", note: "Foundations" },
 ];
 
 const linkResources = [
@@ -12,176 +11,29 @@ const linkResources = [
   { title: "Courts of Heaven Facilitator Training", url: "https://ronhorner.com/lsom/ftp/", desc: "Intensive year long program for learning to facilitate Courts of Heaven ministry." },
 ];
 
-// Book CTA
 const book = {
   cover: "/images/featured-book.png",
   title: "The Yahweh Deception",
-  blurb:
-    "What if the God revealed by Jesus was never Yahweh? The Yahweh Deception uncovers how centuries of redaction blurred the Father’s identity, replacing El Elyon—the Most High—with a deity of law, wrath, and control. Drawing on ancient texts and fresh theological insight, this book challenges tradition and invites you into deeper intimacy with Abba, the true Father Jesus revealed.",
-  buyUrl: "https://www.lulu.com/your-book-page", // replace with real Lulu link
+  blurb: "What if the God revealed by Jesus was never Yahweh? The Yahweh Deception uncovers how centuries of redaction blurred the Father’s identity, replacing El Elyon—the Most High—with a deity of law, wrath, and control. Drawing on ancient texts and fresh theological insight, this book challenges tradition and invites you into deeper intimacy with Abba, the true Father Jesus revealed.",
+  buyUrl: "https://www.lulu.com/your-book-page",
 };
 ---
 
 <html lang="en">
   <head>
     <title>{title}</title>
-    <meta name="description" content="Curated videos and links to deepen intimacy with Abba and explore textual scholarship." />
     <style>
-      /* Full-page stars background (behind everything) */
       .bg-stars {
-        position: fixed;
-        inset: 0;
-        background-image: url("/images/stars2.jpg");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        z-index: 0; /* background layer */
+        position: fixed; inset: 0;
+        background: url("/images/stars2.jpg") center/cover fixed;
+        z-index: 0;
       }
-      /* Dark tint over stars for readability */
       .bg-tint {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.30);
-        z-index: 1; /* above stars, below content */
+        position: fixed; inset: 0;
+        background: rgba(0,0,0,.35);
+        z-index: 1;
       }
-      /* Page content always above background */
       .page {
         position: relative;
         z-index: 2;
         min-height: 100vh;
-        padding: 2.5rem 1rem 3rem;
-      }
-      .page h1, .page p, .page a { color: #fff; }
-
-      /* Grid layout: left (videos) - center (book) - right (links) */
-      .grid {
-        display: grid;
-        gap: 1.25rem;
-      }
-      @media (min-width: 1024px) {
-        .grid {
-          grid-template-columns: 1fr minmax(320px, 560px) 1fr;
-          align-items: start;
-        }
-      }
-
-      /* Frosted white blocks */
-      .frost {
-        background: rgba(255,255,255,0.60);
-        border: 1px solid rgba(255,255,255,0.4);
-        border-radius: 16px;
-        box-shadow: 0 10px 28px rgba(0,0,0,0.20);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        padding: 20px;
-        color: #111; /* readable on light box */
-      }
-      .frost h2 { margin: 0 0 .75rem; color: #111; }
-      .frost a { color: #0b57d0; text-decoration: underline; }
-
-      /* Header */
-      .hdr {
-        text-align: center;
-        margin: 0 auto 1.5rem;
-        max-width: 900px;
-      }
-      .hdr h1 {
-        margin: 0 0 .5rem;
-        font-size: clamp(1.75rem, 4vw, 3rem);
-        text-shadow: 0 3px 18px rgba(0,0,0,.35);
-      }
-      .hdr p {
-        margin: 0;
-        opacity: .9;
-      }
-
-      /* Center column: book */
-      .book {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        text-align: center;
-      }
-      .book img {
-        width: 100%;
-        max-width: 420px;
-        height: auto;
-        border-radius: 14px;
-        box-shadow: 0 18px 48px rgba(0,0,0,.35);
-        background: #fff;
-      }
-      .book .frost { text-align: left; }
-
-      /* Lulu button */
-      .lulu-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 18px;
-        border-radius: 12px;
-        background: #FF6600;
-        color: #fff !important;
-        font-weight: 700;
-        text-decoration: none;
-        box-shadow: 0 10px 22px rgba(0,0,0,.22);
-        transition: background .15s ease, transform .05s ease;
-      }
-      .lulu-btn:hover { background: #cc5200; }
-      .lulu-btn:active { transform: translateY(1px); }
-      .lulu-logo {
-        height: 24px;
-        width: auto;
-        display: inline-block;
-      }
-
-      /* Lists inside frosted boxes */
-      .list { list-style: none; padding: 0; margin: 0; }
-      .list li + li { margin-top: 10px; }
-      .dot {
-        display: inline-block; width: 10px; height: 10px; border-radius: 9999px; background: #111; margin-right: 10px; transform: translateY(1px);
-      }
-
-      /* Footer note */
-      .note {
-        text-align: center;
-        color: rgba(255,255,255,.85);
-        font-size: 12px;
-        margin-top: 16px;
-      }
-      .note code {
-        background: rgba(255,255,255,.2);
-        padding: 0 4px;
-        border-radius: 4px;
-        color: #fff;
-      }
-    </style>
-  </head>
-
-  <body>
-    <!-- Background layers -->
-    <div class="bg-stars"></div>
-    <div class="bg-tint"></div>
-
-    <!-- Page content -->
-    <main class="page">
-      <header class="hdr">
-        <h1>Resources</h1>
-        <p>Videos and links collected for your journey with Abba.</p>
-      </header>
-
-      <section class="grid">
-        <!-- LEFT: Video links in frosted white box -->
-        <aside class="frost">
-          <h2>Watch: Featured Videos</h2>
-          <ul class="list">
-            {videoLinks.map(v => (
-              <li>
-                <a href={v.url} target="_blank" rel="noopener noreferrer">
-                  <span class="dot"></span><strong>{v.title}</strong>
-                </a>
-                {v.note && <div style="color:#333; font-size:.9rem; opacity:.85; margin-left:20px;">{v.note}</div>}
-              </li>
-            ))}
-          </ul>
-        </as
