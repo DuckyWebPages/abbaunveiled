@@ -52,6 +52,14 @@ const book = {
       .item a{color:#0b57d0;text-decoration:underline}
       .note{text-align:center;color:rgba(255,255,255,.85);font-size:12px;margin-top:14px}
       .note code{background:rgba(255,255,255,.2);padding:0 4px;border-radius:4px;color:#fff}
+    /* Center all content inside the book card (cover, text, and button) */
+.book {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* ← centers the Lulu button */
+  text-align: center;
+}
+
     </style>
   </head>
   <body>
