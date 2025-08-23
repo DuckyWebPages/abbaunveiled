@@ -1,4 +1,6 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro"; // adjust if your layout path differs
+
 const title = "Resources | Abba Unveiled";
 
 const videoLinks = [
@@ -15,106 +17,94 @@ const book = {
   cover: "/images/featured-book.png",
   title: "The Yahweh Deception",
   blurb:
-    "What if the God revealed by Jesus was never Yahweh? The Yahweh Deception uncovers how centuries of redaction blurred the Father’s identity, replacing El Elyon—the Most High—with a deity of law, wrath, and control. Drawing on ancient texts and fresh theological insight, this book challenges tradition and invites you into deeper intimacy with Abba.",
+    "The Yahweh Deception uncovers how centuries of redaction blurred the Father’s identity, replacing El Elyon—the Most High—with a deity of law, wrath, and control. Drawing on ancient texts and fresh theological insight, this over 300 page book challenges tradition and invites you into deeper intimacy with Abba.",
   buyUrl: "https://www.lulu.com/your-book-page",
 };
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>{title}</title>
-    <meta name="description" content="Curated videos and links to deepen intimacy with Abba and explore textual scholarship." />
-    <style>
-      .bg{position:fixed;inset:0;background:#000;z-index:0}
-      .bg::before{
-        content:"";position:absolute;inset:0;
-        background:url("/images/stars2.jpg") center/cover no-repeat;
-        filter:saturate(1.05);
-      }
-      .bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35)}
-      .page{position:relative;z-index:1;min-height:100vh;padding:2rem 1rem 3rem}
-      .hdr{color:#fff;text-align:center;margin:0 0 1.75rem}
-      .hdr h1{margin:0 0 .5rem;font-size:clamp(1.75rem,4vw,3rem)}
-      .grid{display:grid;gap:1.25rem}
-      @media (min-width:1024px){.grid{grid-template-columns:1fr 1fr 1fr;align-items:start}}
-      .frost{
-        background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.45);
-        border-radius:16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-        box-shadow:0 10px 26px rgba(0,0,0,.28);padding:22px;color:#111
-      }
-      .frost h2{margin:0 0 .75rem}
-      .book img{width:100%;max-width:420px;margin:0 auto 1rem;display:block;border-radius:12px;box-shadow:0 18px 44px rgba(0,0,0,.4);background:#fff}
-      .lulu-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;background:#FF6600;color:#fff!important;font-weight:700;text-decoration:none;box-shadow:0 10px 22px rgba(0,0,0,.22)}
-      .lulu-btn:hover{background:#cc5200}
-      .lulu-logo{height:24px;width:auto}
-      .list{list-style:none;padding:0;margin:0}
-      .item + .item{margin-top:.75rem}
-      .item a{color:#0b57d0;text-decoration:underline}
-      .note{text-align:center;color:rgba(255,255,255,.85);font-size:12px;margin-top:14px}
-      .note code{background:rgba(255,255,255,.2);padding:0 4px;border-radius:4px;color:#fff}
-    /* Center all content inside the book card (cover, text, and button) */
-.book {
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* ← centers the Lulu button */
-  text-align: center;
-}
 
-    </style>
-  </head>
-  <body>
-    <div class="bg"></div>
+<BaseLayout title={title} description="Curated videos and links to learn more about Yahweh not being the Father Jesus revealed.">
+  <style>
+    .bg{position:fixed;inset:0;background:#000;z-index:0}
+    .bg::before{
+      content:"";position:absolute;inset:0;
+      background:url("/images/stars2.jpg") center/cover no-repeat;
+      filter:saturate(1.05);
+    }
+    .bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35)}
+    .page{position:relative;z-index:1;min-height:100vh;padding:2rem 1rem 3rem}
+    .hdr{color:var(--color-foreground,#fff);text-align:center;margin:0 0 1.75rem}
+    .hdr h1{margin:0 0 .5rem;font-size:clamp(1.75rem,4vw,3rem)}
+    .grid{display:grid;gap:1.25rem}
+    @media (min-width:1024px){.grid{grid-template-columns:1fr 1fr 1fr;align-items:start}}
+    .frost{
+      background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.45);
+      border-radius:16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      box-shadow:0 10px 26px rgba(0,0,0,.28);padding:22px;color:#111
+    }
+    .frost h2{margin:0 0 .75rem}
+    .book img{width:100%;max-width:420px;margin:0 auto 1rem;display:block;border-radius:12px;box-shadow:0 18px 44px rgba(0,0,0,.4);background:#fff}
+    .book{display:flex;flex-direction:column;align-items:center;text-align:center} /* centers Lulu button too */
+    .lulu-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;background:#FF6600;color:#fff!important;font-weight:700;text-decoration:none;box-shadow:0 10px 22px rgba(0,0,0,.22)}
+    .lulu-btn:hover{background:#cc5200}
+    .lulu-logo{height:24px;width:auto}
+    .list{list-style:none;padding:0;margin:0}
+    .item + .item{margin-top:.75rem}
+    .item a{color:#0b57d0;text-decoration:underline}
+    .note{text-align:center;color:rgba(255,255,255,.85);font-size:12px;margin-top:14px}
+    .note code{background:rgba(255,255,255,.2);padding:0 4px;border-radius:4px;color:#fff}
+  </style>
 
-    <main class="page">
-      <header class="hdr">
-        <h1>Resources</h1>
-        <p>Videos and links collected for your journey with Abba.</p>
-      </header>
+  <div class="bg"></div>
 
-      <section class="grid">
-        <!-- LEFT bubble -->
-        <aside class="frost">
-          <h2>Watch: Featured Videos</h2>
-          <ul class="list">
-            {
-              videoLinks.map((v) => (
-                <li class="item">
-                  <a href={v.url} target="_blank" rel="noopener noreferrer"><strong>{v.title}</strong></a>
-                  {v.note && <div style="font-size:.92rem;opacity:.85">{v.note}</div>}
-                </li>
-              ))
-            }
-          </ul>
-        </aside>
+  <main class="page">
+    <header class="hdr">
+      <h1>Resources</h1>
+      <p>Videos and links collected for your journey with Abba.</p>
+    </header>
 
-        <!-- CENTER bubble (book) -->
-        <section class="frost book">
-          <img src={book.cover} alt={book.title} loading="eager" />
-          <h2>{book.title}</h2>
-          <p>{book.blurb}</p>
-          <a href={book.buyUrl} class="lulu-btn" rel="noopener noreferrer">
-            <img src="/images/lulu-logo.png" alt="Lulu" class="lulu-logo" />
-            Buy Now on Lulu
-          </a>
-        </section>
+    <section class="grid">
+      <!-- LEFT bubble -->
+      <aside class="frost">
+        <h2>Watch: Featured Videos</h2>
+        <ul class="list">
+          {
+            videoLinks.map((v) => (
+              <li class="item">
+                <a href={v.url} target="_blank" rel="noopener noreferrer"><strong>{v.title}</strong></a>
+                {v.note && <div style="font-size:.92rem;opacity:.85">{v.note}</div>}
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
 
-        <!-- RIGHT bubble -->
-        <aside class="frost">
-          <h2>Links & References</h2>
-          <div>
-            {
-              linkResources.map((l) => (
-                <div class="item">
-                  <a href={l.url} target="_blank" rel="noopener noreferrer"><strong>{l.title}</strong></a>
-                  {l.desc && <div style="font-size:.95rem;opacity:.9">{l.desc}</div>}
-                </div>
-              ))
-            }
-          </div>
-        </aside>
+      <!-- CENTER bubble (book) -->
+      <section class="frost book">
+        <img src={book.cover} alt={book.title} loading="eager" />
+        <h2>{book.title}</h2>
+        <p>{book.blurb}</p>
+        <a href={book.buyUrl} class="lulu-btn" rel="noopener noreferrer">
+          <img src="/images/lulu-logo.png" alt="Lulu" class="lulu-logo" />
+          Buy Now on Lulu
+        </a>
       </section>
 
-      <p class="note">Edit <code>videoLinks</code>, <code>linkResources</code>, and <code>book</code> at the top of this file.</p>
-    </main>
-  </body>
-</html>
+      <!-- RIGHT bubble -->
+      <aside class="frost">
+        <h2>Links & References</h2>
+        <div>
+          {
+            linkResources.map((l) => (
+              <div class="item">
+                <a href={l.url} target="_blank" rel="noopener noreferrer"><strong>{l.title}</strong></a>
+                {l.desc && <div style="font-size:.95rem;opacity:.9">{l.desc}</div>}
+              </div>
+            ))
+          }
+        </div>
+      </aside>
+    </section>
+
+    <p class="note">Edit <code>videoLinks</code>, <code>linkResources</code>, and <code>book</code> at the top of this file.</p>
+  </main>
+</BaseLayout>
