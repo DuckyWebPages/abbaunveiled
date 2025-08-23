@@ -1,0 +1,110 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Why Abba Unveiled?";
+// Centralized links (edit as needed)
+const LINKS = {
+  resources: "/resources",
+  podcast: "/podcast",
+  blog: "/blog",
+  book: "https://www.lulu.com/your-book-page", // replace with real Lulu link
+};
+---
+
+<BaseLayout title={title} description="Why this project exists: to pursue the Father Jesus revealed (El Elyon), cut through redactional fog, and invite people into relational intimacy with Abba.">
+  <style>
+    .hero{position:relative;isolation:isolate;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:url('/images/stars2.jpg') center/cover no-repeat;z-index:-2}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.35) 45%, rgba(0,0,0,.6));z-index:-1}
+    .wrap{max-width:1100px;margin-inline:auto;padding:64px 16px}
+    .h1{margin:0 0 .5rem;color:#fff;font-size:clamp(2rem,4vw,3.25rem);text-shadow:0 3px 18px rgba(0,0,0,.35)}
+    .sub{color:#fff;opacity:.95;max-width:70ch;margin:0}
+
+    .grid{display:grid;gap:1.25rem;margin-top:24px}
+    @media (min-width:1024px){.grid{grid-template-columns:1.2fr .8fr;align-items:start}}
+
+    .card{background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.45);border-radius:16px;padding:20px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 10px 26px rgba(0,0,0,.28);color:#111}
+    .card h2{margin:.25rem 0 .5rem}
+    .lead{font-size:1.05rem}
+    .list{padding-left:1.1rem}
+
+    .btns{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:14px}
+    .btn{display:inline-block;padding:.75rem 1.1rem;border-radius:9999px;background:#121212;color:#fff;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,.22)}
+    .btn--ghost{background:#fff;color:#111;border:1px solid rgba(0,0,0,.1)}
+
+    .faq{margin-top:28px}
+    details{background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.45);border-radius:14px;padding:14px 16px;box-shadow:0 8px 22px rgba(0,0,0,.2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;font-weight:600}
+    summary::marker{content:""}
+
+    .section{padding:36px 16px}
+    .section .wrap{padding:0}
+    .muted{opacity:.85}
+  </style>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <h1 class="h1">Why Abba Unveiled?</h1>
+      <p class="sub">Because many are hungry to know the Father Jesus actually revealed—and to separate that Abba from layers of legalism, redactions, and confusion that crept into the story.</p>
+
+      <div class="grid" style="margin-top:24px">
+        <div class="card">
+          <h2>The short answer</h2>
+          <p class="lead">Abba Unveiled exists to re‑center on the Father (“El Elyon”) whom Jesus made known. We examine how later edits and theological agendas blurred that identity with Yahweh—and we invite you back into a relational, not legalistic, walk with the Most High.</p>
+          <div class="btns">
+            <a class="btn" href={LINKS.resources}>Explore Resources</a>
+            <a class="btn btn--ghost" href={LINKS.book} rel="noopener noreferrer">Read the Book</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Watch a primer</h2>
+          <p class="muted">Prefer video? Start here.</p>
+          <div style="position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.25);background:#000;margin-top:8px">
+            <iframe src="https://www.youtube.com/embed/fXAAavy7g9Q" title="Why Abba Unveiled?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT SECTION -->
+  <section class="section">
+    <div class="wrap" style="max-width:1000px">
+      <div class="grid" style="grid-template-columns:1fr;gap:1rem">
+        <div class="card">
+          <h2>Core distinctions we explore</h2>
+          <ul class="list">
+            <li><strong>Relational Abba vs. Legal Yahweh:</strong> Jesus reveals a Father of mercy and relationship—not a deity defined by accusation, ritual, and control.</li>
+            <li><strong>Text matters:</strong> We compare sources (DSS, LXX, MT) to show where later hands likely merged identities or reframed the story.</li>
+            <li><strong>Melchizedek priesthood:</strong> Why Jesus’s priesthood signals a return to relational governance rather than law‑based systems.</li>
+            <li><strong>Practical discipleship:</strong> Moving from fear and performance into intimacy and authority as sons and daughters.</li>
+          </ul>
+          <div class="btns">
+            <a class="btn" href={LINKS.blog}>Read the Blog</a>
+            <a class="btn btn--ghost" href={LINKS.podcast}>Listen to the Podcast</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq">
+        <h2 style="color:#111;margin:0 0 .6rem">Quick FAQs</h2>
+        <details>
+          <summary>Is this anti‑Bible?</summary>
+          <div class="muted">No. It’s pro‑Jesus and pro‑truth. We take Scripture seriously enough to ask hard textual questions and to follow Jesus’s revelation of the Father wherever it leads.</div>
+        </details>
+        <details>
+          <summary>Do I have to agree with everything?</summary>
+          <div class="muted">Absolutely not. Consider this a research journey and an invitation to seek Abba personally. Test everything; hold fast to what is good.</div>
+        </details>
+        <details>
+          <summary>Where should I start?</summary>
+          <div class="muted">Start with the <a href={LINKS.resources}>Resources</a> page (articles & videos), then sample the <a href={LINKS.podcast}>Podcast</a>. When you’re ready for depth, grab the book.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
