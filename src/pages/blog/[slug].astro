@@ -1,38 +1,40 @@
----
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection, getEntry } from "astro:content";
+﻿---
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const entries = await getCollection("blog", ({ data }) => !data?.draft);
-
-  // Guard against bad/empty slugs
-  const paths = entries
-    .filter((e) => typeof e.slug === "string" && e.slug.length > 0)
-    .map((e) => ({
-      params: { slug: e.slug },
-      props: { entryId: e.id }, // pass a stable reference, not the whole object
-    }));
-
-  return paths;
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
 
-const { entryId } = Astro.props;
-
-// Re-fetch by id inside the page for a clean, predictable object
-const post = await getEntry(entryId);
-const { Content, data } = await post.render();
-
-const title = data.title ?? "Post";
-const description = data.seo ?? data.description ?? "";
-const heroImage = data.heroImage ?? null;
+const { post } = Astro.props;
+const { Content } = await post.render();
+const { title, description, seo, pubDate, tags } = post.data;
+const isoDate = new Date(pubDate).toISOString();
 ---
 
-<BaseLayout {title} description={description} seo={description} heroImage={heroImage}>
-  <article>
-    <h1>{title}</h1>
-    {heroImage && (
-      <img src={heroImage} alt={title} style="width:100%;height:auto;margin:1rem 0;border-radius:12px;" />
-    )}
-    <Content />
-  </article>
-</BaseLayout>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{seo ?? title}</title>
+    {description && <meta name="description" content={description} />}
+    {tags && <meta name="keywords" content={tags.join(", ")} />}
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={seo ?? title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="article:published_time" content={isoDate} />
+  </head>
+  <body>
+    <main class="prose mx-auto px-4 py-10">
+      <article>
+        <h1>{title}</h1>
+        <time datetime={isoDate}>
+          {new Date(pubDate).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"})}
+        </time>
+        <Content />
+      </article>
+    </main>
+  </body>
+</html>
