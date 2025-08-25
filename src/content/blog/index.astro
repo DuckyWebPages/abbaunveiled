@@ -1,40 +1,44 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
-// Find all posts sitting next to this file
-const modules = import.meta.glob("./*.mdx", { eager: true });
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+posts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
 
-const posts = Object.entries(modules)
-  .filter(([path]) => !/index\.mdx$/i.test(path))
-  .map(([path, mod]) => {
-    const fm = mod.frontmatter || {};
-    const slug = path.replace("./", "").replace(/\.mdx$/i, "");
-    return {
-      url: `/blog/${slug}/`,
-      title: fm.title || slug,
-      pubDate: fm.pubDate || "",
-      excerpt: fm.excerpt || "",
-      heroImage: fm.heroImage || "",
-      description: fm.description || "",
-      seo: fm.seo || "",
-      tags: fm.tags || [],
-    };
-  })
-  .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+// Helper: get a safe single-segment slug for the URL
+function linkSlug(entry) {
+  // Prefer Astro's slug if present
+  if (entry.slug && typeof entry.slug === "string") return entry.slug;
+
+  // Fallback: derive from `id` like "dir/name.mdx" or "name.mdx"
+  if (entry.id) {
+    const noExt = String(entry.id).replace(/\.(md|mdx|markdown)$/i, "");
+    // since your route is [slug].astro (single segment), take only the last path part
+    return noExt.split("/").pop();
+  }
+  return ""; // fallback
+}
 ---
 
 <BaseLayout title="Blog" description="Latest posts from Abba Unveiled">
   <h1>Blog</h1>
   <ul style="list-style:none;padding:0;margin:1rem 0 2rem;">
-    {posts.map((post) => (
-      <li style="margin:1.25rem 0;border-bottom:1px solid #eee;padding:0 0 1rem;">
-        <h2 style="margin:.2rem 0;">
-          <a href={post.url}>{post.title}</a>
-        </h2>
-        {post.pubDate && <small>{post.pubDate}</small>}
-        {post.excerpt && <p style="margin:.5rem 0 0;">{post.excerpt}</p>}
-      </li>
-    ))}
+    {posts.map((post) => {
+      const slug = linkSlug(post);
+      const href = slug ? `/blog/${slug}/` : "#";
+      return (
+        <li style="margin:1.25rem 0;border-bottom:1px solid #eee;padding:0 0 1rem; position:relative; z-index:3;">
+          <h2 style="margin:.2rem 0;">
+            <a class="post-link" style="position:relative; z-index:4; display:inline-block;" href={href}>
+              {post.data.title}
+            </a>
+          </h2>
+          {/* TEMP debug: remove after verifying */}
+          <small style="color:#777;">href: {href}</small>
+          {post.data.pubDate && <div><small>{post.data.pubDate.toDateString?.() || String(post.data.pubDate)}</small></div>}
+          {post.data.excerpt && <p style="margin:.5rem 0 0;">{post.data.excerpt}</p>}
+        </li>
+      );
+    })}
   </ul>
 </BaseLayout>
-

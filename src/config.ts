@@ -1,9 +1,8 @@
-﻿import { z, defineCollection } from "astro:content";
+import { z, defineCollection } from "astro:content";
 
 const blog = defineCollection({
   type: "content",
-  // normalize slug so `/blog/test-post/` works
-  slug: ({ slug }) => slug.split("/").pop()!,
+  slug: ({ slug }) => slug.split("/").pop()!, // normalize to last segment
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
