@@ -2,43 +2,185 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
+// Fetch posts (non-drafts) and sort newest first
 const posts = await getCollection("blog", ({ data }) => !data.draft);
 posts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
 
-// Helper: get a safe single-segment slug for the URL
-function linkSlug(entry) {
-  // Prefer Astro's slug if present
-  if (entry.slug && typeof entry.slug === "string") return entry.slug;
-
-  // Fallback: derive from `id` like "dir/name.mdx" or "name.mdx"
-  if (entry.id) {
-    const noExt = String(entry.id).replace(/\.(md|mdx|markdown)$/i, "");
-    // since your route is [slug].astro (single segment), take only the last path part
-    return noExt.split("/").pop();
-  }
-  return ""; // fallback
+// Helpers
+function fmtDate(d: unknown) {
+  if (!d) return "";
+  const dt = d instanceof Date ? d : new Date(String(d));
+  return isNaN(+dt) ? "" : dt.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+}
+function normTags(val: unknown): string[] {
+  if (Array.isArray(val)) return val.filter(Boolean);
+  if (typeof val === "string") return val.split(",").map(s => s.trim()).filter(Boolean);
+  return [];
 }
 ---
 
 <BaseLayout title="Blog" description="Latest posts from Abba Unveiled">
-  <h1>Blog</h1>
-  <ul style="list-style:none;padding:0;margin:1rem 0 2rem;">
+  <section class="page-hero" aria-labelledby="blog-title">
+    <h1 id="blog-title">Blog</h1>
+    <p class="sub">Theological discussions about Abba Father - the Father Jesus revealed (Not Yahweh).</p>
+  </section>
+
+  <section class="grid" aria-label="Post grid">
     {posts.map((post) => {
-      const slug = linkSlug(post);
-      const href = slug ? `/blog/${slug}/` : "#";
+      const href = `/blog/${post.slug}/`;
+      const title = post.data.title ?? post.slug;
+      const date = fmtDate(post.data.pubDate);
+      const desc = post.data.excerpt ?? post.data.description ?? "";
+      const tags = normTags(post.data.tags);
+      // heroImage supports either image() object or string path
+      const hero = post.data.heroImage?.src ?? post.data.heroImage ?? null;
+
       return (
-        <li style="margin:1.25rem 0;border-bottom:1px solid #eee;padding:0 0 1rem; position:relative; z-index:3;">
-          <h2 style="margin:.2rem 0;">
-            <a class="post-link" style="position:relative; z-index:4; display:inline-block;" href={href}>
-              {post.data.title}
-            </a>
-          </h2>
-          {/* TEMP debug: remove after verifying */}
-          <small style="color:#777;">href: {href}</small>
-          {post.data.pubDate && <div><small>{post.data.pubDate.toDateString?.() || String(post.data.pubDate)}</small></div>}
-          {post.data.excerpt && <p style="margin:.5rem 0 0;">{post.data.excerpt}</p>}
-        </li>
+        <a class="card" href={href}>
+          <figure class="thumb">
+            {hero ? (
+              <img src={hero} alt={title} loading="lazy" decoding="async" />
+            ) : (
+              <div class="thumb-fallback" aria-hidden="true">AU</div>
+            )}
+          </figure>
+
+          <div class="card-body">
+            <h2 class="card-title">{title}</h2>
+            {date && <div class="meta">{date}</div>}
+            {desc && <p class="excerpt">{desc}</p>}
+            {tags.length > 0 && (
+              <ul class="tags" aria-label="Tags">
+                {tags.map((t) => <li class="tag" key={t}>{t}</li>)}
+              </ul>
+            )}
+          </div>
+        </a>
       );
     })}
-  </ul>
+  </section>
+
+  <style>
+    :root {
+      --fg: #0b0b0c;
+      --muted: #6a6a6d;
+      --card: #ffffff;
+      --bg: #f7f7f9;
+      --line: #e9e9ee;
+      --brand: #4b6bfb; /* soft indigo accent */
+    }
+
+    .page-hero {
+      max-width: 68rem;
+      margin: 2rem auto 1rem;
+      padding: 0 1rem;
+    }
+    .page-hero h1 {
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      line-height: 1.1;
+      margin: 0 0 .25rem 0;
+      color: var(--fg);
+      letter-spacing: -0.01em;
+    }
+    .page-hero .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      max-width: 68rem;
+      margin: 1rem auto 3rem;
+      padding: 0 1rem;
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .card {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,.06);
+      border-color: #dfe3f3;
+    }
+
+    .thumb {
+      aspect-ratio: 16 / 9;
+      background: var(--bg);
+      margin: 0;
+      overflow: hidden;
+    }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .thumb-fallback {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: #c4c7d5;
+      background: linear-gradient(135deg, #eef1ff, #f7f8ff);
+      user-select: none;
+    }
+
+    .card-body {
+      padding: 0.9rem 1rem 1.1rem;
+      display: grid;
+      gap: .45rem;
+      align-content: start;
+    }
+    .card-title {
+      font-size: 1.1rem;
+      margin: 0;
+      color: var(--fg);
+      line-height: 1.25;
+      letter-spacing: -0.005em;
+    }
+    .meta {
+      font-size: .9rem;
+      color: var(--muted);
+    }
+    .excerpt {
+      margin: .25rem 0 0;
+      color: #2a2a2e;
+      font-size: .98rem;
+      line-height: 1.45;
+    }
+    .tags {
+      list-style: none;
+      padding: 0;
+      margin: .35rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+    .tag {
+      font-size: .78rem;
+      color: #2d3a62;
+      background: #eef2ff;
+      border: 1px solid #dde4ff;
+      padding: .22rem .5rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    @media (hover: hover) {
+      .card:hover .card-title { text-decoration: underline; }
+    }
+  </style>
 </BaseLayout>
