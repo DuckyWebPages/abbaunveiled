@@ -7,33 +7,60 @@ const title = "Podcast | Abba Unveiled";
   <head>
     <title>{title}</title>
     <meta name="description" content="Listen to the Abba Unveiled podcast." />
+    <!-- Load Spreaker widget once -->
     <script async src="https://widget.spreaker.com/widgets.js"></script>
-  </head>
-  <body class="min-h-screen">
-    <main style="max-width: 900px; margin: 2rem auto; padding: 1rem;">
-      <h1 style="font-size:2rem; margin-bottom:1rem;">🎙️ Abba Unveiled Podcast</h1>
+    <style>
+      /* Full-page wood background */
+      body {
+        min-height: 100vh;
+        margin: 0;
+        background: url('/wood-background.jpg') center center / cover no-repeat fixed;
+        font-family: sans-serif;
+      }
 
-      <!-- Spreaker Show Player -->
-      <a
-        class="spreaker-player"
-        href="https://www.spreaker.com/podcast/abba-unveiled-unveiling-the-father-jesus-revealed--6578036"
-        data-resource="show_id=6578036"
-        data-width="100%"
-        data-height="200px"
-        data-theme="light"
-        data-playlist="false"
-        data-playlist-continuous="false"
-        data-chapters-image="true"
-        data-episode-image-position="right"
-        data-hide-logo="false"
-        data-hide-likes="false"
-        data-hide-comments="false"
-        data-hide-sharing="false"
-        data-hide-download="false"
-        data-title="Abba Unveiled - Unveiling the Father Jesus Revealed"
-      >
-        Listen to "Abba Unveiled - Unveiling the Father Jesus Revealed" on Spreaker.
-      </a>
+      /* Page content */
+      .podcast-wrap {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        color: #222;
+        text-shadow: 1px 1px 3px rgba(255,255,255,0.7);
+      }
+
+      /* Rounded, semi-transparent panel */
+      .panel {
+        background: rgba(255, 255, 255, 0.88); /* see-through white */
+        backdrop-filter: blur(3px);
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="podcast-wrap">
+      <h1>🎙️ Abba Unveiled Podcast</h1>
+
+      <div class="panel">
+        <!-- Spreaker Show Player (lists all episodes) -->
+        <div
+          class="spreaker-player"
+          data-resource="show_id=6548036"
+          data-playlist="show"
+          data-theme="light"
+          data-width="100%"
+          data-height="475px"
+          data-autoplay="false"
+          data-playlist-continuous="true"
+        ></div>
+      </div>
     </main>
   </body>
 </html>
