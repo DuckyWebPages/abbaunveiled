@@ -1,0 +1,11 @@
+---
+const { title = "Want to go deeper?", children } = Astro.props;
+---
+
+<div class="mt-8 p-4 border-l-4 border-indigo-600 bg-indigo-50 rounded-md">
+  <p class="font-semibold text-indigo-700">📖 {title}</p>
+  <div class="mt-1 text-gray-800">
+    {children}
+  </div>
+</div>
+
