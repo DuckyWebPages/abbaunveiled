@@ -7,65 +7,60 @@ const title = "Podcast | Abba Unveiled";
   <head>
     <title>{title}</title>
     <meta name="description" content="Listen to the Abba Unveiled podcast." />
-    <!-- Spreaker widget (JS) -->
-    <script async src="https://widget.spreaker.com/widgets.js"></script>
     <style>
+      :root { --panel-bg: rgba(255,255,255,0.9); }
       body {
-        min-height: 100vh;
         margin: 0;
-        /* NOTE: now points to /images/... inside /public */
-        background: url('/images/wood-background.jpg') center center / cover no-repeat fixed;
-        font-family: sans-serif;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
       }
-
-      .podcast-wrap {
+      .wrap {
         max-width: 900px;
-        margin: 2rem auto;
-        padding: 1rem;
+        margin: 0 auto;
+        padding: 2rem 1rem;
       }
-
       h1 {
         font-size: 2rem;
-        margin-bottom: 1rem;
+        margin: 0 0 1rem 0;
         text-align: center;
         color: #222;
         text-shadow: 1px 1px 3px rgba(255,255,255,0.7);
       }
-
       .panel {
-        background: rgba(255, 255, 255, 0.9);
+        background: var(--panel-bg);
         backdrop-filter: blur(3px);
         border-radius: 16px;
         padding: 1.5rem;
         box-shadow: 0 6px 24px rgba(0,0,0,0.2);
       }
-
-      /* Optional: ensure the player spans full width of the panel */
-      .panel > .spreaker-player,
-      .panel > iframe {
+      .player {
         width: 100%;
+        height: 520px; /* explicit height so it’s not “narrow” */
+        border: 0;
+        display: block;
       }
     </style>
   </head>
 
   <body>
-    <main class="podcast-wrap">
-      <h1>🎙️ Abba Unveiled Podcast</h1>
-
-      <div class="panel">
-        <!-- Preferred: JS widget that lists ALL episodes for the show -->
-        <div
-          class="spreaker-player"
-          data-resource="show_id=6548036"
-          data-playlist="show"
-          data-theme="light"
-          data-width="100%"
-          data-height="475px"
-          data-autoplay="false"
-          data-playlist-continuous="true"
-        ></div>
-
-        <!-- Fallback for no-JS / script load issues -->
-        <noscript>
+    <!-- Section-level background so global styles can't override body -->
+    <section
+      style="
+        min-height: 100vh;
+        background: url('/images/wood-background.jpg') center center / cover no-repeat fixed;
+      "
+    >
+      <main class="wrap">
+        <h1>🎙️ Abba Unveiled Podcast</h1>
+        <div class="panel">
+          <!-- IFRAME SHOW PLAYER: lists ALL episodes; no JS required -->
           <iframe
+            class="player"
             title="Abba Unveiled Podcast"
+            src="https://widget.spreaker.com/player?show_id=6548036&theme=light&playlist=show&playlist-continuous=true"
+            allow="autoplay"
+          ></iframe>
+        </div>
+      </main>
+    </section>
+  </body>
+</html>
