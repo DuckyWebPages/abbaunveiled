@@ -7,18 +7,17 @@ const title = "Podcast | Abba Unveiled";
   <head>
     <title>{title}</title>
     <meta name="description" content="Listen to the Abba Unveiled podcast." />
-    <!-- Load Spreaker widget once -->
+    <!-- Spreaker widget (JS) -->
     <script async src="https://widget.spreaker.com/widgets.js"></script>
     <style>
-      /* Full-page wood background */
       body {
         min-height: 100vh;
         margin: 0;
-        background: url('/wood-background.jpg') center center / cover no-repeat fixed;
+        /* NOTE: now points to /images/... inside /public */
+        background: url('/images/wood-background.jpg') center center / cover no-repeat fixed;
         font-family: sans-serif;
       }
 
-      /* Page content */
       .podcast-wrap {
         max-width: 900px;
         margin: 2rem auto;
@@ -33,13 +32,18 @@ const title = "Podcast | Abba Unveiled";
         text-shadow: 1px 1px 3px rgba(255,255,255,0.7);
       }
 
-      /* Rounded, semi-transparent panel */
       .panel {
-        background: rgba(255, 255, 255, 0.88); /* see-through white */
+        background: rgba(255, 255, 255, 0.9);
         backdrop-filter: blur(3px);
         border-radius: 16px;
         padding: 1.5rem;
         box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      }
+
+      /* Optional: ensure the player spans full width of the panel */
+      .panel > .spreaker-player,
+      .panel > iframe {
+        width: 100%;
       }
     </style>
   </head>
@@ -49,7 +53,7 @@ const title = "Podcast | Abba Unveiled";
       <h1>🎙️ Abba Unveiled Podcast</h1>
 
       <div class="panel">
-        <!-- Spreaker Show Player (lists all episodes) -->
+        <!-- Preferred: JS widget that lists ALL episodes for the show -->
         <div
           class="spreaker-player"
           data-resource="show_id=6548036"
@@ -60,7 +64,8 @@ const title = "Podcast | Abba Unveiled";
           data-autoplay="false"
           data-playlist-continuous="true"
         ></div>
-      </div>
-    </main>
-  </body>
-</html>
+
+        <!-- Fallback for no-JS / script load issues -->
+        <noscript>
+          <iframe
+            title="Abba Unveiled Podcast"
