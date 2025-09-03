@@ -292,6 +292,21 @@ hr {
   line-height: 1.05;
   margin: 0.25rem 0 0.75rem;
 }
+/* Tighten the top space on the homepage */
+.home {
+  padding-top: 1rem; /* was 3em via the global 'main' rule */
+}
+
+/* Remove any extra top margin on the About heading itself */
+.home section.about .about__content h2 {
+  margin-top: 0 !important;
+}
+
+/* Safety: kill any extra padding/margin the About section might add */
+.home section.about {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
 
 
 
