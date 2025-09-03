@@ -1,21 +1,39 @@
 ---
 import { getCollection } from "astro:content";
-const posts = await getCollection("blog", ({ data }) => !data.draft); // optional filter
-
-// sort newest first if needed
+const posts = await getCollection("blog", ({ data }) => !data.draft);
 posts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
 ---
 
-<h1>Blog</h1>
+<html lang="en">
+  <head>
+    <style>
+      @font-face {
+        font-family: "MyCustomFont";
+        src: url("/fonts/MyFont.woff2") format("woff2"),
+             url("/fonts/MyFont.woff") format("woff");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
 
-<ul style="list-style:none;padding:0;">
-  {posts.map((post) => (
-    <li style="margin:1.5rem 0;border-bottom:1px solid #eee;padding-bottom:1rem;">
-      <h2 style="margin:0 0 .25rem;">
-        <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-      </h2>
-      <small>{post.data.pubDate}</small>
-      {post.data.excerpt && <p style="margin:.5rem 0 0;">{post.data.excerpt}</p>}
-    </li>
-  ))}
-</ul>
+      body {
+        font-family: Arial, sans-serif; /* fallback for body text */
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: "MyCustomFont", serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Blog</h1>
+
+    <ul style="list-style:none;padding:0;">
+      {posts.map((post) => (
+        <li style="margin:1.5rem 0;border-bottom:1px solid #eee;padding-bottom:1rem;">
+          <h2 style="margin:0 0 .25rem;">
+            <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+          </h2>
+          <small>{post.data.pubDate}</small>
+          {post.data.excerpt && <p style="margin:.5rem 0 0;">{post.data.excerpt}</p>}
+        <
