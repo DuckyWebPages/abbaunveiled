@@ -340,6 +340,19 @@ hr {
 /* Optional utility */
 .font-witt { font-family: "Wittgenstein", serif; }
 
+/* Front page buttons & CTAs use Wittgenstein */
+.hero-full a,
+.hero-full button,
+.home a[role="button"],
+.home a.button,
+.home .btn,
+.home .primary-cta,
+.home button,
+.home input[type="submit"] {
+  font-family: "Wittgenstein", serif !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
 
 
 
