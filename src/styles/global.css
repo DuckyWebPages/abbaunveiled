@@ -308,16 +308,25 @@ hr {
 .serif { font-family: "Finest Romance Serif", serif; }
 
 
-/* Built-in hero title: smaller than before */
+/* Hero title (restore script) */
 .hero-title--in-hero {
   color: #fff !important;
-  font-family: "Finest Romance Serif", serif !important;
-  font-size: clamp(3rem, 7vw, 5rem) !important; /* ~48–80px */
+  font-family: "Finest Romance Script", cursive !important; /* restore */
+  font-size: clamp(3rem, 7vw, 5rem) !important; /* adjust if you want */
   line-height: 0.95 !important;
   font-weight: 400;
   text-align: center;
   text-shadow: 0 2px 16px rgba(0,0,0,.35);
   margin: 0;
+}
+/* Hero subtitle uses the serif */
+.hero__subtitle {
+  font-family: "Finest Romance Serif", serif !important;
+  /* optional tuning:
+  font-size: clamp(1rem, 2.2vw, 1.5rem);
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  */
 }
 
 
