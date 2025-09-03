@@ -268,5 +268,12 @@ hr {
   font-weight: 600;
   line-height: 1.15;
 }
+/* Make the primary CTA (“Why Abba Unveiled?”) bigger on the homepage */
+.home .primary-cta,
+.home .primary-cta * {
+  font-size: 1.4em !important;
+  font-weight: 600;
+  line-height: 1.15;
+}
 
 
