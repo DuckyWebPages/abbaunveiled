@@ -167,3 +167,13 @@ hr {
 	white-space: nowrap;
 }
 /* deploy tick 2025-09-03T09:10:05 */
+/* Homepage hero title */
+.hero-title {
+  color: #fff !important;                 /* make it white and win over Tailwind */
+  font-size: clamp(5rem, 8vw, 6.25rem);   /* ~80px–100px, tops out ~100px (≈5× body) */
+  line-height: 0.9;
+  font-weight: 400;                        /* keep the script looking smooth */
+  text-shadow: 0 2px 16px rgba(0,0,0,.35); /* readability over images/video */
+}
+
+
