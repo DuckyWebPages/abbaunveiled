@@ -1,13 +1,11 @@
 ---
-// Base layout with SEO props; safe, minimal, compiles cleanly.
-import "../styles/global.css";
- // <-- bring in your fonts & styles
-
+import "../styles/global.css"; // use "@/styles/global.css" only if your alias is committed & working
 const {
   pageTitle = 'Abba Unveiled',
   description = 'Abba Unveiled: intimacy with the Father and unveiling the story behind the Name.',
 } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
