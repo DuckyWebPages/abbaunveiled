@@ -176,26 +176,7 @@ hr {
   text-shadow: 0 2px 16px rgba(0,0,0,.35); /* readability over images/video */
 }
 
-/* === Hero overlay title (white, centered, big) === */
-.hero-wrap { position: relative; }
 
-.hero-title-overlay {
-  position: absolute;
-  inset: 0;                  /* stretch over the hero */
-  display: grid;
-  place-items: center;       /* perfect centering */
-  text-align: center;
-  color: #fff !important;
-  margin: 0; /* <-- add this */
-  font-family: "Finest Romance Script", cursive !important;
-  font-size: clamp(5rem, 10vw, 8rem); /* ~80–128px; overrides .hero-title size */
-  line-height: 0.9;
-  font-weight: 400;
-  text-shadow: 0 2px 16px rgba(0,0,0,.35);
-  z-index: 50;               /* above images/video */
-  pointer-events: none;      /* clicks pass through */
-  padding: 0 1rem;           /* safe edges on mobile */
-}
 
 /* === 2× heading scale for the HOMEPAGE only === */
 .home h1 { font-size: 6.104em; }  /* was 3.052em */
@@ -215,3 +196,17 @@ hr {
   .home h6 { font-size: 1.5em;   }
 }
 
+/* Use the built-in hero title inside HeroVideo */
+.hero-title--in-hero {
+  color: #fff !important;
+  font-family: "Finest Romance Script", cursive !important;
+  font-size: clamp(5rem, 10vw, 8rem) !important; /* ~80–128px */
+  line-height: 0.9 !important;
+  font-weight: 400;
+  text-align: center;
+  text-shadow: 0 2px 16px rgba(0,0,0,.35);
+  margin: 0;
+}
+
+/* Ensure the hero text centers horizontally */
+.hero__content { text-align: center; }
