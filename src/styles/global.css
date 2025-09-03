@@ -281,6 +281,17 @@ hr {
   line-height: 1.05;
   margin: 0.25rem 0 0.75rem;
 }
+/* Make Featured + Newsletter section headings the same size */
+.home-featured h1,
+.home-featured h2,
+.home-featured h3,
+.home-newsletter h1,
+.home-newsletter h2,
+.home-newsletter h3 {
+  font-size: clamp(2rem, 5.5vw, 3.25rem) !important; /* ~32–52px, same as About */
+  line-height: 1.05;
+  margin: 0.25rem 0 0.75rem;
+}
 
 
 

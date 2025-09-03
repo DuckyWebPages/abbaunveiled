@@ -25,9 +25,22 @@ const pageTitle = "Abba Unveiled — Home";
   </div>
 
   <main class="home">
-    <AboutSection />
-    <FeaturedShowcase ... />
+  <AboutSection />
+
+  <section class="home-featured">
+    <FeaturedShowcase
+      title="The Trouble with Yahweh"
+      body="A research-driven journey that points to the Father Jesus revealed."
+      image="/images/featured-book.png"
+      primary={{ href: "/learn-more", label: "Why Abba Unveiled?" }}
+      secondary={{ href: "/resources", label: "See Research Notes" }}
+    />
+  </section>
+
+  <section class="home-newsletter">
     <Newsletter />
-  </main>
+  </section>
+</main>
+
 </body>
 
