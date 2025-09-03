@@ -1,39 +1,20 @@
 ---
-import { getCollection } from "astro:content";
-const posts = await getCollection("blog", ({ data }) => !data.draft);
-posts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
+// Base layout with SEO props; safe, minimal, compiles cleanly.
+const {
+  pageTitle = 'Abba Unveiled',
+  description = 'Abba Unveiled: intimacy with the Father and unveiling the story behind the Name.',
+} = Astro.props;
 ---
-
+<!doctype html>
 <html lang="en">
   <head>
-    <style>
-      @font-face {
-        font-family: "MyCustomFont";
-        src: url("/fonts/MyFont.woff2") format("woff2"),
-             url("/fonts/MyFont.woff") format("woff");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      body {
-        font-family: Arial, sans-serif; /* fallback for body text */
-      }
-
-      h1, h2, h3, h4, h5, h6 {
-        font-family: "MyCustomFont", serif;
-      }
-    </style>
+    <meta charset="utf-8" />
+    <title>{pageTitle}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="preload" href="/images/night-sky-poster.jpg" as="image" />
   </head>
   <body>
-    <h1>Blog</h1>
-
-    <ul style="list-style:none;padding:0;">
-      {posts.map((post) => (
-        <li style="margin:1.5rem 0;border-bottom:1px solid #eee;padding-bottom:1rem;">
-          <h2 style="margin:0 0 .25rem;">
-            <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-          </h2>
-          <small>{post.data.pubDate}</small>
-          {post.data.excerpt && <p style="margin:.5rem 0 0;">{post.data.excerpt}</p>}
-        <
+    <slot />
+  </body>
+</html>
