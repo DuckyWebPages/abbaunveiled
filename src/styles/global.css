@@ -234,4 +234,21 @@ hr {
   height: 100%;
   object-fit: cover;
 }
+/* === 2.5× heading scale on the HOMEPAGE (excludes the hero) === */
+.home h1 { font-size: 7.63em !important; }   /* 3.052em × 2.5 */
+.home h2 { font-size: 6.103em !important; }  /* 2.441em × 2.5 */
+.home h3 { font-size: 4.883em !important; }  /* 1.953em × 2.5 */
+.home h4 { font-size: 3.908em !important; }  /* 1.563em × 2.5 */
+.home h5 { font-size: 3.125em !important; }  /* 1.25em  × 2.5 */
+.home h6 { font-size: 2.5em  !important; }   /* assume base 1em × 2.5 */
+
+/* Optional: rein in sizes on small screens */
+@media (max-width: 720px) {
+  .home h1 { font-size: 4.5em !important; }
+  .home h2 { font-size: 3.9em !important; }
+  .home h3 { font-size: 3.1em !important; }
+  .home h4 { font-size: 2.5em !important; }
+  .home h5 { font-size: 2.1em !important; }
+  .home h6 { font-size: 1.75em !important; }
+}
 
