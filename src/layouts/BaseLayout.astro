@@ -1,5 +1,7 @@
 ---
 // Base layout with SEO props; safe, minimal, compiles cleanly.
+import "@/styles/global.css"; // <-- bring in your fonts & styles
+
 const {
   pageTitle = 'Abba Unveiled',
   description = 'Abba Unveiled: intimacy with the Father and unveiling the story behind the Name.',
@@ -13,6 +15,8 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="preload" href="/images/night-sky-poster.jpg" as="image" />
+    <!-- Preload your custom heading font -->
+    <link rel="preload" href="/fonts/FinestRomanceScript.woff2" as="font" type="font/woff2" crossorigin>
   </head>
   <body>
     <slot />
