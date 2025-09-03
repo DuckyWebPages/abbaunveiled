@@ -253,4 +253,19 @@ hr {
   .home h6 { font-size: 1.4em; }
 }
 
+/* Bigger Featured block heading (if it renders as h2/h3 inside the component) */
+.home-featured h1,
+.home-featured h2,
+.home-featured h3 {
+  font-size: clamp(2rem, 5vw, 3.25rem) !important; /* ~32–52px */
+  line-height: 1.05;
+}
+
+/* Make the primary CTA “Why Abba Unveiled?” larger (robust selector) */
+.home-featured a[href="/learn-more"],
+.home-featured a[href="/learn-more"] * {
+  font-size: 1.25em !important;   /* ~25% bigger */
+  font-weight: 600;
+  line-height: 1.1;
+}
 
