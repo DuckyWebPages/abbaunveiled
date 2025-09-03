@@ -275,5 +275,12 @@ hr {
   font-weight: 600;
   line-height: 1.15;
 }
+/* Bigger AboutSection heading on the homepage */
+.home section.about .about__content h2 {
+  font-size: clamp(2rem, 5.5vw, 3.5rem) !important; /* ~32–52px */
+  line-height: 1.05;
+  margin: 0.25rem 0 0.75rem;
+}
+
 
 
