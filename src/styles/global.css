@@ -210,3 +210,28 @@ hr {
 
 /* Ensure the hero text centers horizontally */
 .hero__content { text-align: center; }
+
+/* Full-bleed wrapper to escape centered page widths */
+.hero-full {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Make the hero fill the viewport and cover */
+.hero, .hero-full {
+  min-height: min(100svh, 100vh);
+}
+
+/* If your component exposes these, great; if not, the generic rule below handles it */
+.hero__content { text-align: center; }
+
+/* Generic cover for any image/video inside the hero */
+.hero-full img,
+.hero-full video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
