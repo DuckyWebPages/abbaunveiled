@@ -1,5 +1,5 @@
 ---
-import "../styles/global.css";                 // force-load CSS on homepage
+import "../styles/global.css"; // keep CSS loaded on homepage
 import HeroVideo from "../components/HeroVideo.astro";
 import AboutSection from "../components/AboutSection.astro";
 import FeaturedShowcase from "../components/FeaturedShowcase.astro";
@@ -12,25 +12,32 @@ const pageTitle = "Abba Unveiled — Home";
     <meta charset="utf-8" />
     <title>{pageTitle}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Abba Unveiled: intimacy with the Father and unveiling the story behind the Name." />
+    <meta
+      name="description"
+      content="Abba Unveiled: intimacy with the Father and unveiling the story behind the Name."
+    />
     <link rel="preload" href="/images/night-sky-poster.jpg" as="image" />
-    <!-- Preload the script font so it MUST request -->
-    <link rel="preload" href="/fonts/FinestRomanceScript.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/FinestRomanceScript.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
-    <!-- TEMP: Big heading to confirm the font renders -->
-    <h1 class="hero-title" style="margin:24px 0;">Abba Unveiled</h1>
+    <main class="home">
+      <!-- Hero with centered overlay title -->
+      <div class="hero-wrap">
+        <HeroVideo overlayImageSrc="/images/tetrawhite.png?v=20250903" />
+        <h1 class="hero-title hero-title-overlay">Abba Unveiled</h1>
+      </div>
 
+      <AboutSection />
 
-    <HeroVideo overlayImageSrc="/images/tetrawhite.png?v=20250903" />
-    <AboutSection />
-    <FeaturedShowcase
-      title="The Yahweh Deception"
-      body="A research-driven journey that points to the Father Jesus revealed."
-      image="/images/featured-book.png"
-      primary={{ href: "/learn-more", label: "Why Abba Unveiled?" }}
-      secondary={{ href: "/resources", label: "See Research Notes" }}
-    />
-    <Newsletter />
+      <FeaturedShowcase
+        title="The Yahweh Deception"
+        body="A research-driven journey that points to the Father Jesus revealed."
+        image="/images/featured-book.png"
+        primary={{ href: "/learn-more", label: "Why Abba Unveiled?" }}
+        secondary={{ href: "/resources", label: "See Research Notes" }}
+      />
+
+      <Newsletter />
+    </main>
   </body>
 </html>
