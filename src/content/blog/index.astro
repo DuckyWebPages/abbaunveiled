@@ -33,7 +33,11 @@ function normTags(val: unknown): string[] {
       const desc = post.data.excerpt ?? post.data.description ?? "";
       const tags = normTags(post.data.tags);
       // heroImage supports either image() object or string path
-      const hero = post.data.heroImage?.src ?? post.data.heroImage ?? null;
+     const hero =
+  post.data.cardImage?.src ?? post.data.cardImage ??
+  post.data.heroImage?.src ?? post.data.heroImage ??
+  null;
+
 
       return (
         <a class="card" href={href}>

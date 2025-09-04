@@ -430,5 +430,10 @@ hr {
   }
 }
 
+/* Optional: narrower image variant for posts */
+.post-content img.is-narrow {
+  max-width: 560px;
+  width: 100%;
+}
 
 
