@@ -31,7 +31,13 @@ function normTags(val: unknown): string[] {
       const title = post.data.title ?? post.slug;
       const desc = post.data.excerpt ?? post.data.description ?? "";
       const tags = normTags(post.data.tags);
-      const hero = post.data.heroImage?.src ?? post.data.heroImage ?? null; // supports image() or string
+
+      // Prefer cardImage → fallback to heroImage (support string or image() object)
+      const hero =
+        post.data.cardImage?.src ?? post.data.cardImage ??
+        post.data.heroImage?.src ?? post.data.heroImage ??
+        null;
+
       return (
         <a class="card" href={href}>
           <figure class="thumb">
@@ -66,7 +72,7 @@ function normTags(val: unknown): string[] {
       --brand: #4b6bfb;
     }
 
-    /* Wittgenstein only on the blog index headings */
+    /* Wittgenstein on blog index headings */
     .blog-index h1,
     .blog-index .card-title {
       font-family: "Wittgenstein", serif !important;
@@ -123,7 +129,7 @@ function normTags(val: unknown): string[] {
     .thumb img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover; /* ensure consistent cropping */
       display: block;
     }
     .thumb-fallback {

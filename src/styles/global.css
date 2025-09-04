@@ -435,5 +435,17 @@ hr {
   max-width: 560px;
   width: 100%;
 }
+/* ===== Page background ===== */
+.site-bg{
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.35)),
+    url("/images/backgrounds/stars-northern.png") center/cover no-repeat fixed;
+}
+
+/* Prevent mobile jank from fixed bgs */
+@media (max-width: 800px){
+  .site-bg{ background-attachment: scroll; }
+}
 
 

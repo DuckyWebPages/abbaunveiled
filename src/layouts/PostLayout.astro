@@ -6,11 +6,11 @@ interface Props {
   description?: string;
   pubDate?: string | Date;
   updatedDate?: string | Date;
-  heroImage?: string;            // string path OR image() result with .src
+  heroImage?: string;
   heroCaption?: string;
   tags?: string[] | string;
-  keywords?: string[];           // optional extra for <meta name="keywords">
-  seoTitle?: string;             // optional: override <title>
+  keywords?: string[];
+  seoTitle?: string;
 }
 
 const {
@@ -30,8 +30,12 @@ const dPub = pubDate ? new Date(pubDate) : null;
 const dUpd = updatedDate ? new Date(updatedDate) : null;
 const isoPub = dPub && !isNaN(+dPub) ? dPub.toISOString() : "";
 const isoUpd = dUpd && !isNaN(+dUpd) ? dUpd.toISOString() : "";
-const displayPub = dPub && !isNaN(+dPub) ? dPub.toLocaleDateString("en-US", { year:"numeric", month:"long", day:"numeric" }) : "";
-const displayUpd = dUpd && !isNaN(+dUpd) ? dUpd.toLocaleDateString("en-US", { year:"numeric", month:"long", day:"numeric" }) : "";
+const displayPub = dPub && !isNaN(+dPub)
+  ? dPub.toLocaleDateString("en-US", { year:"numeric", month:"long", day:"numeric" })
+  : "";
+const displayUpd = dUpd && !isNaN(+dUpd)
+  ? dUpd.toLocaleDateString("en-US", { year:"numeric", month:"long", day:"numeric" })
+  : "";
 
 // normalize tags
 const tagList = Array.isArray(tags)
@@ -42,8 +46,10 @@ const tagList = Array.isArray(tags)
 ---
 
 <BaseLayout pageTitle={seoTitle ?? title} description={description}>
-  <main class="mx-auto px-4 py-10 post-shell">
-    <article class="post-content prose">
+  <!-- Page shell: keeps background visible at sides -->
+  <main class="page-shell">
+    <!-- White card that extends ~1" beyond the text column on each side -->
+    <article class="post-card">
       <header class="post-header">
         <h1 class="post-title">{title}</h1>
         <div class="post-meta">
@@ -61,48 +67,93 @@ const tagList = Array.isArray(tags)
             {tagList.map(t => <li class="tag" key={t}>{t}</li>)}
           </ul>
         )}
+
+        {heroImage && (
+          <figure class="post-hero">
+            <img
+              src={typeof heroImage === "string" ? heroImage : heroImage.src}
+              alt={title}
+              loading="eager"
+            />
+            {heroCaption && <figcaption>{heroCaption}</figcaption>}
+          </figure>
+        )}
       </header>
 
-      {heroImage && (
-        <figure class="post-hero">
-          <img src={typeof heroImage === "string" ? heroImage : heroImage.src} alt={title} loading="eager" />
-          {heroCaption && <figcaption>{heroCaption}</figcaption>}
-        </figure>
-      )}
-
-      <slot />  {/* MDX content renders here */}
+      <!-- Inner text column (long-form reading width) -->
+      <div class="post-body prose">
+        <slot />  {/* MDX content renders here */}
+      </div>
     </article>
   </main>
 
   <style>
-    .post-shell { max-width: 72ch; } /* readable line-length */
-    .post-header { margin-bottom: 1rem; }
-    .post-title { margin: 0 0 .25rem; line-height: 1.1; }
-    .post-meta {
+    :root{
+      /* Readable text column + ~1" side bleed on each side for the white card */
+      --reading-width: 72ch;          /* ~65–75 chars/line */
+      --side-bleed: min(96px, 8vw);   /* ~1 inch ≈ 96px, responsive on small screens */
+      --base-font: 18px;
+      --lh: 1.7;
+      --ink: #111;
+      --muted: #6a6a6d;
+    }
+
+    /* Centers the white card and lets the starry background peek at sides */
+    .page-shell{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: clamp(16px, 2vw, 24px);
+    }
+
+    /* White box */
+    .post-card{
+      max-width: calc(var(--reading-width) + (2 * var(--side-bleed)));
+      margin: clamp(16px, 2vw, 24px) auto 6rem auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.16);
+      overflow: hidden;
+    }
+
+    .post-header{
+      max-width: calc(var(--reading-width) + (2 * var(--side-bleed)));
+      padding: clamp(18px, 2.2vw, 28px);
+      margin: 0 auto;
+    }
+
+    .post-title{ margin: 0 0 .35rem; line-height: 1.1; }
+    .post-meta{
       font-size: .95rem;
-      color: #6a6a6d;
+      color: var(--muted);
       display: flex; gap: .5rem; align-items: center; flex-wrap: wrap;
       margin-bottom: .4rem;
     }
-    .post-tags {
+    .post-tags{
       list-style: none; display: flex; gap: .4rem; padding: 0; margin: .5rem 0 0;
       flex-wrap: wrap;
     }
-    .post-tags .tag {
+    .post-tags .tag{
       font-size: .78rem; color: #2d3a62; background: #eef2ff; border: 1px solid #dde4ff;
       padding: .22rem .5rem; border-radius: 999px; white-space: nowrap;
     }
-    .post-hero { margin: 1rem 0 1.5rem; }
-    .post-hero img { width: 100%; height: auto; display: block; border-radius: 10px; }
-    .post-hero figcaption {
-      font-size: .9rem; color: #6a6a6d; margin-top: .4rem; text-align: center;
+
+    .post-hero{ margin: 1rem 0 1.25rem; }
+    .post-hero img{
+      width: 100%; height: auto; display: block; border-radius: 10px;
+    }
+    .post-hero figcaption{
+      font-size: .9rem; color: var(--muted); margin-top: .4rem; text-align: center;
     }
 
-    /* Better spacing for images/callouts in the prose */
-    .prose figure { margin: 1.2rem 0; }
-    .prose figcaption { color: #6a6a6d; font-size: .9rem; text-align: center; }
+    /* Inner reading column */
+    .post-body{
+      max-width: var(--reading-width);
+      margin: 0 auto;
+      padding: 0 clamp(18px, 2.2vw, 28px) clamp(22px, 2.4vw, 34px);
+      font-size: clamp(17px, 0.35vw + 16px, var(--base-font));
+      line-height: var(--lh);
+      color: var(--ink);
+    }
 
-    /* Optional: nicer code blocks inside posts */
-    .prose pre { background: #f6f7fb; border: 1px solid #ececf4; }
-  </style>
-</BaseLayout>
+    /* Typography rhythm (denser, long-form feel) */
+    .post-body p{ m
