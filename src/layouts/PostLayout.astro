@@ -1,0 +1,108 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  pubDate?: string | Date;
+  updatedDate?: string | Date;
+  heroImage?: string;            // string path OR image() result with .src
+  heroCaption?: string;
+  tags?: string[] | string;
+  keywords?: string[];           // optional extra for <meta name="keywords">
+  seoTitle?: string;             // optional: override <title>
+}
+
+const {
+  title,
+  description = "",
+  pubDate,
+  updatedDate,
+  heroImage,
+  heroCaption = "",
+  tags = [],
+  keywords = [],
+  seoTitle
+} = Astro.props as Props;
+
+// normalize dates
+const dPub = pubDate ? new Date(pubDate) : null;
+const dUpd = updatedDate ? new Date(updatedDate) : null;
+const isoPub = dPub && !isNaN(+dPub) ? dPub.toISOString() : "";
+const isoUpd = dUpd && !isNaN(+dUpd) ? dUpd.toISOString() : "";
+const displayPub = dPub && !isNaN(+dPub) ? dPub.toLocaleDateString("en-US", { year:"numeric", month:"long", day:"numeric" }) : "";
+const displayUpd = dUpd && !isNaN(+dUpd) ? dUpd.toLocaleDateString("en-US", { year:"numeric", month:"long", day:"numeric" }) : "";
+
+// normalize tags
+const tagList = Array.isArray(tags)
+  ? tags
+  : typeof tags === "string"
+    ? tags.split(",").map(s => s.trim()).filter(Boolean)
+    : [];
+---
+
+<BaseLayout pageTitle={seoTitle ?? title} description={description}>
+  <main class="mx-auto px-4 py-10 post-shell">
+    <article class="post-content prose">
+      <header class="post-header">
+        <h1 class="post-title">{title}</h1>
+        <div class="post-meta">
+          {displayPub && <time datetime={isoPub} title="Published">{displayPub}</time>}
+          {displayUpd && displayUpd !== displayPub && (
+            <>
+              <span class="sep">•</span>
+              <time datetime={isoUpd} title="Updated">{displayUpd}</time>
+            </>
+          )}
+        </div>
+
+        {tagList.length > 0 && (
+          <ul class="post-tags">
+            {tagList.map(t => <li class="tag" key={t}>{t}</li>)}
+          </ul>
+        )}
+      </header>
+
+      {heroImage && (
+        <figure class="post-hero">
+          <img src={typeof heroImage === "string" ? heroImage : heroImage.src} alt={title} loading="eager" />
+          {heroCaption && <figcaption>{heroCaption}</figcaption>}
+        </figure>
+      )}
+
+      <slot />  {/* MDX content renders here */}
+    </article>
+  </main>
+
+  <style>
+    .post-shell { max-width: 72ch; } /* readable line-length */
+    .post-header { margin-bottom: 1rem; }
+    .post-title { margin: 0 0 .25rem; line-height: 1.1; }
+    .post-meta {
+      font-size: .95rem;
+      color: #6a6a6d;
+      display: flex; gap: .5rem; align-items: center; flex-wrap: wrap;
+      margin-bottom: .4rem;
+    }
+    .post-tags {
+      list-style: none; display: flex; gap: .4rem; padding: 0; margin: .5rem 0 0;
+      flex-wrap: wrap;
+    }
+    .post-tags .tag {
+      font-size: .78rem; color: #2d3a62; background: #eef2ff; border: 1px solid #dde4ff;
+      padding: .22rem .5rem; border-radius: 999px; white-space: nowrap;
+    }
+    .post-hero { margin: 1rem 0 1.5rem; }
+    .post-hero img { width: 100%; height: auto; display: block; border-radius: 10px; }
+    .post-hero figcaption {
+      font-size: .9rem; color: #6a6a6d; margin-top: .4rem; text-align: center;
+    }
+
+    /* Better spacing for images/callouts in the prose */
+    .prose figure { margin: 1.2rem 0; }
+    .prose figcaption { color: #6a6a6d; font-size: .9rem; text-align: center; }
+
+    /* Optional: nicer code blocks inside posts */
+    .prose pre { background: #f6f7fb; border: 1px solid #ececf4; }
+  </style>
+</BaseLayout>
