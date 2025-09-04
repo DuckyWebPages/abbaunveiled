@@ -30,8 +30,12 @@ if (!post) {
   const all = await getCollection("blog", ({ data }) => !data.draft);
   post =
     all.find((e) => e.slug === slug) ||
-    all.find((e) => String(e.id).replace(/\.(md|mdx|markdown)$/i, "").endsWith(`/${slug}`)) ||
-    all.find((e) => String(e.id).replace(/\.(md|mdx|markdown)$/i, "") === slug) ||
+    all.find((e) =>
+      String(e.id).replace(/\.(md|mdx|markdown)$/i, "").endsWith(`/${slug}`)
+    ) ||
+    all.find((e) =>
+      String(e.id).replace(/\.(md|mdx|markdown)$/i, "") === slug
+    ) ||
     null;
 }
 
@@ -48,14 +52,19 @@ const { title = slug, description = "", seo, pubDate, tags } = data;
 const keywords = Array.isArray(tags)
   ? tags
   : typeof tags === "string"
-    ? tags.split(",").map((s) => s.trim()).filter(Boolean)
-    : [];
+  ? tags.split(",").map((s) => s.trim()).filter(Boolean)
+  : [];
 
 const d = pubDate ? new Date(pubDate) : null;
 const isoDate = d && !isNaN(+d) ? d.toISOString() : "";
-const displayDate = d && !isNaN(+d)
-  ? d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
-  : "";
+const displayDate =
+  d && !isNaN(+d)
+    ? d.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : "";
 ---
 
 <!doctype html>
@@ -64,12 +73,17 @@ const displayDate = d && !isNaN(+d)
     <meta charset="utf-8" />
     <title>{seo ?? title}</title>
     {description && <meta name="description" content={description} />}
-    {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
-    {isoDate && <meta property="article:published_time" content={isoDate} />}
+    {keywords.length > 0 && (
+      <meta name="keywords" content={keywords.join(", ")} />
+    )}
+    {isoDate && (
+      <meta property="article:published_time" content={isoDate} />
+    )}
   </head>
   <body>
     <main class="prose mx-auto px-4 py-10">
-      <article>
+      <!-- 👇 Added .post-content class -->
+      <article class="post-content">
         <h1>{title}</h1>
         {displayDate && <time datetime={isoDate}>{displayDate}</time>}
         <Content />

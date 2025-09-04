@@ -18,13 +18,13 @@ function normTags(val: unknown): string[] {
 }
 ---
 
-<BaseLayout title="Blog" description="Latest posts from Abba Unveiled">
-  <section class="page-hero">
+<BaseLayout pageTitle="Blog — Abba Unveiled" description="Latest posts from Abba Unveiled">
+  <section class="page-hero blog-index">
     <h1>Blog</h1>
     <p class="sub">Essays, research notes, and revelations about Abba the Father Jesus revealed.</p>
   </section>
 
-  <section class="grid">
+  <section class="grid blog-index">
     {posts.map((post) => {
       const href = `/blog/${post.slug}/`;
       const d = fmtDate(post.data.pubDate);
@@ -63,8 +63,15 @@ function normTags(val: unknown): string[] {
       --card: #ffffff;
       --bg: #f7f7f9;
       --line: #e9e9ee;
-      --brand: #4b6bfb; /* soft indigo accent */
+      --brand: #4b6bfb;
     }
+
+    /* Wittgenstein only on the blog index headings */
+    .blog-index h1,
+    .blog-index .card-title {
+      font-family: "Wittgenstein", serif !important;
+    }
+
     .page-hero {
       max-width: 68rem;
       margin: 2rem auto 1rem;
