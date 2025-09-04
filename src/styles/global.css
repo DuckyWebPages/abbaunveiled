@@ -373,6 +373,62 @@ hr {
 .blog-index .card-title {
   font-family: "Wittgenstein", serif !important;
 }
+/* === Blog post media: responsive + classy === */
+
+/* Any image inside a post scales to the container width and keeps aspect ratio */
+.post-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.25rem auto;       /* nice breathing room */
+  border-radius: 10px;         /* matches your card rounding */
+}
+
+/* Markdown images inside .prose sometimes inherit inline spacing; normalize */
+.post-content.prose :where(img):not(:where(.not-prose *)) {
+  margin: 1.25rem auto;
+  border-radius: 10px;
+}
+
+/* Figures with captions */
+.post-content figure {
+  margin: 1.5rem auto;
+  text-align: center;
+}
+.post-content figure > img {
+  margin: 0 auto;              /* image flush with caption block */
+}
+.post-content figcaption {
+  font-size: 0.95rem;
+  color: #6a6a6d;
+  margin-top: 0.5rem;
+}
+
+/* Optional: full-bleed hero inside the post (escapes 72ch max width on big screens) */
+@media (min-width: 900px) {
+  .post-content .full-bleed {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .post-content .full-bleed img {
+    border-radius: 0;
+  }
+}
+
+/* Optional: side-by-side images (drop two imgs inside a .img-grid-2) */
+.post-content .img-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+@media (min-width: 700px) {
+  .post-content .img-grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
 
 
