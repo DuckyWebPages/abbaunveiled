@@ -57,19 +57,24 @@ main {
 	margin: auto;
 	padding: 3em 1em;
 }
-/* Force headings to use the script font even if a utility sets font-family */
+/* Default headings use Wittgenstein site-wide */
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-.hero-title {
+h6 {
   margin: 0 0 0.5rem 0;
   color: rgb(var(--black));
   line-height: 1.2;
+  font-family: "Wittgenstein", serif !important;
+}
+
+/* Keep hero titles in Finest Romance Script */
+.hero-title {
   font-family: "Finest Romance Script", cursive !important;
 }
+
 
 
 h1 {
@@ -361,6 +366,11 @@ hr {
 .post-content h4,
 .post-content h5,
 .post-content h6 {
+  font-family: "Wittgenstein", serif !important;
+}
+/* Blog index headings (optional reinforcement) */
+.blog-index h1,
+.blog-index .card-title {
   font-family: "Wittgenstein", serif !important;
 }
 
