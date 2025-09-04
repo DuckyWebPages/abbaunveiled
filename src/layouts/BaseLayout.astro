@@ -1,24 +1,39 @@
 ---
-import "../styles/global.css"; // use "@/styles/global.css" only if your alias is committed & working
+// FILE: src/layouts/BaseLayout.astro
+interface Props {
+  pageTitle?: string;
+  description?: string;
+}
+
 const {
-  pageTitle = 'Abba Unveiled',
-  description = 'Abba Unveiled: intimacy with the Father and unveiling the story behind the Name.',
-} = Astro.props;
+  pageTitle = "Abba Unveiled",
+  description = "",
+} = Astro.props as Props;
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>{pageTitle}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <link rel="preload" href="/images/night-sky-poster.jpg" as="image" />
-    <!-- Preload your custom heading font -->
-    <link rel="preload" href="/fonts/FinestRomanceScript.woff2" as="font" type="font/woff2" crossorigin>
+    {pageTitle && <title>{pageTitle}</title>}
+    {description && <meta name="description" content={description} />}
   </head>
-  <<body class="site-bg">
-  <slot />
-</body>
 
+  <body class="site-bg">
+    <slot />
+  </body>
 </html>
+
+<style is:global>
+  /* page background */
+  .site-bg{
+    min-height: 100vh;
+    background:
+      linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.35)),
+      url("/images/backgrounds/aurora-night-1920.jpg") center/cover no-repeat fixed;
+  }
+  @media (max-width: 800px){
+    .site-bg{ background-attachment: scroll; }
+  }
+</style>
