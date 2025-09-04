@@ -46,12 +46,11 @@ const tagList = Array.isArray(tags)
 ---
 
 <BaseLayout pageTitle={seoTitle ?? title} description={description}>
-  <!-- Page shell: keeps background visible at sides -->
   <main class="page-shell">
-    <!-- White card that extends ~1" beyond the text column on each side -->
     <article class="post-card">
       <header class="post-header">
         <h1 class="post-title">{title}</h1>
+        <div class="post-author">By WR Selvig</div>
         <div class="post-meta">
           {displayPub && <time datetime={isoPub} title="Published">{displayPub}</time>}
           {displayUpd && displayUpd !== displayPub && (
@@ -80,32 +79,28 @@ const tagList = Array.isArray(tags)
         )}
       </header>
 
-      <!-- Inner text column (long-form reading width) -->
       <div class="post-body prose">
-        <slot />  {/* MDX content renders here */}
+        <slot /> {/* MDX content renders here */}
       </div>
     </article>
   </main>
 
   <style>
     :root{
-      /* Readable text column + ~1" side bleed on each side for the white card */
-      --reading-width: 72ch;          /* ~65–75 chars/line */
-      --side-bleed: min(96px, 8vw);   /* ~1 inch ≈ 96px, responsive on small screens */
+      --reading-width: 72ch;
+      --side-bleed: min(96px, 8vw);
       --base-font: 18px;
       --lh: 1.7;
       --ink: #111;
       --muted: #6a6a6d;
     }
 
-    /* Centers the white card and lets the starry background peek at sides */
     .page-shell{
       max-width: 1200px;
       margin: 0 auto;
       padding: clamp(16px, 2vw, 24px);
     }
 
-    /* White box */
     .post-card{
       max-width: calc(var(--reading-width) + (2 * var(--side-bleed)));
       margin: clamp(16px, 2vw, 24px) auto 6rem auto;
@@ -122,6 +117,12 @@ const tagList = Array.isArray(tags)
     }
 
     .post-title{ margin: 0 0 .35rem; line-height: 1.1; }
+    .post-author{
+      font-size: 1rem;
+      font-weight: 500;
+      color: #444;
+      margin-bottom: 0.25rem;
+    }
     .post-meta{
       font-size: .95rem;
       color: var(--muted);
@@ -145,7 +146,6 @@ const tagList = Array.isArray(tags)
       font-size: .9rem; color: var(--muted); margin-top: .4rem; text-align: center;
     }
 
-    /* Inner reading column */
     .post-body{
       max-width: var(--reading-width);
       margin: 0 auto;
@@ -155,7 +155,6 @@ const tagList = Array.isArray(tags)
       color: var(--ink);
     }
 
-    /* Typography rhythm (denser, long-form feel) */
     .post-body p{ margin: 0 0 1.05em; }
     .post-body h2, .post-body h3, .post-body h4{
       line-height: 1.25;
@@ -184,7 +183,27 @@ const tagList = Array.isArray(tags)
     .post-body hr{ border: 0; height: 1px; background: rgba(0,0,0,.08); margin: 1.8rem 0; }
     .post-body a{ color:#1e66ff; text-decoration: underline; text-underline-offset: 2px; }
 
-    /* Mobile: reduce side-bleed so the card fits comfortably */
+    /* Center inline figures inside post body */
+    .prose figure{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1.5rem auto;
+      text-align: center;
+    }
+    .prose figure img{
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
+    .prose figure figcaption{
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+    }
+
     @media (max-width: 640px){
       :root{ --side-bleed: 16px; }
     }
