@@ -1,6 +1,5 @@
 ﻿---
 import { getCollection, getEntry } from "astro:content";
-import PostLayout from "../../layouts/PostLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -12,25 +11,119 @@ const post = slug ? await getEntry("blog", slug) : null;
 if (!post) return Astro.redirect("/blog");
 
 const { Content } = await post.render();
-const d = post.data ?? {};
+const data = post.data ?? {};
+const { title = slug, description = "", pubDate } = data;
 
-// accept both string paths and image() objects for heroImage
-const hero = d.heroImage?.src ?? d.heroImage ?? undefined;
+// keywords from tags (optional)
+const keywords = Array.isArray(data.tags)
+  ? data.tags
+  : typeof data.tags === "string"
+    ? data.tags.split(",").map((s) => s.trim()).filter(Boolean)
+    : [];
 
-// You can map your frontmatter keys here:
-const props = {
-  title: d.title ?? slug,
-  description: d.description ?? d.excerpt ?? "",
-  pubDate: d.pubDate,
-  updatedDate: d.updatedDate,
-  heroImage: hero,
-  heroCaption: d.heroCaption ?? "",
-  tags: d.tags ?? [],
-  keywords: d.seo && Array.isArray(d.seo) ? d.seo : [], // if you store keywords in 'seo'
-  seoTitle: d.seoTitle ?? undefined
-};
+const d = pubDate ? new Date(pubDate) : null;
+const isoDate = d && !isNaN(+d) ? d.toISOString() : "";
+const displayDate =
+  d && !isNaN(+d)
+    ? d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
+    : "";
 ---
 
-<PostLayout {...props}>
-  <Content />
-</PostLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
+    {isoDate && <meta property="article:published_time" content={isoDate} />}
+  </head>
+  <body>
+    <div class="post-page">
+
+      <!-- Decorative star background with overlay -->
+      <section class="post-hero-bg" role="img" aria-label="Starry background">
+        <div class="post-hero-inner">
+          <!-- Big white script title above the white box -->
+          <h1 class="post-banner-title">Abba Unveiled Blog</h1>
+        </div>
+      </section>
+
+      <!-- White content card -->
+      <main class="post-main">
+        <article class="post-card post-content prose">
+          <header class="post-header">
+            <h1 class="post-title">{title}</h1>
+            {displayDate && <time class="post-date" datetime={isoDate}>{displayDate}</time>}
+          </header>
+
+          <Content />
+        </article>
+      </main>
+    </div>
+
+    <style>
+      /* === Starry header area === */
+      .post-hero-bg {
+        position: relative;
+        background: url("/images/about-stars.jpg") center / cover no-repeat fixed;
+        min-height: clamp(220px, 28vw, 420px);
+        display: grid;
+        align-items: end;
+      }
+      /* darken for contrast */
+      .post-hero-bg::after {
+        content: "";
+        position: absolute; inset: 0;
+        background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55));
+      }
+      .post-hero-inner {
+        position: relative; /* above overlay */
+        padding: clamp(24px, 5vw, 48px) clamp(16px, 4vw, 32px);
+        text-align: center;
+      }
+      .post-banner-title {
+        margin: 0;
+        color: #fff;
+        /* Match the hero font & sizing */
+        font-family: "Finest Romance Script", cursive;
+        font-weight: 400;
+        line-height: .95;
+        text-shadow: 0 2px 16px rgba(0,0,0,.35);
+        /* size similar to your hero (dialed a touch smaller for posts) */
+        font-size: clamp(3rem, 8vw, 6.5rem);
+      }
+
+      /* === White content card over neutral page bg === */
+      .post-main {
+        background: linear-gradient(180deg, rgba(247,247,249,1) 0%, rgba(255,255,255,1) 100%);
+        padding: clamp(16px, 4vw, 32px);
+      }
+      .post-card {
+        max-width: 72ch;
+        margin: -3rem auto 3rem; /* pull card up toward header */
+        background: #fff;
+        color: inherit;
+        border: 1px solid #ececf4;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.06);
+        padding: clamp(16px, 4vw, 32px);
+      }
+
+      /* Title & meta inside the card (content font stays Wittgenstein from your global rules) */
+      .post-header { margin-bottom: .75rem; }
+      .post-title { margin: 0 0 .25rem; line-height: 1.15; }
+      .post-date { display: block; color: #6a6a6d; font-size: .95rem; }
+
+      /* Images already styled via your global .post-content rules; keep radius consistent */
+      .post-card img { border-radius: 10px; }
+
+      /* Make sure prose paragraphs don’t get too loose */
+      .post-card.prose p { margin-bottom: 1.4em; }
+
+      @media (max-width: 720px) {
+        .post-card { margin: -2rem auto 2rem; }
+      }
+    </style>
+  </body>
+</html>
