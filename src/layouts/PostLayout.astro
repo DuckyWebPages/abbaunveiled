@@ -156,4 +156,37 @@ const tagList = Array.isArray(tags)
     }
 
     /* Typography rhythm (denser, long-form feel) */
-    .post-body p{ m
+    .post-body p{ margin: 0 0 1.05em; }
+    .post-body h2, .post-body h3, .post-body h4{
+      line-height: 1.25;
+      margin: 1.9rem 0 .75rem;
+      letter-spacing: -0.01em;
+    }
+    .post-body h1{ font-size: clamp(2rem, 2.1vw + 1.4rem, 2.6rem); margin: 0 0 .5rem; }
+    .post-body h2{ font-size: clamp(1.6rem, 1.4vw + 1.1rem, 2rem); }
+    .post-body h3{ font-size: clamp(1.25rem, .9vw + 1rem, 1.5rem); }
+    .post-body h4{ font-size: clamp(1.1rem, .6vw + .9rem, 1.25rem); }
+
+    .post-body ul, .post-body ol{ padding-left: 1.25rem; margin: 0 0 1.05em; }
+    .post-body li{ margin: .25em 0; }
+
+    .post-body blockquote{
+      margin: 1.25em 0;
+      padding: .75em 1em;
+      border-left: 4px solid rgba(0,0,0,.08);
+      background: rgba(0,0,0,.03);
+      border-radius: 8px;
+    }
+
+    .post-body img{
+      max-width: 100%; height: auto; border-radius: 10px; margin: 1rem 0;
+    }
+    .post-body hr{ border: 0; height: 1px; background: rgba(0,0,0,.08); margin: 1.8rem 0; }
+    .post-body a{ color:#1e66ff; text-decoration: underline; text-underline-offset: 2px; }
+
+    /* Mobile: reduce side-bleed so the card fits comfortably */
+    @media (max-width: 640px){
+      :root{ --side-bleed: 16px; }
+    }
+  </style>
+</BaseLayout>
