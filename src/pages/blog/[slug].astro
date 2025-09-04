@@ -65,12 +65,15 @@ const displayDate =
     <style>
       /* === Starry header area === */
       .post-hero-bg {
-        position: relative;
-        background: url("/images/about-stars.jpg") center / cover no-repeat fixed;
-        min-height: clamp(220px, 28vw, 420px);
-        display: grid;
-        align-items: end;
-      }
+  position: relative;
+  background: url("/images/stars-northern.png") center / cover no-repeat fixed;
+  min-height: clamp(240px, 30vw, 460px);
+  display: flex;                  /* use flexbox instead of grid */
+  align-items: center;             /* vertical center */
+  justify-content: center;         /* horizontal center */
+  text-align: center;
+}
+
       /* darken for contrast */
       .post-hero-bg::after {
         content: "";
@@ -83,16 +86,15 @@ const displayDate =
         text-align: center;
       }
       .post-banner-title {
-        margin: 0;
-        color: #fff;
-        /* Match the hero font & sizing */
-        font-family: "Finest Romance Script", cursive;
-        font-weight: 400;
-        line-height: .95;
-        text-shadow: 0 2px 16px rgba(0,0,0,.35);
-        /* size similar to your hero (dialed a touch smaller for posts) */
-        font-size: clamp(3rem, 8vw, 6.5rem);
-      }
+  margin: 0;
+  color: #fff !important;  /* ensure white */
+  font-family: "Finest Romance Script", cursive;
+  font-weight: 400;
+  line-height: .9;
+  text-shadow: 0 2px 20px rgba(0,0,0,.55);
+  font-size: clamp(3.5rem, 9vw, 7.5rem); /* bigger */
+}
+
 
       /* === White content card over neutral page bg === */
       .post-main {
