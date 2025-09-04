@@ -14,20 +14,31 @@ const {
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="alternate" type="application/rss+xml" title="Abba Unveiled Blog" href="/rss.xml" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {pageTitle && <title>{pageTitle}</title>}
     {description && <meta name="description" content={description} />}
+    <link rel="alternate" type="application/rss+xml" title="Abba Unveiled Blog" href="/rss.xml" />
   </head>
 
   <body class="site-bg">
+    <!-- Global header / nav -->
+    <header class="site-header">
+      <nav aria-label="Primary">
+        <ul class="site-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="https://buttondown.email/abbaunveiled" target="_blank" rel="noreferrer">Subscribe</a></li>
+        </ul>
+      </nav>
+    </header>
+
     <slot />
   </body>
 </html>
 
 <style is:global>
-  /* page background */
+  /* Background */
   .site-bg{
     min-height: 100vh;
     background:
@@ -36,5 +47,35 @@ const {
   }
   @media (max-width: 800px){
     .site-bg{ background-attachment: scroll; }
+  }
+
+  /* Simple centered nav */
+  .site-header{ padding: 0.75rem 1rem; }
+  .site-nav{
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  .site-nav a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .site-nav a:hover{ text-decoration: underline; }
+
+  /* Make Subscribe a pill */
+  .site-nav a[href*="buttondown.email"]{
+    background: #fff;
+    color: #111;
+    padding: .45rem .9rem;
+    border-radius: 999px;
+    text-decoration: none;
+  }
+  .site-nav a[href*="buttondown.email"]:hover{
+    background: #f6f6f6;
   }
 </style>

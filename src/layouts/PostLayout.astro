@@ -82,6 +82,29 @@ const tagList = Array.isArray(tags)
       <div class="post-body prose">
         <slot /> {/* MDX content renders here */}
       </div>
+      <!-- Subscribe block -->
+<section class="subscribe-box" aria-labelledby="subTitle">
+  <h2 id="subTitle">Get new posts by email</h2>
+  <p class="sub-copy">No spam. Unsubscribe anytime.</p>
+
+  <form
+    action="https://buttondown.email/api/emails/subscribe"
+    method="post"
+    target="popupwindow"
+    onsubmit={`window.open('https://buttondown.email/REPLACE_WITH_USERNAME', 'popupwindow')`}
+    class="embeddable-buttondown-form"
+  >
+    <input type="email" name="email" required placeholder="you@example.com" aria-label="Email address" />
+    <input type="hidden" name="username" value="REPLACE_WITH_USERNAME" />
+    <input type="hidden" name="embed" value="1" />
+    <button type="submit">Subscribe</button>
+  </form>
+
+  <small class="sub-legal">
+    Powered by Buttondown • <a href="https://buttondown.email" target="_blank" rel="noreferrer">Learn more</a>
+  </small>
+</section>
+
     </article>
   </main>
 
