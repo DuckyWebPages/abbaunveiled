@@ -13,8 +13,11 @@ if (!post) return Astro.redirect("/blog");
 
 const { Content } = await post.render();
 const d = post.data ?? {};
+
+// accept both string paths and image() objects for heroImage
 const hero = d.heroImage?.src ?? d.heroImage ?? undefined;
 
+// You can map your frontmatter keys here:
 const props = {
   title: d.title ?? slug,
   description: d.description ?? d.excerpt ?? "",
@@ -23,8 +26,8 @@ const props = {
   heroImage: hero,
   heroCaption: d.heroCaption ?? "",
   tags: d.tags ?? [],
-  keywords: Array.isArray(d.seo) ? d.seo : [],
-  seoTitle: d.seoTitle ?? undefined,
+  keywords: d.seo && Array.isArray(d.seo) ? d.seo : [], // if you store keywords in 'seo'
+  seoTitle: d.seoTitle ?? undefined
 };
 ---
 
