@@ -1,18 +1,16 @@
-﻿import { z, defineCollection } from "astro:content";
+﻿import { defineCollection, z, image } from "astro:content";
 
 const blog = defineCollection({
-  type: "content",
-  // normalize slug so `/blog/test-post/` works
-  slug: ({ slug }) => slug.split("/").pop()!,
   schema: z.object({
     title: z.string(),
+    pubDate: z.coerce.date(),
     description: z.string().optional(),
     excerpt: z.string().optional(),
-    pubDate: z.union([z.string(), z.date()]).optional(),
-    tags: z.union([z.array(z.string()), z.string()]).optional(),
-    categories: z.union([z.array(z.string()), z.string()]).optional(),
-    seo: z.union([z.array(z.string()), z.string()]).optional(),
-    draft: z.boolean().default(false),
+    tags: z.array(z.string()).optional(),
+    // allow either a processed image or a plain string path
+    heroImage: z.union([image(), z.string()]).optional(),
+    cardImage: z.union([image(), z.string()]).optional(),
+    draft: z.boolean().optional(),
   }),
 });
 
