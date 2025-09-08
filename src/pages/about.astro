@@ -1,0 +1,115 @@
+---
+import "../styles/global.css";
+
+const pageTitle = "About | Abba Unveiled";
+const pageDescription = "Abba Unveiled is Wendy Selvig’s theology and testimony project—unveiling the Father Jesus revealed, sharing research, stories, and resources for living in His freedom.";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{pageTitle}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content="Abba Father, Jesus resurrection, Yahweh deception, Melchizedek, testimony, Wendy Selvig" />
+    <link rel="preload" href="/images/chatjesus.png" as="image" />
+    <style>
+      .container{max-width:1000px;margin:0 auto;padding:1.25rem}
+      .hero{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;margin-top:1.25rem}
+      .hero img{border-radius:12px;max-width:420px;height:auto}
+      h1{font-size:clamp(1.8rem,2.4vw,2.4rem);margin:.25rem 0}
+      h2{font-size:1.4rem;margin:2rem 0 .5rem}
+      p{line-height:1.65;margin:.5rem 0}
+      .lead{font-size:1.1rem;opacity:.95}
+      .section{margin-top:1.25rem}
+      .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:.75rem}
+      .card{border:1px solid #eee;border-radius:14px;padding:1rem;box-shadow:0 1px 8px rgba(0,0,0,.04)}
+      .btns{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.75rem}
+      .btn{display:inline-block;padding:.65rem 1rem;border-radius:999px;border:1px solid #111;text-decoration:none;color:#111}
+      .btn.primary{background:#111;color:#fff}
+      .muted{opacity:.8}
+      .center{text-align:center}
+      .gallery{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.75rem}
+      .gallery img{border-radius:10px;height:auto}
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero">
+        <img src="/images/chatjesus.png" alt="Abba Unveiled" loading="eager" />
+        <div>
+          <h1>About Abba Unveiled</h1>
+          <p class="lead">
+            I’m <strong>Wendy Selvig</strong>—a researcher, writer, and storyteller. Abba Unveiled is my journey of
+            discovering the <em>Father Jesus revealed</em>, sharing testimonies of the resurrected Christ and
+            the freedom of His kingdom.
+          </p>
+          <div class="btns">
+            <a class="btn primary" href="/blog">Read the Blog</a>
+            <a class="btn" href="https://abbaunveiled.com">Get the Book</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What This Project Is</h2>
+        <p>
+          Abba Unveiled explores theology, scripture, and lived experience to differentiate religious
+          tradition from the Father’s heart. I write about Jesus’s resurrection power, the Melchizedek
+          priesthood, and how legalism yields to relationship with Abba.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>My Story in Brief</h2>
+        <p>
+          From childhood I experienced Jesus as living and present—healings, guidance, and encounters that
+          shaped my faith. I studied at Oral Roberts University, learned to discern His voice, and later
+          served on the mission field with my family in Panama and in Africa, where we witnessed provision
+          miracles and healings in Jesus’s name.
+        </p>
+        <div class="gallery">
+          <img src="/images/panamafarm.jpg" alt="Ministry Farm in Panama" width="360" />
+          <img src="/images/Refugee1.jpg" alt="Refugee Outreach in Panama" width="360" />
+          <img src="/images/erikwendy2025.jpg" alt="Wendy & Erik Selvig" width="320" />
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Books & Resources</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>The Yahweh Deception (2025)</h3>
+            <p class="muted">A challenging, research-driven exploration of the Father Jesus revealed—Abba—versus the legalism that obscured Him.</p>
+            <div class="btns">
+              <a class="btn primary" href="https://abbaunveiled.com">Grab the Book</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Snatchproof: The Art of Hearing God’s Voice</h3>
+            <p class="muted">A practical guide for learning to hear and journal the voice of Jesus. Also available in Spanish.</p>
+            <div class="btns">
+              <a class="btn" href="/images/snatchproof.png" target="_blank">Preview Cover</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Podcast</h3>
+            <p class="muted">Conversations, research notes, and testimonies that point to Abba’s heart and the living Christ.</p>
+            <div class="btns">
+              <a class="btn" href="/blog">Latest Posts</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section center">
+        <h2>Stay in the Story</h2>
+        <p class="muted">Want updates when new chapters, posts, or resources go live?</p>
+        <div class="btns" style="justify-content:center">
+          <a class="btn primary" href="/blog">Read the Blog</a>
+          <a class="btn" href="https://abbaunveiled.com">Get the Book</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
