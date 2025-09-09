@@ -11,6 +11,7 @@ interface Props {
   tags?: string[] | string;
   keywords?: string[];
   seoTitle?: string;
+  author?: string;            // ← add this
 }
 
 const {
@@ -22,7 +23,8 @@ const {
   heroCaption = "",
   tags = [],
   keywords = [],
-  seoTitle
+  seoTitle,
+  author = "W.R. Selvig"     // ← add this
 } = Astro.props as Props;
 
 // normalize dates
@@ -50,7 +52,7 @@ const tagList = Array.isArray(tags)
     <article class="post-card">
       <header class="post-header">
         <h1 class="post-title">{title}</h1>
-        <div class="post-author">By WR Selvig</div>
+        <div class="post-author">By {author}</div>
         <div class="post-meta">
           {displayPub && <time datetime={isoPub} title="Published">{displayPub}</time>}
           {displayUpd && displayUpd !== displayPub && (
