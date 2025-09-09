@@ -84,28 +84,40 @@ const tagList = Array.isArray(tags)
       <div class="post-body prose">
         <slot /> {/* MDX content renders here */}
       </div>
+           <slot /> {/* MDX content renders here */}
+      </div>
+
+      {/* ⬇️ REPLACE your existing subscribe section with this */}
       <!-- Subscribe block -->
-<section class="subscribe-box" aria-labelledby="subTitle">
-  <h2 id="subTitle">Get new posts by email</h2>
-  <p class="sub-copy">No spam. Unsubscribe anytime.</p>
+      <section class="subscribe-box" aria-labelledby="subTitle">
+        <h2 id="subTitle">Get new posts by email</h2>
+        <p class="sub-copy">No spam. Unsubscribe anytime.</p>
 
-  <form
-    action="https://buttondown.email/api/emails/subscribe"
-    method="post"
-    target="popupwindow"
-    onsubmit={`window.open('https://buttondown.email/abbaunveiled', 'popupwindow')`}
-    class="embeddable-buttondown-form"
-  >
-    <input type="email" name="email" required placeholder="you@example.com" aria-label="Email address" />
-    <input type="hidden" name="username" value="abbaunveiled" />
-    <input type="hidden" name="embed" value="1" />
-    <button type="submit">Subscribe</button>
-  </form>
+        <form
+          action="https://buttondown.email/api/emails/subscribe"
+          method="post"
+          target="popupwindow"
+          onsubmit={`window.open('https://buttondown.email/abbaunveiled', 'popupwindow')`}
+          class="embeddable-buttondown-form"
+        >
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="you@example.com"
+            aria-label="Email address"
+            class="subscribe-input"
+          />
+          <button type="submit" class="subscribe-btn">Subscribe</button>
+          <input type="hidden" name="username" value="abbaunveiled" />
+          <input type="hidden" name="embed" value="1" />
+        </form>
 
-  <small class="sub-legal">
-    Powered by Buttondown • <a href="https://buttondown.email" target="_blank" rel="noreferrer">Learn more</a>
-  </small>
-</section>
+        <small class="sub-legal">
+          Powered by Buttondown • <a href="https://buttondown.email" target="_blank" rel="noreferrer">Learn more</a>
+        </small>
+      </section>
+
 
     </article>
   </main>
@@ -232,5 +244,46 @@ const tagList = Array.isArray(tags)
     @media (max-width: 640px){
       :root{ --side-bleed: 16px; }
     }
+      .subscribe-box {
+    border: 1px solid #eee;
+    border-radius: 14px;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    background: #fafafa;
+  }
+  .subscribe-input {
+    width: 70%;
+    padding: 0.7rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 999px;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+  .subscribe-btn {
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .subscribe-btn:hover { background: #333; }
+  .sub-legal {
+    display: block;
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  @media (max-width: 520px) {
+    .subscribe-input { width: 100%; margin: 0 0 .6rem 0; }
+    .subscribe-btn { width: 100%; }
+  }
+
   </style>
 </BaseLayout>
