@@ -81,13 +81,15 @@ const tagList = Array.isArray(tags)
         )}
       </header>
 
-      <div class="post-body prose">
+           <div class="post-body prose">
         <slot /> {/* MDX content renders here */}
       </div>
-           <slot /> {/* MDX content renders here */}
-      </div>
 
-      {/* ⬇️ REPLACE your existing subscribe section with this */}
+      <!-- Back to blog link -->
+      <p class="back-link">
+        <a href="/blog">← Back to all blog posts</a>
+      </p>
+
       <!-- Subscribe block -->
       <section class="subscribe-box" aria-labelledby="subTitle">
         <h2 id="subTitle">Get new posts by email</h2>
@@ -284,6 +286,20 @@ const tagList = Array.isArray(tags)
     .subscribe-input { width: 100%; margin: 0 0 .6rem 0; }
     .subscribe-btn { width: 100%; }
   }
+    .back-link {
+    margin: 2rem auto;
+    max-width: var(--reading-width);
+    padding: 0 clamp(18px, 2.2vw, 28px);
+    font-size: 0.95rem;
+  }
+  .back-link a {
+    text-decoration: none;
+    color: #1e66ff;
+  }
+  .back-link a:hover {
+    text-decoration: underline;
+  }
+
 
   </style>
 </BaseLayout>
