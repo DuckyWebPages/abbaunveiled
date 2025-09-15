@@ -2,18 +2,32 @@
 import { getCollection } from "astro:content";
 import PostLayout from "../../layouts/PostLayout.astro";
 
+// Generate /encounters/<slug>/ pages
 export async function getStaticPaths() {
   const posts = await getCollection("encounters", ({ data }) => !data.draft);
   return posts.map((post) => ({
-    params: { slug: post.slug }, // 👈 single string
-    props: { post },
+    params: { slug: post.slug }, // single string slug
   }));
 }
 
-const { post } = Astro.props;
-const { Content, data } = await post.render();
+// Resolve the current post by slug at build time
+const { slug } = Astro.params;
+const all = await getCollection("encounters");
+const post = all.find((p) => p.slug === slug);
+if (!post) {
+  throw new Error(`Encounter not found for slug: ${slug}`);
+}
+
+// Render the MDX content; use post.data for frontmatter
+const { Content } = await post.render();
+const fm = post.data ?? {};
 ---
 
-<PostLayout title={data.title} description={data.description} heroImage={data.heroImage} seo={data.seo}>
+<PostLayout
+  title={fm.title ?? ""}
+  description={fm.description}
+  heroImage={fm.heroImage}
+  seo={fm.seo}
+>
   <Content />
 </PostLayout>
