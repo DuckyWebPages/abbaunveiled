@@ -21,17 +21,18 @@ function normTags(val: unknown): string[] {
 <!-- NOTE: bodyClass enables the stars-northern-tall.png backdrop on this page -->
 <BaseLayout pageTitle="Blog — Abba Unveiled" description="Latest posts from Abba Unveiled" bodyClass="blog-bg">
   <section class="page-hero blog-index">
-    <h1 class="post-banner-title">Abba Unveiled Blog</h1>
-    <p class="sub">Essays, research notes, and revelations about Abba the Father Jesus revealed.</p>
+  <h1 class="post-banner-title">Abba Unveiled Blog</h1>
+  <p class="sub">Essays, research notes, and revelations about Abba the Father Jesus revealed.</p>
 
-    <!-- NEW: intro + CTA to Encounters -->
-    <div class="switcher">
-      <p class="intro">
-        This page holds all of the <strong>theology discussions</strong> on this site—research, scripture studies, and deeper dives.
-      </p>
-      <a class="cta" href="/encounters/">Read the Heavenly Encounters posts →</a>
-    </div>
-  </section>
+  <!-- Intro + CTA to Encounters -->
+  <div class="switcher">
+    <p class="intro">
+      This page holds all of the <strong>theology discussions</strong> on this site—research, scripture studies, and deeper dives.
+    </p>
+    <a class="cta" href="/encounters/">Read the <em>Heaven Encounters</em> posts →</a>
+
+  </div>
+</section>
 
   <section class="grid blog-index">
     {posts.map((post) => {
