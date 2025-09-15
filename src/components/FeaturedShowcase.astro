@@ -19,7 +19,15 @@ const {
         <h3>{title}</h3>
         <p>{body}</p>
         <div class="feat__actions">
-          <a class="primary-cta" href={primary.href}>{primary.label}</a>
+    {primary && (
+  <a href={primary.href} class="btn-cta" aria-label={primary.ariaLabel || primary.label}>
+    {primary.labelHTML ? (
+      <span set:html={primary.labelHTML} />
+    ) : (
+      <span>{primary.label}</span>
+    )}
+  </a>
+)}
           <a class="btn btn--ghost" href={secondary.href}>{secondary.label}</a>
         </div>
       </div>
@@ -27,17 +35,29 @@ const {
   </div>
 </section>
 <style>
+/* SECTION + LAYOUT */
 .feat { padding: 3.5rem 1.25rem; background: rgba(0,0,0,.03); }
 .feat__wrap { max-width: 1100px; margin: 0 auto; }
 .feat__card {
   display:grid; gap: 1.8rem; align-items:center;
   grid-template-columns: minmax(0,1fr);
 }
+@media (min-width: 900px){
+  .feat__card { grid-template-columns: .9fr 1.1fr; }
+}
+
+/* MEDIA */
 .feat__media img { width: 100%; height: auto; border-radius: 18px; display:block; }
+
+/* TEXT */
 .feat__eyebrow { text-transform: uppercase; letter-spacing:.12em; font-size:.8rem; opacity:.7; }
 h3 { font-size: clamp(1.4rem, 1.4vw + 1rem, 2rem); margin:.25rem 0 .5rem; }
-p { font-size:1.05rem; line-height:1.65; opacity:.95; }
+p  { font-size:1.05rem; line-height:1.65; opacity:.95; }
+
+/* ACTIONS ROW */
 .feat__actions { margin-top: 1rem; display:flex; gap:.75rem; flex-wrap:wrap; }
+
+/* SECONDARY BUTTON (existing) */
 .btn {
   display:inline-flex; align-items:center; justify-content:center;
   padding:.8rem 1.2rem; border-radius:9999px; font-weight:600; text-decoration:none;
@@ -46,10 +66,55 @@ p { font-size:1.05rem; line-height:1.65; opacity:.95; }
 }
 .btn:hover { transform: translateY(-1px); opacity:.96; }
 .btn--primary { background:#121212; color:#fff; }
-.btn--ghost { background:transparent; color:#121212; border-color:rgba(0,0,0,.5); }
+.btn--ghost   { background:transparent; color:#121212; border-color:rgba(0,0,0,.5); }
 .btn--ghost:hover { border-color:#121212; }
 
-@media (min-width: 900px){
-  .feat__card { grid-template-columns: .9fr 1.1fr; }
+/* PRIMARY CTA — 3D pill with lift + press */
+.btn-cta {
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  padding:.9rem 1.25rem;
+  border-radius:9999px;
+  background: linear-gradient(180deg, #3162aa 0%, #24497f 100%); /* 👈 your brand blue + a darker shade */
+  color:#fff; text-decoration:none; font-weight:800; letter-spacing:.02em;
+  box-shadow:
+    0 10px 20px rgba(49,98,170,.35),
+    0 4px 10px rgba(0,0,0,.15),
+    inset 0 1px 0 rgba(255,255,255,.28);
+  transform: translateY(0);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  will-change: transform, box-shadow, filter;
+  border: 0;
+}
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 28px rgba(49,98,170,.40),
+    0 6px 14px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.28);
+  filter: brightness(1.05);
+}
+.btn-cta:active {
+  transform: translateY(0);
+  box-shadow:
+    0 6px 12px rgba(49,98,170,.35),
+    0 3px 8px rgba(0,0,0,.18),
+    inset 0 2px 6px rgba(0,0,0,.22);
+}
+.btn-cta:focus-visible {
+  outline: 3px solid rgba(49,98,170,.35);
+  outline-offset: 3px;
+  box-shadow:
+    0 14px 28px rgba(49,98,170,.40),
+    0 6px 14px rgba(0,0,0,.18),
+    0 0 0 3px rgba(49,98,170,.35),
+    inset 0 1px 0 rgba(255,255,255,.28);
+}
+
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .btn, .btn-cta { transition: none; }
+  .btn:hover, .btn-cta:hover,
+  .btn:active, .btn-cta:active { transform: none; }
 }
 </style>
