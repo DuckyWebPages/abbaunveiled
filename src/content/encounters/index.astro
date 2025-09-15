@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("encounters", ({ data }) => !data.draft);
+posts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
+
+function fmtDate(d) {
+  if (!d) return "";
+  const dt = d instanceof Date ? d : new Date(String(d));
+  return isNaN(+dt) ? "" : dt.toLocaleDateString("en-US", { year:"numeric", month:"long", day:"numeric" });
+}
+---
+
+<BaseLayout pageTitle="Heaven Encounters — Abba Unveiled" description="Vision journals and encounters with Abba" bodyClass="blog-bg">
+  <section class="page-hero blog-index">
+    <h1 class="post-banner-title"><em>Heaven Encounters</em></h1>
+    <p class="sub">Vision journals, practical steps, and walking with Abba.</p>
+
+    <div class="switcher">
+      <p class="intro">This page holds all of the <strong>encounter stories</strong> and vision notes. Prefer theology discussions instead?</p>
+      <a class="cta" href="/blog/">Go to the main Blog →</a>
+    </div>
+  </section>
+
+  {posts.length === 0 ? (
+    <section class="empty">
+      <p>No encounters are published yet. Please check back soon.</p>
+      <p><a href="/blog/" class="cta-dark">Back to Blog</a></p>
+    </section>
+  ) : (
+    <section class="grid blog-index">
+      {posts.map((post) => {
+        const href = `/encounters/${post.slug}/`;
+        const d = fmtDate(post.data.pubDate);
+        const title = post.data.title ?? post.slug;
+        const desc = post.data.excerpt ?? post.data.description ?? "";
+
+        const hero =
+          post.data.cardImage?.src ?? post.data.cardImage ??
+          post.data.heroImage?.src ?? post.data.heroImage ?? null;
+
+        return (
+          <a class="card" href={href}>
+            <figure class="thumb">
+              {hero ? <img src={hero} alt={title} loading="lazy" /> : <div class="thumb-fallback" aria-hidden="true">AU</div>}
+            </figure>
+            <di
