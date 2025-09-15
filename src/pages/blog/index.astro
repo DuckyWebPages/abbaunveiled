@@ -23,6 +23,14 @@ function normTags(val: unknown): string[] {
   <section class="page-hero blog-index">
     <h1 class="post-banner-title">Abba Unveiled Blog</h1>
     <p class="sub">Essays, research notes, and revelations about Abba the Father Jesus revealed.</p>
+
+    <!-- NEW: intro + CTA to Encounters -->
+    <div class="switcher">
+      <p class="intro">
+        This page holds all of the <strong>theology discussions</strong> on this site—research, scripture studies, and deeper dives.
+      </p>
+      <a class="cta" href="/encounters/">Read the Heavenly Encounters posts →</a>
+    </div>
   </section>
 
   <section class="grid blog-index">
@@ -82,22 +90,46 @@ function normTags(val: unknown): string[] {
 
     /* White script title over starry bg */
     .post-banner-title{
-  font-family: "Finest Romance Script", cursive;
-  color: #fff;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: .5px;
-  margin: 0;
-  text-shadow: 0 3px 8px rgba(0,0,0,.55);
-}
+      font-family: "Finest Romance Script", cursive;
+      color: #fff;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: .5px;
+      margin: 0;
+      text-shadow: 0 3px 8px rgba(0,0,0,.55);
+    }
 
+    .page-hero .sub {
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,.45);
+    }
 
-   .page-hero .sub {
-  color: #fff;                 /* make it white */
-  text-shadow: 0 2px 6px rgba(0,0,0,.45); /* optional: improves readability */
-}
-
+    /* NEW: intro + CTA */
+    .switcher {
+      margin: 1rem auto 0;
+      display: grid;
+      gap: .65rem;
+      justify-items: center;
+      max-width: 46rem;
+    }
+    .intro {
+      margin: 0;
+      color: #fff;
+      opacity: .95;
+      text-shadow: 0 2px 6px rgba(0,0,0,.35);
+    }
+    .cta {
+      display: inline-block;
+      padding: .6rem 1rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,.85);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      backdrop-filter: blur(2px);
+    }
+    .cta:hover { opacity: .9; }
 
     /* GRID / CARDS */
     .grid {
@@ -161,7 +193,7 @@ function normTags(val: unknown): string[] {
       color: var(--fg);
       line-height: 1.25;
       letter-spacing: -0.005em;
-      font-family: "Wittgenstein", serif; /* keep cards serif if you like */
+      font-family: "Wittgenstein", serif;
     }
     .meta {
       font-size: .9rem;
