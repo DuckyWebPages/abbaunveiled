@@ -1,6 +1,5 @@
 ﻿import { z, defineCollection } from "astro:content";
 
-// Reusable schema (keeps flexible unions; adds hero/card images)
 const commonSchema = z.object({
   title: z.string(),
   description: z.string().optional(),
@@ -10,21 +9,27 @@ const commonSchema = z.object({
   cardImage: z.union([z.string(), z.object({ src: z.string() })]).optional(),
   tags: z.union([z.array(z.string()), z.string()]).optional(),
   categories: z.union([z.array(z.string()), z.string()]).optional(),
-  seo: z.union([z.array(z.string()), z.string()]).optional(),
+  // allow string | string[] | object for SEO
+  seo: z.union([
+    z.string(),
+    z.array(z.string()),
+    z.object({
+      title: z.string().optional(),
+      description: z.string().optional(),
+    }),
+  ]).optional(),
   draft: z.boolean().default(false),
 });
 
-// Theology/discussion posts
 const blog = defineCollection({
   type: "content",
-  slug: ({ slug }) => slug.split("/").pop()!, // keep your last-segment slug
+  slug: ({ slug }) => slug.split("/").pop()!,
   schema: commonSchema,
 });
 
-// Heaven Encounters posts
 const encounters = defineCollection({
   type: "content",
-  slug: ({ slug }) => slug.split("/").pop()!, // keep slugs consistent
+  slug: ({ slug }) => slug.split("/").pop()!,
   schema: commonSchema,
 });
 
