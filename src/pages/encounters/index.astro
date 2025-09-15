@@ -1,0 +1,277 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("encounters", ({ data }) => !data.draft);
+posts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
+
+function fmtDate(d: unknown) {
+  if (!d) return "";
+  const dt = d instanceof Date ? d : new Date(String(d));
+  return isNaN(+dt) ? "" : dt.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+}
+
+function normTags(val: unknown): string[] {
+  if (Array.isArray(val)) return val.filter(Boolean);
+  if (typeof val === "string") return val.split(",").map(s => s.trim()).filter(Boolean);
+  return [];
+}
+---
+
+<BaseLayout pageTitle="Heaven Encounters — Abba Unveiled" description="Vision journals and encounters with Abba" bodyClass="blog-bg">
+  <section class="page-hero blog-index">
+    <h1 class="post-banner-title"><em>Heaven Encounters</em></h1>
+    <p class="sub">Vision journals, practical steps for stepping into the heavenlies, and walking with Abba.</p>
+
+    <!-- Reciprocal CTA -->
+    <div class="switcher">
+      <p class="intro">
+        This page holds all of the <strong>encounter stories</strong> and vision notes.
+        Prefer theology discussions instead?
+      </p>
+      <a class="cta" href="/blog/">Go to the main Blog →</a>
+    </div>
+  </section>
+
+  {posts.length === 0 ? (
+    <section class="empty">
+      <p>No encounters are published yet. Please check back soon.</p>
+      <p><a class="cta-dark" href="/blog/">Back to Blog</a></p>
+    </section>
+  ) : (
+    <section class="grid blog-index">
+      {posts.map((post) => {
+        const href = `/encounters/${post.slug}/`;
+        const d = fmtDate(post.data.pubDate);
+        const title = post.data.title ?? post.slug;
+        const desc = post.data.excerpt ?? post.data.description ?? "";
+        const tags = normTags(post.data.tags);
+
+        const hero =
+          post.data.cardImage?.src ?? post.data.cardImage ??
+          post.data.heroImage?.src ?? post.data.heroImage ??
+          null;
+
+        return (
+          <a class="card" href={href}>
+            <figure class="thumb">
+              {hero ? (
+                <img src={hero} alt={title} loading="lazy" />
+              ) : (
+                <div class="thumb-fallback" aria-hidden="true">AU</div>
+              )}
+            </figure>
+            <div class="card-body">
+              <h2 class="card-title">{title}</h2>
+              {d && <div class="meta">{d}</div>}
+              {desc && <p class="excerpt">{desc}</p>}
+              {tags.length > 0 && (
+                <ul class="tags">
+                  {tags.map((t) => <li class="tag" key={t}>{t}</li>)}
+                </ul>
+              )}
+            </div>
+          </a>
+        );
+      })}
+    </section>
+  )}
+
+  <style>
+    :root {
+      --fg: #0b0b0c;
+      --muted: #6a6a6d;
+      --card: #ffffff;
+      --bg: #f7f7f9;
+      --line: #e9e9ee;
+      --brand: #4b6bfb;
+    }
+
+    /* HERO */
+   /* HERO with starry sky like the Blog page */
+.page-hero {
+  max-width: 68rem;
+  margin: 2rem auto 1rem;
+  padding: 0 1rem 0.75rem; /* a little extra breathing room */
+  text-align: center;
+
+  /* gradient overlay + starry background image */
+  background-image:
+    linear-gradient(0deg, rgba(0,0,0,.35), rgba(0,0,0,.35)),
+    url("/images/backgrounds/stars-northern-tall.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: 8px;
+}
+
+
+    .post-banner-title{
+      font-family: "Finest Romance Script", cursive;
+      color: #fff;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: .5px;
+      margin: 0;
+      text-shadow: 0 3px 8px rgba(0,0,0,.55);
+    }
+
+    .page-hero .sub {
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,.45);
+    }
+
+    /* Intro + CTA under hero */
+    .switcher {
+      margin: 1rem auto 0;
+      display: grid;
+      gap: .65rem;
+      justify-items: center;
+      max-width: 46rem;
+    }
+    .intro {
+      margin: 0;
+      color: #fff;
+      opacity: .95;
+      text-shadow: 0 2px 6px rgba(0,0,0,.35);
+    }
+
+    /* White pill CTA so it pops on the starry header */
+    .cta{
+      display:inline-block;
+      padding:.62rem 1.05rem;
+      border-radius:9999px;
+      background:#fff;
+      color:#000;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.01em;
+      border:1px solid rgba(0,0,0,.12);
+      box-shadow:
+        0 10px 20px rgba(0,0,0,.18),
+        0 4px  10px rgba(0,0,0,.10),
+        inset 0 1px 0 rgba(255,255,255,.7);
+      transform: translateY(0);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+    .cta:hover{
+      transform: translateY(-2px);
+      box-shadow:
+        0 14px 28px rgba(0,0,0,.22),
+        0 6px  14px rgba(0,0,0,.12),
+        inset 0 1px 0 rgba(255,255,255,.7);
+      filter: brightness(1.02);
+    }
+    .cta:active{
+      transform: translateY(0);
+      box-shadow:
+        0 6px 12px rgba(0,0,0,.20),
+        0 3px  8px rgba(0,0,0,.12),
+        inset 0 2px 6px rgba(0,0,0,.15);
+    }
+    .cta:focus-visible{ outline:3px solid rgba(0,0,0,.25); outline-offset:3px; }
+
+    /* GRID / CARDS */
+    .grid {
+      max-width: 68rem;
+      margin: 1rem auto 3rem;
+      padding: 0 1rem;
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .card {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,.06);
+      border-color: #dfe3f3;
+    }
+
+    .thumb {
+      aspect-ratio: 16 / 9;
+      background: var(--bg);
+      margin: 0;
+      overflow: hidden;
+    }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .thumb-fallback {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: #c4c7d5;
+      background: linear-gradient(135deg, #eef1ff, #f7f8ff);
+    }
+
+    .card-body {
+      padding: 0.9rem 1rem 1.1rem;
+      display: grid;
+      gap: .45rem;
+      align-content: start;
+    }
+    .card-title {
+      font-size: 1.1rem;
+      margin: 0;
+      color: var(--fg);
+      line-height: 1.25;
+      letter-spacing: -0.005em;
+      font-family: "Wittgenstein", serif;
+    }
+    .meta {
+      font-size: .9rem;
+      color: #6a6a6d;
+    }
+    .excerpt {
+      margin: .25rem 0 0;
+      color: #2a2a2e;
+      font-size: .98rem;
+      line-height: 1.45;
+    }
+    .tags {
+      list-style: none;
+      padding: 0;
+      margin: .35rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+    .tag {
+      font-size: .78rem;
+      color: #2d3a62;
+      background: #eef2ff;
+      border: 1px solid #dde4ff;
+      padding: .22rem .5rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    /* Empty-state helper */
+    .empty { max-width: 60rem; margin: 2rem auto 3rem; padding: 2rem 1rem; text-align: center; }
+    .cta-dark {
+      display:inline-block; padding:.55rem .9rem; border-radius:9999px; text-decoration:none;
+      background:#fff; color:#000; border:1px solid rgba(0,0,0,.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,.12);
+    }
+    .cta-dark:hover { transform: translateY(-1px); }
+  </style>
+</BaseLayout>
