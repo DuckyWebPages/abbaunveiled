@@ -23,7 +23,6 @@ function normTags(val: unknown): string[] {
     <h1 class="post-banner-title"><em>Heaven Encounters</em></h1>
     <p class="sub">Vision journals, practical steps for stepping into the heavenlies, and walking with Abba.</p>
 
-    <!-- Reciprocal CTA -->
     <div class="switcher">
       <p class="intro">
         This page holds all of the <strong>encounter stories</strong> and vision notes.
@@ -32,6 +31,9 @@ function normTags(val: unknown): string[] {
       <a class="cta" href="/blog/">Go to the main Blog →</a>
     </div>
   </section>
+
+  <!-- TEMP DEBUG: remove after verifying it's working -->
+  <div class="enc-debug">Found {posts.length} encounter(s).</div>
 
   {posts.length === 0 ? (
     <section class="empty">
@@ -49,8 +51,7 @@ function normTags(val: unknown): string[] {
 
         const hero =
           post.data.cardImage?.src ?? post.data.cardImage ??
-          post.data.heroImage?.src ?? post.data.heroImage ??
-          null;
+          post.data.heroImage?.src ?? post.data.heroImage ?? null;
 
         return (
           <a class="card" href={href}>
@@ -87,25 +88,20 @@ function normTags(val: unknown): string[] {
       --brand: #4b6bfb;
     }
 
-    /* HERO */
-   /* HERO with starry sky like the Blog page */
-.page-hero {
-  max-width: 68rem;
-  margin: 2rem auto 1rem;
-  padding: 0 1rem 0.75rem; /* a little extra breathing room */
-  text-align: center;
-
-  /* gradient overlay + starry background image */
-  background-image:
-    linear-gradient(0deg, rgba(0,0,0,.35), rgba(0,0,0,.35)),
-    url("/images/backgrounds/stars-northern-tall.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  border-radius: 8px;
-}
-
+    /* HERO — force visible background so white text is readable */
+    .page-hero {
+      max-width: 68rem;
+      margin: 2rem auto 1rem;
+      padding: 0 1rem 0.75rem;
+      text-align: center;
+      background-image:
+        linear-gradient(0deg, rgba(0,0,0,.35), rgba(0,0,0,.35)),
+        url("/images/backgrounds/stars-northern-tall.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 8px;
+    }
 
     .post-banner-title{
       font-family: "Finest Romance Script", cursive;
@@ -123,7 +119,7 @@ function normTags(val: unknown): string[] {
       text-shadow: 0 2px 6px rgba(0,0,0,.45);
     }
 
-    /* Intro + CTA under hero */
+    /* CTA under hero */
     .switcher {
       margin: 1rem auto 0;
       display: grid;
@@ -137,8 +133,6 @@ function normTags(val: unknown): string[] {
       opacity: .95;
       text-shadow: 0 2px 6px rgba(0,0,0,.35);
     }
-
-    /* White pill CTA so it pops on the starry header */
     .cta{
       display:inline-block;
       padding:.62rem 1.05rem;
@@ -164,14 +158,19 @@ function normTags(val: unknown): string[] {
         inset 0 1px 0 rgba(255,255,255,.7);
       filter: brightness(1.02);
     }
-    .cta:active{
-      transform: translateY(0);
-      box-shadow:
-        0 6px 12px rgba(0,0,0,.20),
-        0 3px  8px rgba(0,0,0,.12),
-        inset 0 2px 6px rgba(0,0,0,.15);
+
+    /* TEMP DEBUG chip */
+    .enc-debug{
+      max-width: 68rem;
+      margin: .5rem auto 1rem;
+      padding: .4rem .75rem;
+      background:#fff;
+      color:#000;
+      border:1px solid #e6e6ee;
+      border-radius: 8px;
+      font-weight: 700;
+      text-align:center;
     }
-    .cta:focus-visible{ outline:3px solid rgba(0,0,0,.25); outline-offset:3px; }
 
     /* GRID / CARDS */
     .grid {
@@ -200,69 +199,25 @@ function normTags(val: unknown): string[] {
       border-color: #dfe3f3;
     }
 
-    .thumb {
-      aspect-ratio: 16 / 9;
-      background: var(--bg);
-      margin: 0;
-      overflow: hidden;
-    }
-    .thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .thumb { aspect-ratio: 16 / 9; background: var(--bg); margin: 0; overflow: hidden; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .thumb-fallback {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      letter-spacing: .08em;
-      color: #c4c7d5;
+      width: 100%; height: 100%; display: grid; place-items: center;
+      font-weight: 700; letter-spacing: .08em; color: #c4c7d5;
       background: linear-gradient(135deg, #eef1ff, #f7f8ff);
     }
 
-    .card-body {
-      padding: 0.9rem 1rem 1.1rem;
-      display: grid;
-      gap: .45rem;
-      align-content: start;
-    }
+    .card-body { padding: 0.9rem 1rem 1.1rem; display: grid; gap: .45rem; align-content: start; }
     .card-title {
-      font-size: 1.1rem;
-      margin: 0;
-      color: var(--fg);
-      line-height: 1.25;
-      letter-spacing: -0.005em;
+      font-size: 1.1rem; margin: 0; color: var(--fg); line-height: 1.25; letter-spacing: -0.005em;
       font-family: "Wittgenstein", serif;
     }
-    .meta {
-      font-size: .9rem;
-      color: #6a6a6d;
-    }
-    .excerpt {
-      margin: .25rem 0 0;
-      color: #2a2a2e;
-      font-size: .98rem;
-      line-height: 1.45;
-    }
-    .tags {
-      list-style: none;
-      padding: 0;
-      margin: .35rem 0 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: .4rem;
-    }
+    .meta { font-size: .9rem; color: var(--muted); }
+    .excerpt { margin: .25rem 0 0; color: #2a2a2e; font-size: .98rem; line-height: 1.45; }
+    .tags { list-style: none; padding: 0; margin: .35rem 0 0; display: flex; flex-wrap: wrap; gap: .4rem; }
     .tag {
-      font-size: .78rem;
-      color: #2d3a62;
-      background: #eef2ff;
-      border: 1px solid #dde4ff;
-      padding: .22rem .5rem;
-      border-radius: 999px;
-      white-space: nowrap;
+      font-size: .78rem; color: #2d3a62; background: #eef2ff; border: 1px solid #dde4ff;
+      padding: .22rem .5rem; border-radius: 999px; white-space: nowrap;
     }
 
     /* Empty-state helper */
