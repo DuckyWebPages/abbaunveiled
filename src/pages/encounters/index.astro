@@ -3,7 +3,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const posts = await getCollection("encounters", ({ data }) => !data.draft);
-posts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
+// Pin featured first, then by pubDate ascending (oldest → newest)
+posts.sort((a, b) => {
+  const fa = a.data?.featured ? 1 : 0;
+  const fb = b.data?.featured ? 1 : 0;
+  if (fb !== fa) return fb - fa; // featured first
+  const da = new Date(a.data.pubDate).getTime();
+  const db = new Date(b.data.pubDate).getTime();
+  return da - db;                // then oldest → newest
+});
+
 
 function fmtDate(d: unknown) {
   if (!d) return "";
