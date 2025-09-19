@@ -1,11 +1,14 @@
 ---
-import "../styles/global.css"; // keep CSS loaded on homepage
+import "../styles/global.css";
 import HeroVideo from "../components/HeroVideo.astro";
 import AboutSection from "../components/AboutSection.astro";
 import FeaturedShowcase from "../components/FeaturedShowcase.astro";
 import Newsletter from "../components/Newsletter.astro";
 
 const pageTitle = "Abba Unveiled — Home";
+
+/** flip to false when live */
+const COMING_SOON = true;
 ---
 <html lang="en">
   <head>
@@ -18,6 +21,21 @@ const pageTitle = "Abba Unveiled — Home";
     />
     <link rel="preload" href="/images/night-sky-poster.jpg" as="image" />
     <link rel="preload" href="/fonts/FinestRomanceScript.woff2" as="font" type="font/woff2" crossorigin />
+
+    <style>
+      /* Badge styling, scoped to this page */
+      .home-featured{ position: relative; }
+      .coming-badge{
+        position: absolute;
+        top: 12px; right: 12px;
+        background: #111; color: #fff;
+        padding: 6px 10px; border-radius: 999px;
+        font-weight: 800; letter-spacing: .04em;
+        box-shadow: 0 8px 20px rgba(0,0,0,.35);
+        pointer-events: none; /* don’t block clicks on buttons beneath */
+        z-index: 2;
+      }
+    </style>
   </head>
   <body>
     <div class="hero-full">
@@ -28,18 +46,15 @@ const pageTitle = "Abba Unveiled — Home";
       <AboutSection />
 
       <section class="home-featured">
-  <FeaturedShowcase
-    title="The Yahweh Deception"
-    body="Reclaiming the Father Jesus Revealed."
-    image="/images/ydlibrary.png"
-    primary={{
-      href: "/learn-more",
-      labelHTML: 'Get the book, <em>The Yahweh Deception</em> by W.R. Selvig'
-    }}
-    secondary={{ href: "/resources", label: "Order Now" }}
-  />
-</section>
-
+        {COMING_SOON && <div class="coming-badge" aria-label="Coming soon">COMING SOON</div>}
+        <FeaturedShowcase
+          title="The Yahweh Deception"
+          body="Reclaiming the Father Jesus Revealed."
+          image="/images/ydlibrary.png"
+          primary={{ href: "/learn-more", labelHTML: 'COMING IN OCTOBER' }}
+          secondary={{ href: "/resources", label: "Order Now" }}
+        />
+      </section>
 
       <section class="home-newsletter">
         <Newsletter />
