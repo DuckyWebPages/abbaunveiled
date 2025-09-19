@@ -58,6 +58,21 @@ const book = {
     .note{text-align:center;color:rgba(255,255,255,.85);font-size:12px;margin-top:14px}
     .note code{background:rgba(255,255,255,.2);padding:0 4px;border-radius:4px;color:#fff}
     .disclaimer{font-size:.9rem;line-height:1.45;margin:.25rem 0 1rem;color:rgba(17,17,17,.75)}
+    /* Button row + Coming Soon pill */
+.btn-row{display:flex;align-items:center;gap:10px;margin-top:.25rem}
+.coming{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:6px 10px;border-radius:999px;font-weight:700;
+  background:#222;color:#fff;letter-spacing:.04em;box-shadow:0 6px 16px rgba(0,0,0,.25);
+}
+/* If you want an overlay badge instead, uncomment these and add .badge markup below */
+.book{position:relative}
+.badge{
+  position:absolute;top:12px;right:12px;background:#222;color:#fff;
+  padding:6px 10px;border-radius:999px;font-weight:800;letter-spacing:.04em;
+  box-shadow:0 8px 20px rgba(0,0,0,.35)
+}
+
   </style>
 
   <div class="bg"></div>
@@ -89,14 +104,23 @@ const book = {
 
       <!-- CENTER bubble (book) -->
       <section class="frost book">
-        <img src={book.cover} alt={book.title} loading="eager" />
-        <h2>{book.title}</h2>
-        <p>{book.blurb}</p>
-        <a href={book.buyUrl} class="lulu-btn" rel="noopener noreferrer">
-          <img src="/images/lulu-logo.png" alt="Lulu" class="lulu-logo" />
-          Buy Now on Lulu
-        </a>
-      </section>
+  {/* Optional overlay badge version — uncomment to use overlay instead of the pill next to button */}
+  {/*
+  <div class="badge">COMING SOON</div>
+  */}
+  <img src={book.cover} alt={book.title} loading="eager" />
+  <h2>{book.title}</h2>
+  <p>{book.blurb}</p>
+
+  <div class="btn-row">
+    <a href={book.buyUrl} class="lulu-btn" rel="noopener noreferrer">
+      <img src="/images/lulu-logo.png" alt="Lulu" class="lulu-logo" />
+      Buy Now on Lulu
+    </a>
+    <span class="coming">COMING SOON</span>
+  </div>
+</section>
+
 
       {/*
       -- RIGHT bubble (temporarily removed) --
