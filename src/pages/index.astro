@@ -11,7 +11,7 @@ const pageTitle = "Abba Unveiled — Home";
 const COMING_SOON = true;
 ---
 <html lang="en">
-  <head>
+    <head>
     <meta charset="utf-8" />
     <title>{pageTitle}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,8 +35,56 @@ const COMING_SOON = true;
         pointer-events: none; /* don’t block clicks on buttons beneath */
         z-index: 2;
       }
+
+      /* --- HOMEPAGE-ONLY TYPE FACE FOR PILLS --- */
+      .home :is(a,button).pill,
+      .home :is(a,button)[class*="pill"],
+      .home :is(a,button)[class*="btn"],
+      .home :is(a,button)[data-variant="pill"],
+      .home :is(a,button)[data-style="pill"]{
+        font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans" !important;
+        font-weight: 700;
+        letter-spacing: .02em;
+      }
+
+      /* --- BOTTOM CTA: SIZE + HOVER LIFT ON HOMEPAGE --- */
+      #home-cta{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        padding: 1.15rem 1.65rem;
+        min-height: 3.4rem;
+        font-size: 1.08rem;
+        border-radius: 999px;
+        cursor: pointer;
+        transform: translateY(0) !important;
+        transition: transform .18s ease, box-shadow .18s ease, filter .18s ease !important;
+        will-change: transform, filter;
+      }
+      #home-cta:hover{
+        transform: translateY(-3px) !important;
+        filter: brightness(1.06);
+        box-shadow:
+          0 14px 32px rgba(0,0,0,.28),
+          inset 0 1px 0 rgba(255,255,255,.08);
+      }
+      #home-cta:active{
+        transform: translateY(0) !important;
+        box-shadow:
+          0 6px 16px rgba(0,0,0,.22),
+          inset 0 2px 0 rgba(0,0,0,.25);
+      }
+      #home-cta:focus-visible{
+        outline: none;
+        box-shadow:
+          0 0 0 3px rgba(255,255,255,.9),
+          0 0 0 6px #7dd3fc,
+          0 14px 32px rgba(0,0,0,.28);
+      }
     </style>
   </head>
+
   <body>
     <div class="hero-full">
       <HeroVideo overlayImageSrc="/images/tetrawhite.png?v=20250903" subtitle="Getting to Know the Father Jesus Revealed" />
@@ -60,11 +108,12 @@ const COMING_SOON = true;
         <Newsletter />
       </section>
       <div class="footer-cta">
-  <a href="/store/the-yahweh-deception" class="btn-cta" aria-label="Get the book: The Yahweh Deception by W.R. Selvig">
+  <a id="home-cta" href="/store/the-yahweh-deception" class="btn-cta" aria-label="Get the book: The Yahweh Deception by W.R. Selvig">
     <span class="dot" aria-hidden="true"></span>
     Get the book — <span style="opacity:.9">The Yahweh Deception</span>
   </a>
 </div>
+
 
     </main>
   </body>
