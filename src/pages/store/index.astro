@@ -40,15 +40,18 @@ const pageDesc = "Get The Yahweh Deception and other resources from W.R. Selvig.
           </ul>
 
           <div class="product-card__cta">
+            <!-- Lulu CTA (stacked text). Replace the URL below with your real Lulu product link -->
             <a
-              class="btn-cta"
+              class="btn-cta btn-cta--stacked"
               href="https://YOUR_LULU_PRODUCT_URL_HERE"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Order The Yahweh Deception on Lulu"
             >
-              To Order, Click Here
+              <span class="btn-cta__eyebrow">To Order</span>
+              <span class="btn-cta__main">Click Here</span>
             </a>
+
             <a class="btn-ghost" href="/about">Learn more about the message</a>
           </div>
         </div>
@@ -124,11 +127,38 @@ const pageDesc = "Get The Yahweh Deception and other resources from W.R. Selvig.
   }
   .btn-ghost:hover { color:#000; border-color:#111; }
 
+  /* two-line CTA variant (additions) */
+  .btn-cta--stacked{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    line-height:1.1;
+    padding-top:.9rem;
+    padding-bottom:.9rem;
+  }
+  .btn-cta__eyebrow{
+    font-size:.85rem;     /* smaller line */
+    opacity:.9;
+    letter-spacing:.02em;
+  }
+  .btn-cta__main{
+    font-size:1.05rem;    /* larger line */
+    font-weight:700;
+    margin-top:.15rem;
+  }
+
   /* Responsive */
   @media (max-width: 920px) {
     .product-card { grid-template-columns: 1fr; }
     .product-card__media { padding: 18px; }
     .product-card__body { padding: 20px; }
     .product-card__title { font-size: 1.7rem; }
+  }
+
+  @media (max-width:420px){
+    .btn-cta__eyebrow{ font-size:.8rem; }
+    .btn-cta__main{ font-size:1rem; }
   }
 </style>
