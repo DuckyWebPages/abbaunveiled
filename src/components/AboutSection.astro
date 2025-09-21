@@ -1,67 +1,44 @@
 ---
 const {
-  // Set eyebrow default to empty and render it only if provided
-  eyebrow = "",
-  title = "The Yahweh Deception",
-  body = "Reclaiming the Father Jesus Revealed.",
-  image = "/images/featured-book.jpg",
-  // Default primary can point to Store (optional)
-  primary = { href: "/store", label: "Go to Store" },
-  // IMPORTANT: default to null so no secondary button shows unless you pass one
-  secondary = null,
+  title = "Why Abba Unveiled?",
+  body = "Knowledge is increasing in the earth, just like Daniel prophesied. Texts, archeological finds and ancient scrolls have never been more available to the common man than is today. Institutional religion has less control over what people believe as people can now research for themselves. Come with us as we explore the idea that Jesus came to reveal a Father, that people had literally never seen or heard before. A Father who was not Yahweh. You have to be open minded and leave your fear and dogma behind, but there is real evidence that the god of this world has blinded even Christians into thinking Yahweh was the Father. Expect research, engaging blog posts, Youtube videos, practices for communion with the Father, and resources that empower seekers.",
+  image = null  // default: no image
 } = Astro.props;
+
+const hasImage = !!image;
 ---
-
-<section class="feat">
-  <div class="feat__wrap">
-    <div class="feat__card">
-      <div class="feat__media">
-        <img src={image} alt={title} loading="lazy" />
-      </div>
-      <div class="feat__body">
-        {eyebrow && <span class="feat__eyebrow">{eyebrow}</span>}
-        <h3>{title}</h3>
-        <p>{body}</p>
-        <div class="feat__actions">
-          {primary && (
-            <a href={primary.href} class="btn-cta" aria-label={primary.ariaLabel || primary.label || "Go to Store"}>
-              {primary.labelHTML ? <span set:html={primary.labelHTML} /> : <span>{primary.label}</span>}
-            </a>
-          )}
-
-          {secondary && (
-            <a class="btn btn--ghost" href={secondary.href}>{secondary.label}</a>
-          )}
-        </div>
+<section class="about">
+  <div class={`about__wrap ${hasImage ? "has-image" : ""}`}>
+    <div class="about__content">
+      <h2>{title}</h2>
+      <p>{body}</p>
+      <div class="about__actions">
+        <a class="btn" href="/about">Learn More</a>
       </div>
     </div>
+
+    {hasImage && (
+      <div class="about__img">
+        <img src={image} alt="" loading="lazy" />
+      </div>
+    )}
   </div>
 </section>
-
-
-</style>
-
 
 <style>
 .about { padding: 4rem 1.25rem; }
 .about__wrap {
   max-width: 1100px; margin: 0 auto;
   display: grid; gap: 2rem; align-items: center;
-  grid-template-columns: minmax(0,1fr);
+  grid-template-columns: minmax(0,1fr); /* full-width text by default */
 }
-
-/* When there's NO image, let the text span the full width of the container */
-.about__wrap--full { grid-template-columns: minmax(0,1fr); }
-
-/* Image (only shows when provided) */
-.about__img { display: block; }
-.about__img img { width: 100%; height: auto; border-radius: 18px; display:block; }
 
 /* Content */
 .about__content h2 { font-size: clamp(1.6rem, 1.6vw + 1rem, 2.2rem); margin: 0 0 .75rem; }
 .about__content p { font-size: 1.05rem; line-height: 1.65; opacity: .95; }
 .about__actions { margin-top: 1rem; }
 
+/* Button */
 .btn {
   display:inline-flex; align-items:center; justify-content:center;
   padding:.8rem 1.2rem; border-radius:9999px; font-weight:600;
@@ -70,10 +47,11 @@ const {
 }
 .btn:hover { transform: translateY(-1px); opacity:.96; }
 
-/* On desktop, use two columns ONLY if we have an image */
+/* Only add a second column if an image exists (desktop) */
 @media (min-width: 860px){
-  .about__wrap:not(.about__wrap--full) { grid-template-columns: 1.1fr .9fr; }
-  .about__content { order: 1; }
-  .about__img { order: 2; }
+  .about__wrap.has-image { grid-template-columns: 1.1fr .9fr; }
 }
+
+/* Image (shown only when provided) */
+.about__img img { width: 100%; height: auto; border-radius: 18px; display:block; }
 </style>
