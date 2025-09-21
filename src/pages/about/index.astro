@@ -8,52 +8,63 @@ const pageDesc =
 ---
 
 <BaseLayout title={pageTitle} description={pageDesc}>
-  <section class="relative min-h-[70vh] grid place-items-center overflow-hidden">
-    <img
-      src="/images/stars-northern.png"
-      alt=""
-      class="absolute inset-0 h-full w-full object-cover"
-      loading="eager"
-      decoding="async"
-    />
-    <div class="absolute inset-0 bg-black/60"></div>
+  <!-- HERO with background + overlay + centered card -->
+  <section class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__container">
+      <div class="card">
+        <header class="card__header">
+          <h1>About Abba Unveiled</h1>
+          <p class="subtitle">
+            Why we exist, who W.R. Selvig is, and how this message invites you to know the Father Jesus revealed.
+          </p>
+        </header>
 
-    <div class="relative mx-auto w-full max-w-4xl p-4 sm:p-6 md:p-8">
-      <div class="rounded-3xl bg-white/90 dark:bg-neutral-900/80 backdrop-blur-md shadow-2xl ring-1 ring-black/10 dark:ring-white/10">
-        <div class="p-6 sm:p-10">
-          <header class="mb-6 sm:mb-8">
-            <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight">About Abba Unveiled</h1>
-            <p class="mt-3 text-base sm:text-lg text-neutral-700 dark:text-neutral-300">
-              Why we exist, who W.R. Selvig is, and how this message invites you to know the Father Jesus revealed.
-            </p>
-          </header>
+        <article class="card__content">
+          <h2 id="why">Why Abba Unveiled?</h2>
+          <p>
+            For many believers, there’s a quiet tension: the Father that Jesus reveals feels very different from the God
+            described in much of the Old Testament. For years, I carried that same fracture. I trusted Jesus, but when I
+            thought of the Father, I hesitated.
+          </p>
+          <p>
+            <em>Abba Unveiled</em> was born out of my search to heal that fracture. As I sought Jesus, He led me into answers
+            I didn’t expect—answers that revealed a good, kind, merciful Father who is better than we’ve been told. This site,
+            and my book <em>The Yahweh Deception</em>, exist to lift the veil and invite you into a fresh encounter with Abba.
+          </p>
 
-          <article class="prose prose-neutral dark:prose-invert max-w-none">
-            <h2 id="why">Why Abba Unveiled?</h2>
-            <p>For many believers, there’s a quiet tension: the Father that Jesus reveals feels very different from the God described in much of the Old Testament. For years, I carried that same fracture. I trusted Jesus, but when I thought of the Father, I hesitated.</p>
-            <p><em>Abba Unveiled</em> was born out of my search to heal that fracture. As I sought Jesus, He led me into answers I didn’t expect—answers that revealed a good, kind, merciful Father who is better than we’ve been told. This site, and my book <em>The Yahweh Deception</em>, exist to lift the veil and invite you into a fresh encounter with Abba.</p>
+          <h2>Who I Am</h2>
+          <p>
+            I’m W.R. Selvig—author, podcaster, and lifelong follower of Jesus. For over forty years I’ve pursued Him through
+            prayer, research, and encounters. Some friends call me prophetic; I simply acknowledge I’m a seer. I never planned
+            to write this book—Jesus asked me to share what He showed me so others could find the same healing and freedom.
+          </p>
 
-            <h2>Who I Am</h2>
-            <p>I’m W.R. Selvig—author, podcaster, and lifelong follower of Jesus. For over forty years I’ve pursued Him through prayer, research, and encounters. Some friends call me prophetic; I simply acknowledge I’m a seer. I never planned to write this book—Jesus asked me to share what He showed me so others could find the same healing and freedom.</p>
+          <h2>What You’ll Find Here</h2>
+          <ul>
+            <li><strong>Theology</strong> that challenges assumptions and lifts veils.</li>
+            <li><strong>Spiritual practices</strong> that restore intimacy with the Father.</li>
+            <li><strong>Personal encounters</strong> from my journey that may resonate with yours.</li>
+            <li><strong>Podcasts &amp; resources</strong> to support your walk with Abba.</li>
+          </ul>
 
-            <h2>What You’ll Find Here</h2>
-            <ul>
-              <li><strong>Theology</strong> that challenges assumptions and lifts veils.</li>
-              <li><strong>Spiritual practices</strong> that restore intimacy with the Father.</li>
-              <li><strong>Personal encounters</strong> from my journey that may resonate with yours.</li>
-              <li><strong>Podcasts &amp; resources</strong> to support your walk with Abba.</li>
-            </ul>
+          <blockquote>
+            “This isn’t about tearing down faith. It’s about strengthening it—freeing believers from fear and inviting them
+            into the love Jesus always pointed to.”
+          </blockquote>
 
-            <blockquote>“This isn’t about tearing down faith. It’s about strengthening it—freeing believers from fear and inviting them into the love Jesus always pointed to.”</blockquote>
+          <h2>A Time of Unveiling</h2>
+          <p>
+            We’re living in a new era of revelation. Across the world, corruption is being exposed—in politics, education, and
+            religion. It’s uncomfortable, but necessary: only when deception is revealed can healing and new structures rise. I
+            believe this unveiling includes the Father’s own character, long obscured by fear and tradition. The bandage is
+            coming off. Sons and daughters are learning to trust Abba again.
+          </p>
 
-            <h2>A Time of Unveiling</h2>
-            <p>We’re living in a new era of revelation. Across the world, corruption is being exposed—in politics, education, and religion. It’s uncomfortable, but necessary: only when deception is revealed can healing and new structures rise. I believe this unveiling includes the Father’s own character, long obscured by fear and tradition. The bandage is coming off. Sons and daughters are learning to trust Abba again.</p>
+          <h2>Listen: “Who is W.R. Selvig?” (Podcast Episode 4)</h2>
+          <p>Prefer to hear the story? Listen to the episode below where I share the dream, the numbers, and the healing.</p>
 
-            <h2>Listen: “Who is W.R. Selvig?” (Podcast Episode 4)</h2>
-            <p>Prefer to hear the story? Listen to the episode below where I share the dream, the numbers, and how Jesus healed the fracture in my heart.</p>
-          </article>
-
-          <div class="not-prose my-6">
+          <div class="player">
             <iframe
               src="https://widget.spreaker.com/player?episode_id=67835208&theme=light&playlist=false&autoplay=false&chapters=false&download=true"
               width="100%"
@@ -64,23 +75,116 @@ const pageDesc =
             ></iframe>
           </div>
 
-          <div class="prose prose-neutral dark:prose-invert max-w-none">
-            <h2>The Invitation</h2>
-            <p>This journey isn’t about controversy—it’s about clarity, freedom, and intimacy with the true Father. Come meet Abba as Jesus revealed Him: good, kind, merciful, and trustworthy.</p>
+          <h2>The Invitation</h2>
+          <p>
+            This journey isn’t about controversy—it’s about clarity, freedom, and intimacy with the true Father. Come meet Abba
+            as Jesus revealed Him: good, kind, merciful, and trustworthy.
+          </p>
 
-            <p class="mt-8">
-              <a class="btn-cta" href="https://abbaunveiled.com">Get the Book: <em>The Yahweh Deception</em></a>
-            </p>
-          </div>
-        </div>
+          <p class="cta-wrap">
+            <a class="btn-cta" href="https://abbaunveiled.com">Get the Book: <em>The Yahweh Deception</em></a>
+          </p>
+        </article>
       </div>
     </div>
   </section>
 </BaseLayout>
 
-<style is:global>
+<style>
+  /* HERO background */
+  .hero {
+    position: relative;
+    min-height: 80vh;
+    padding: 48px 16px 72px;
+    background-image: url("/images/stars-northern.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  /* overlay for readability */
+  .hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55));
+    z-index: 0;
+  }
+  .hero__container {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex; align-items: flex-start; justify-content: center;
+  }
+
+  /* CARD */
+  .card {
+    width: 100%;
+    max-width: 960px;
+    background: #fff;
+    color: #111;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    border: 1px solid rgba(17,17,17,0.08);
+    overflow: hidden;
+  }
+  .card__header {
+    padding: 28px 28px 0 28px;
+  }
+  .card__header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    margin-top: 8px;
+    color: #4b5563;
+    font-size: 1.05rem;
+  }
+  .card__content {
+    padding: 20px 28px 32px;
+    line-height: 1.7;
+    font-size: 1.05rem;
+  }
+  .card__content h2 {
+    font-size: 1.4rem;
+    margin: 1.6rem 0 0.6rem;
+    line-height: 1.25;
+  }
+  .card__content p { margin: 0.8rem 0; }
+  .card__content ul { padding-left: 1.2rem; margin: 0.8rem 0 1.2rem; }
+  .card__content li { margin: 0.4rem 0; }
+  blockquote {
+    margin: 1.2rem 0;
+    padding: 0.9rem 1rem;
+    background: #f7f7f9;
+    border-left: 4px solid #e0e0e7;
+    color: #333;
+    border-radius: 6px;
+  }
+
+  /* Player spacing */
+  .player { margin: 1rem 0 1.5rem; }
+  .player iframe { border-radius: 10px; }
+
+  /* CTA button (fallback if you don't already have .btn-cta globally) */
+  .cta-wrap { margin-top: 1.2rem; }
   .btn-cta {
-    display:inline-block; padding:.75rem 1.25rem; border-radius:9999px;
-    font-weight:600; border:1px solid currentColor;
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    border: 1px solid #111;
+    color: #111;
+    text-decoration: none;
+    transition: transform 0.12s ease, background 0.12s ease;
+    background: #fff;
+  }
+  .btn-cta:hover { background: #111; color: #fff; transform: translateY(-1px); }
+
+  /* Responsive tweaks */
+  @media (max-width: 640px) {
+    .card__header { padding: 20px 18px 0; }
+    .card__content { padding: 14px 18px 22px; }
+    .card__header h1 { font-size: 1.8rem; }
   }
 </style>
