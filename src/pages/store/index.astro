@@ -1,56 +1,131 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+// src/pages/store/index.astro
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
-// Example products — replace with your real items
-const products = [
-  {
-    name: "Guided Journal (PDF)",
-    price: "$7.77",
-    image: "/images/journal-cover.jpg",
-    url: "#", // replace with Stripe payment link or /store/guided-journal
-    summary: "A 7×10 printable journal to deepen connection with the Father."
-  },
-  {
-    name: "Book: The Trouble with Yahweh (Preorder)",
-    price: "$19.00",
-    image: "/images/tty-cover.jpg",
-    url: "#",
-    summary: "Preorder the upcoming Volume 1 and get launch updates."
-  },
-  {
-    name: "Aromatherapy Course (50-hour, self-paced)",
-    price: "$399.00",
-    image: "/images/aroma-course.jpg",
-    url: "https://thearomascienceacademy.com", // or Stripe checkout
-    summary: "NAHA-standard course with certificate on completion."
-  }
-];
-export const prerender = true;
+const pageTitle = "Store — Abba Unveiled";
+const pageDesc = "Get The Yahweh Deception and other resources from W.R. Selvig.";
 ---
 
-<BaseLayout title="Store — Abba Unveiled" description="Shop books, courses, and downloads.">
-  <section class="prose max-w-none">
-    <h1>Store</h1>
-    <p>Books, courses, and downloads to support your journey.</p>
-  </section>
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <section class="store-hero">
+    <div class="store-hero__overlay"></div>
 
-  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-8">
-    {products.map((p) => (
-      <article class="border rounded-lg overflow-hidden">
-        <img src={p.image} alt={p.name} class="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <div class="p-4">
-          <h2 class="text-lg font-semibold">{p.name}</h2>
-          <p class="text-sm text-gray-600 mt-1">{p.summary}</p>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="font-medium">{p.price}</span>
-            <a href={p.url} class="px-4 py-2 rounded-full border hover:shadow-sm">Buy</a>
+    <div class="store-hero__container">
+      <div class="product-card">
+        <div class="product-card__media">
+          <img
+            src="/images/ydlibrary.png"
+            alt="Book cover: The Yahweh Deception by W.R. Selvig"
+            class="product-card__img"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+        <div class="product-card__body">
+          <h1 class="product-card__title">The Yahweh Deception</h1>
+          <p class="product-card__subtitle">Unveiling the Father Jesus revealed.</p>
+
+          <p class="product-card__desc">
+            A clear, courageous invitation to meet Abba as Jesus revealed Him—free from fear, legalism,
+            and confusion. Part theology, part encounter, all heart.
+          </p>
+
+          <ul class="product-card__bullets">
+            <li>Readable, no-jargon teaching + scripture</li>
+            <li>Practical exercises for intimacy with the Father</li>
+            <li>Backed by research & early-church context</li>
+          </ul>
+
+          <div class="product-card__cta">
+            <!-- UPDATE THESE TWO VALUES -->
+            <button
+              class="btn-cta add-to-cart"
+              data-sku="YHWH-DEC"   <!-- TODO: set your live SKU -->
+              data-price="24.99"                   <!-- TODO: price in cents (e.g., 1999 = $19.99) -->
+            >
+              Add to Cart
+            </button>
+            <a class="btn-ghost" href="/about">Learn more about the message</a>
           </div>
         </div>
-      </article>
-    ))}
-  </section>
-
-  <section class="mt-10 text-sm text-gray-600">
-    <p>Need help with an order? <a href="/contact/">Contact me</a>.</p>
+      </div>
+    </div>
   </section>
 </BaseLayout>
+
+<style>
+  /* Hero background */
+  .store-hero {
+    position: relative;
+    min-height: 85vh;
+    padding: 48px 16px 72px;
+    background: url("/images/library.png") center/cover no-repeat;
+  }
+  .store-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55));
+    z-index: 0;
+  }
+  .store-hero__container {
+    position: relative; z-index: 1;
+    max-width: 1100px; margin: 0 auto;
+    display: grid; place-items: center;
+  }
+
+  /* Product card */
+  .product-card {
+    width: 100%; max-width: 1000px;
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 28px;
+    background: #fff; color: #111;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    border: 1px solid rgba(17,17,17,0.08);
+    overflow: hidden;
+  }
+  .product-card__media {
+    background: #fafafa;
+    padding: 24px; display: grid; place-items: center;
+  }
+  .product-card__img {
+    width: 100%; max-width: 420px; height: auto;
+    border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  .product-card__body {
+    padding: 28px 28px 32px;
+  }
+  .product-card__title {
+    margin: 0; font-size: 2rem; line-height: 1.15; letter-spacing: -0.01em;
+  }
+  .product-card__subtitle {
+    margin: 6px 0 14px; color: #4b5563; font-size: 1.05rem;
+  }
+  .product-card__desc { margin: 0 0 12px; line-height: 1.7; }
+  .product-card__bullets { margin: 10px 0 18px; padding-left: 1.2rem; }
+  .product-card__bullets li { margin: 6px 0; }
+
+  .product-card__cta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+  /* Buttons (matches your global CTA style fallback) */
+  .btn-cta {
+    display:inline-block; padding:.75rem 1.25rem; border-radius:9999px;
+    font-weight:600; border:1px solid #111; color:#111; background:#fff;
+    text-decoration:none; transition:transform .12s ease, background .12s ease, color .12s ease;
+  }
+  .btn-cta:hover { background:#111; color:#fff; transform: translateY(-1px); }
+
+  .btn-ghost {
+    display:inline-block; padding:.65rem 1rem; border-radius:9999px;
+    font-weight:600; border:1px dashed rgba(17,17,17,0.5); color:#111; text-decoration:none;
+    background: transparent; transition: color .12s ease, border-color .12s ease;
+  }
+  .btn-ghost:hover { color:#000; border-color:#111; }
+
+  /* Responsive */
+  @media (max-width: 920px) {
+    .product-card { grid-template-columns: 1fr; }
+    .product-card__media { padding: 18px; }
+    .product-card__body { padding: 20px; }
+    .product-card__title { font-size: 1.7rem; }
+  }
+</style>
