@@ -33,16 +33,18 @@ const feedUrl = "https://abbaunveiled.com/rss.xml";
 .sub-actions { display: grid; gap: .5rem; }
 .sub-actions__row { display:flex; gap:.75rem; align-items:center; flex-wrap:wrap; }
 
-/* small, subtle disclaimer that inherits footer colors */
+/* small, subtle disclaimer in white */
 .rss-note{
   margin: .25rem 0 0;
   font-size: .85rem;
   line-height: 1.4;
-  opacity: .85;            /* works on dark or light footers */
+  color: rgba(255,255,255,.92);   /* ← white text, slightly softened */
   max-width: 60ch;
 }
 .rss-note a{
-  color: inherit;
+  color: inherit;                 /* stays white */
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
+
 </style>
