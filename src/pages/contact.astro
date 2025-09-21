@@ -9,18 +9,22 @@ const title = "Contact | Abba Unveiled";
     <meta name="description" content="Contact Abba Unveiled" />
   </head>
   <body style="margin:0;">
-    <section class="contact-hero">
-     
+  <section class="contact-hero">
+    <div class="contact-overlay"></div>
 
-      <div class="contact-overlay"></div>
+    <div class="contact-box">
+      <h1>Contact Us</h1>
+      <p>Email: <a href="mailto:abbaunveiled@gmail.com">abbaunveiled@gmail.com</a></p>
 
-      <div class="contact-box">
-        <h1>Contact Us</h1>
-        <p>Email: <a href="mailto:abbaunveiled@gmail.com">abbaunveiled@gmail.com</a></p>
-       
+      <!-- New: mailing list link -->
+      <p class="mailing-note">
+        To sign up for our mailing list, 
+        <a href="https://forms.gle/TbRBvzfpHTQ8hSyp7" target="_blank" rel="noopener noreferrer">click here</a>.
+      </p>
 
-        <form class="contact-form" action="https://formspree.io/f/xkgzlpgj" method="POST">
-  <label>
+      <form class="contact-form" action="https://formspree.io/f/xkgzlpgj" method="POST">
+        <label>
+
     Name:<br />
     <input type="text" name="name" required />
   </label>
@@ -108,6 +112,12 @@ const title = "Contact | Abba Unveiled";
       .contact-box button:hover {
         background: #132b63;
       }
+      .mailing-note {
+  margin: .25rem 0 1rem;
+  color: #222;
+}
+.mailing-note a { text-decoration: underline; font-weight: 600; }
+
     </style>
     <script>
   (function () {
