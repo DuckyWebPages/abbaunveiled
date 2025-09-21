@@ -1,22 +1,26 @@
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+  Cleaned global.css — Wittgenstein removed
+  Body + headings = Lato
+  Hero title = Finest Romance Script
+  CTA kill-switch keeps Lato on buttons/links
+*/
 
+/* ------------------ Theme Vars ------------------ */
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
-		rgba(var(--gray), 33%);
+  --accent: #2337ff;
+  --accent-dark: #000d8a;
+  --black: 15, 18, 25;
+  --gray: 96, 115, 159;
+  --gray-light: 229, 233, 240;
+  --gray-dark: 34, 41, 57;
+  --gray-gradient: rgba(var(--gray-light), 50%), #fff;
+  --box-shadow:
+    0 2px 6px rgba(var(--gray), 25%),
+    0 8px 24px rgba(var(--gray), 33%),
+    0 16px 32px rgba(var(--gray), 33%);
 }
 
+/* ------------------ Fonts ------------------ */
 @font-face {
   font-family: "Finest Romance Script";
   src: url("/fonts/FinestRomanceScript.woff2") format("woff2");
@@ -25,114 +29,72 @@
   font-display: swap;
 }
 
+/* Body defaults to Lato */
 body {
-	  font-family: "Lato", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Lato", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-weight: 400;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  background: linear-gradient(var(--gray-gradient)) no-repeat;
+  background-size: 100% 600px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  color: rgb(var(--gray-dark));
+  font-size: 20px;
+  line-height: 1.7;
 }
+
 main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+  width: 720px;
+  max-width: calc(100% - 2em);
+  margin: auto;
+  padding: 3em 1em;
 }
-/* Default headings use Wittgenstein site-wide */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+/* Headings → Lato (remove Wittgenstein) */
+h1, h2, h3, h4, h5, h6 {
   margin: 0 0 0.5rem 0;
   color: rgb(var(--black));
   line-height: 1.2;
-  font-family: "Wittgenstein", serif !important;
+  font-family: "Lato", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Keep hero titles in Finest Romance Script */
 .hero-title {
   font-family: "Finest Romance Script", cursive !important;
 }
 
+/* Type scale */
+h1 { font-size: 3.052em; }
+h2 { font-size: 2.441em; }
+h3 { font-size: 1.953em; }
+h4 { font-size: 1.563em; }
+h5 { font-size: 1.25em; }
+strong, b { font-weight: 700; }
 
+a { color: var(--accent); }
+a:hover { color: var(--accent); }
 
-h1 {
-	font-size: 3.052em;
-}
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
-}
-strong,
-b {
-	font-weight: 700;
-}
-a {
-	color: var(--accent);
-}
-a:hover {
-	color: var(--accent);
-}
-p {
-	margin-bottom: 1em;
-}
-.prose p {
-	margin-bottom: 2em;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-}
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-}
-code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-}
-pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-}
+p { margin-bottom: 1em; }
+.prose p { margin-bottom: 2em; }
+
+textarea { width: 100%; font-size: 16px; }
+input { font-size: 16px; }
+
+table { width: 100%; }
+img { max-width: 100%; height: auto; border-radius: 8px; }
+
+code { padding: 2px 5px; background-color: rgb(var(--gray-light)); border-radius: 2px; }
+pre { padding: 1.5em; border-radius: 8px; }
+pre > code { all: unset; }
+
 blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0px;
-	font-size: 1.333em;
+  border-left: 4px solid var(--accent);
+  padding: 0 0 0 20px;
+  margin: 0px;
+  font-size: 1.333em;
 }
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
+
 /* Centered scripture block */
 .scripture-center{
   text-align: center;
@@ -141,72 +103,50 @@ hr {
   font-style: italic;
   line-height: 1.6;
 }
-
-/* Optional: tighten blockquote inside scripture-center */
 .scripture-center blockquote{
-  border-left: 0;       /* remove left bar in this context */
+  border-left: 0;
   padding-left: 0;
   margin: 0;
-  font-size: 1.2em;     /* a touch larger than body */
+  font-size: 1.2em;
 }
 
+/* Responsive base size */
 @media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-	main {
-		padding: 1em;
-	}
+  body { font-size: 18px; }
+  main { padding: 1em; }
 }
 
+/* Screen-reader utility */
 .sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
-}
-/* deploy tick 2025-09-03T09:10:05 */
-/* Homepage hero title */
-.hero-title {
-  color: #fff !important;                 /* make it white and win over Tailwind */
-  font-size: clamp(5rem, 8vw, 6.25rem);   /* ~80px–100px, tops out ~100px (≈5× body) */
-  line-height: 0.9;
-  font-weight: 400;                        /* keep the script looking smooth */
-  text-shadow: 0 2px 16px rgba(0,0,0,.35); /* readability over images/video */
+  border: 0; padding: 0; margin: 0;
+  position: absolute !important;
+  height: 1px; width: 1px; overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%);
+  white-space: nowrap;
 }
 
+/* ------------------ Hero ------------------ */
 
-
-/* === 2× heading scale for the HOMEPAGE only === */
-.home h1 { font-size: 6.104em; }  /* was 3.052em */
-.home h2 { font-size: 4.882em; }  /* was 2.441em */
-.home h3 { font-size: 3.906em; }  /* was 1.953em */
-.home h4 { font-size: 3.126em; }  /* was 1.563em */
-.home h5 { font-size: 2.5em;  }   /* was 1.25em  */
-.home h6 { font-size: 2em;    }   /* approx 2×   */
-
+/* Hero title: large script */
+.hero-title--in-hero {
+  color: #fff !important;
+  font-family: "Finest Romance Script", cursive !important;
+  font-size: clamp(6rem, 12vw, 10rem) !important; /* ~96–160px */
+  line-height: 0.9 !important;
+  font-weight: 400;
+  text-align: center;
+  text-shadow: 0 2px 16px rgba(0,0,0,.35);
+  margin: 0;
+}
 @media (max-width: 720px) {
-  /* Tame sizes on phones */
-  .home h1 { font-size: 4.065em; }
-  .home h2 { font-size: 3.662em; }
-  .home h3 { font-size: 2.93em;  }
-  .home h4 { font-size: 2.345em; }
-  .home h5 { font-size: 1.875em; }
-  .home h6 { font-size: 1.5em;   }
+  .hero-title--in-hero { font-size: clamp(4rem, 10vw, 6.5rem) !important; }
 }
 
-
+/* Hero subtitle (inherits Lato from body) */
+.hero__subtitle {
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem) !important; /* ~26–42px */
+  line-height: 1.3;
+}
 
 /* Ensure the hero text centers horizontally */
 .hero__content { text-align: center; }
@@ -223,9 +163,6 @@ hr {
   min-height: min(100svh, 100vh);
 }
 
-/* If your component exposes these, great; if not, the generic rule below handles it */
-.hero__content { text-align: center; }
-
 /* Generic cover for any image/video inside the hero */
 .hero-full img,
 .hero-full video {
@@ -234,7 +171,8 @@ hr {
   height: 100%;
   object-fit: cover;
 }
-/* ~1.6× heading scale on the HOMEPAGE (keeps hero title separate) */
+
+/* ------------------ Homepage Scales (one set, deduped) ------------------ */
 .home h1 { font-size: 4.883em; } /* 3.052 × 1.6 */
 .home h2 { font-size: 3.906em; } /* 2.441 × 1.6 */
 .home h3 { font-size: 3.125em; } /* 1.953 × 1.6 */
@@ -242,7 +180,6 @@ hr {
 .home h5 { font-size: 2em;     } /* 1.25  × 1.6 */
 .home h6 { font-size: 1.6em;   } /* 1     × 1.6 */
 
-/* Optional: soften on phones */
 @media (max-width: 720px) {
   .home h1 { font-size: 3.8em; }
   .home h2 { font-size: 3.2em; }
@@ -252,7 +189,7 @@ hr {
   .home h6 { font-size: 1.4em; }
 }
 
-/* Bigger Featured block heading (if it renders as h2/h3 inside the component) */
+/* Bigger Featured block heading (if it renders as h2/h3) */
 .home-featured h1,
 .home-featured h2,
 .home-featured h3 {
@@ -260,26 +197,6 @@ hr {
   line-height: 1.05;
 }
 
-/* Make the primary CTA "Why Abba Unveiled?" bigger on the homepage */
-.home a[href^="/learn-more"],
-.home a[href^="/learn-more"] * {
-  font-size: clamp(1.4rem, 2.5vw, 2rem) !important; /* ~20–32px */
-  font-weight: 600;
-  line-height: 1.15;
-}
-/* Make the primary CTA (“Why Abba Unveiled?”) bigger on the homepage */
-.home .primary-cta,
-.home .primary-cta * {
-  font-size: 1.4em !important;
-  font-weight: 600;
-  line-height: 1.15;
-}
-/* Bigger AboutSection heading on the homepage */
-.home section.about .about__content h2 {
-  font-size: clamp(2rem, 5.5vw, 3.5rem) !important; /* ~32–52px */
-  line-height: 1.05;
-  margin: 0.25rem 0 0.75rem;
-}
 /* Make Featured + Newsletter section headings the same size */
 .home-featured h1,
 .home-featured h2,
@@ -287,129 +204,54 @@ hr {
 .home-newsletter h1,
 .home-newsletter h2,
 .home-newsletter h3 {
-  font-size: clamp(2rem, 5.5vw, 3.25rem) !important; /* ~32–52px, same as About */
+  font-size: clamp(2rem, 5.5vw, 3.25rem) !important;
   line-height: 1.05;
   margin: 0.25rem 0 0.75rem;
 }
+
 /* Tighten the top space on the homepage */
-.home {
-  padding-top: 1rem; /* was 3em via the global 'main' rule */
-}
+.home { padding-top: 1rem; }
 
 /* Remove any extra top margin on the About heading itself */
-.home section.about .about__content h2 {
-  margin-top: 0 !important;
-}
+.home section.about .about__content h2 { margin-top: 0 !important; }
 
 /* Safety: kill any extra padding/margin the About section might add */
-.home section.about {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
-}
-@font-face {
-  font-family: "Finest Romance Serif";
-  src: url("/fonts/FinestRomanceSerif.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+.home section.about { padding-top: 0 !important; margin-top: 0 !important; }
 
-/* Optional utility so you can use it anywhere */
-.serif { font-family: "Finest Romance Serif", serif; }
-
-
-/* Hero title: at least ~2× bigger */
-.hero-title--in-hero {
-  color: #fff !important;
-  font-family: "Finest Romance Script", cursive !important;
-  font-size: clamp(6rem, 12vw, 10rem) !important; /* min ~96px, fluid, max ~160px */
-  line-height: 0.9 !important;
-  font-weight: 400;
-  text-align: center;
-  text-shadow: 0 2px 16px rgba(0,0,0,.35);
-  margin: 0;
-}
-@media (max-width: 720px) {
-  .hero-title--in-hero { font-size: clamp(4rem, 10vw, 6.5rem) !important; }
-}
-
-/* Hero subtitle uses the serif */
-/* Subtitle ~2× body on desktop, still reasonable on mobile */
-.hero__subtitle {
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem) !important; /* ~26–42px */
-  line-height: 1.3;
-}
-@font-face {
-  font-family: "Wittgenstein";
-  src: url("/fonts/Wittgenstein-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Optional utility */
-.font-witt { font-family: "Wittgenstein", serif; }
-
-/* Front page buttons & CTAs use Wittgenstein */
-.hero-full a,
-.hero-full button,
-.home a[role="button"],
-.home a.button,
-.home .btn,
-.home .primary-cta,
-.home button,
-.home input[type="submit"] {
-  font-family: "Wittgenstein", serif !important;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-
-/* Blog post headings → Wittgenstein */
+/* ------------------ Blog content helpers ------------------ */
 .post-content h1,
 .post-content h2,
 .post-content h3,
 .post-content h4,
 .post-content h5,
 .post-content h6 {
-  font-family: "Wittgenstein", serif !important;
+  /* Inherit Lato (no Wittgenstein) */
+  font-family: inherit !important;
 }
-/* Blog index headings (optional reinforcement) */
-.blog-index h1,
-.blog-index .card-title {
-  font-family: "Wittgenstein", serif !important;
-}
-/* === Blog post media: responsive + classy === */
 
 /* Any image inside a post scales to the container width and keeps aspect ratio */
 .post-content img {
   display: block;
   max-width: 100%;
   height: auto;
-  margin: 1.25rem auto;       /* nice breathing room */
-  border-radius: 10px;         /* matches your card rounding */
+  margin: 1.25rem auto;
+  border-radius: 10px;
 }
-
-/* Markdown images inside .prose sometimes inherit inline spacing; normalize */
 .post-content.prose :where(img):not(:where(.not-prose *)) {
   margin: 1.25rem auto;
   border-radius: 10px;
 }
 
 /* Figures with captions */
-.post-content figure {
-  margin: 1.5rem auto;
-  text-align: center;
-}
-.post-content figure > img {
-  margin: 0 auto;              /* image flush with caption block */
-}
+.post-content figure { margin: 1.5rem auto; text-align: center; }
+.post-content figure > img { margin: 0 auto; }
 .post-content figcaption {
   font-size: 0.95rem;
   color: #6a6a6d;
   margin-top: 0.5rem;
 }
 
-/* Optional: full-bleed hero inside the post (escapes 72ch max width on big screens) */
+/* Optional: full-bleed hero inside the post */
 @media (min-width: 900px) {
   .post-content .full-bleed {
     width: 100vw;
@@ -417,12 +259,10 @@ hr {
     margin-left: 50%;
     transform: translateX(-50%);
   }
-  .post-content .full-bleed img {
-    border-radius: 0;
-  }
+  .post-content .full-bleed img { border-radius: 0; }
 }
 
-/* Optional: side-by-side images (drop two imgs inside a .img-grid-2) */
+/* Side-by-side images */
 .post-content .img-grid-2 {
   display: grid;
   grid-template-columns: 1fr;
@@ -430,29 +270,27 @@ hr {
   margin: 1.25rem 0;
 }
 @media (min-width: 700px) {
-  .post-content .img-grid-2 {
-    grid-template-columns: 1fr 1fr;
-  }
+  .post-content .img-grid-2 { grid-template-columns: 1fr 1fr; }
 }
 
-/* Optional: narrower image variant for posts */
+/* Narrower image variant for posts */
 .post-content img.is-narrow {
   max-width: 560px;
   width: 100%;
 }
-/* ===== Page background ===== */
+
+/* ------------------ Page background ------------------ */
 .site-bg{
   min-height: 100vh;
   background:
     linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.35)),
     url("/images/backgrounds/stars-northern.png") center/cover no-repeat fixed;
 }
-
-/* Prevent mobile jank from fixed bgs */
 @media (max-width: 800px){
   .site-bg{ background-attachment: scroll; }
 }
-/* Kill switch: never force Wittgenstein on CTAs */
+
+/* ------------------ Kill-switch: ensure CTAs use Lato ------------------ */
 .hero-full a,
 .hero-full button,
 .home a[role="button"],
@@ -461,6 +299,5 @@ hr {
 .home .primary-cta,
 .home button,
 .home input[type="submit"]{
-  font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans" !important;
+  font-family: "Lato", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
-
