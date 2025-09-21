@@ -452,3 +452,15 @@ hr {
 @media (max-width: 800px){
   .site-bg{ background-attachment: scroll; }
 }
+/* Kill switch: never force Wittgenstein on CTAs */
+.hero-full a,
+.hero-full button,
+.home a[role="button"],
+.home a.button,
+.home .btn,
+.home .primary-cta,
+.home button,
+.home input[type="submit"]{
+  font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans" !important;
+}
+

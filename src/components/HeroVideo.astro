@@ -1,36 +1,31 @@
 ---
-// src/components/HeroVideo.astro  (updated)
+// src/components/HeroVideo.astro  (final)
 const {
   title = "Abba Unveiled",
   subtitle = "Getting to Know the Father Jesus Revealed",
   bookCtaHref = "/store",
   bookCtaLabel = "Get the Book! The Yahweh Deception, by WR Selvig",
-  overlayImageSrc = "/images/tetrawhite.png" // ensure this exists in /public/images/
+  overlayImageSrc = "/images/tetrawhite.png"
 } = Astro.props;
 ---
 
 <section class="hero">
-  <!-- Background video -->
   <video class="hero__video" autoplay loop muted playsinline preload="auto" poster="/images/night-sky-poster.jpg">
     <source src="/videos/night-sky.mp4" type="video/mp4" />
-    <source src="/videos/night-sky.mp4"  type="video/mp4" />
+    <source src="/videos/night-sky.mp4" type="video/mp4" />
     Your browser does not support HTML5 video.
   </video>
 
-  <!-- Gradient overlay -->
   <div class="hero__overlay"></div>
 
-  <!-- Overlay image -->
   {overlayImageSrc && (
     <img src={overlayImageSrc} alt="" aria-hidden="true" class="hero__graphic" />
   )}
 
-  <!-- Centered content -->
   <div class="hero__content">
     <h1 class="hero__title hero-title hero-title--in-hero">{title}</h1>
     <p class="hero__subtitle">{subtitle}</p>
 
-    <!-- 4 small nav buttons (CTA is outside) -->
     <div class="front-nav">
       <div class="front-nav__row">
         <a class="btn-pill" href="/blog">Blog</a>
@@ -41,7 +36,6 @@ const {
     </div>
   </div>
 
-  <!-- CTA anchored at the bottom -->
   <a class="btn-cta hero-cta-bottom" href={bookCtaHref}>
     {bookCtaLabel}
   </a>
@@ -69,7 +63,6 @@ const {
     background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.35) 40%, rgba(0,0,0,.55));
   }
 
-  /* Overlay graphic */
   .hero__graphic {
     position: absolute; inset: 0; margin: auto;
     width: min(70vmin, 900px); height: auto;
@@ -85,10 +78,10 @@ const {
     margin: 0 0 .75rem; text-shadow: 0 3px 18px rgba(0,0,0,.35);
   }
 
-  /* Keep subtitle in your preferred serif */
+  /* SUBTITLE → Lato (remove Wittgenstein) */
   .hero__subtitle {
-    font-family: "Wittgenstein", serif !important;
-    font-size: clamp(1.25rem, 1.6vw + 0.6rem, 1.9rem) !important;
+    font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+    font-size: clamp(1.25rem, 1.6vw + 0.6rem, 1.9rem);
     line-height: 1.35;
     opacity: .95;
     margin: 0 auto 1.25rem;
@@ -96,11 +89,10 @@ const {
     text-shadow: 0 2px 12px rgba(0,0,0,.3);
   }
 
-  /* 4-button row */
   .front-nav { margin-top: 1rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
   .front-nav__row { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
 
-  /* Pills inside the hero: use Lato + hover lift */
+  /* Pills inside the hero: Lato + hover lift */
   .btn-pill {
     display: inline-block; padding: .7rem 1.1rem; border-radius: 9999px;
     background: #121212; color: #fff; text-decoration: none;
@@ -127,13 +119,12 @@ const {
     text-align: center;
   }
   .btn-cta:hover {
-    /* If you ever use this outside the hero wrapper, it still lifts */
     transform: translateY(-3px);
     filter: brightness(1.06);
     box-shadow: 0 14px 32px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08);
   }
 
-  /* Keep the bottom CTA centered, and lift the WRAPPER on hover while preserving translateX(-50%) */
+  /* Keep the bottom CTA centered, lift wrapper on hover while preserving translateX(-50%) */
   .hero-cta-bottom {
     position: absolute; left: 50%; bottom: clamp(16px, 3vw, 32px);
     transform: translateX(-50%);
