@@ -1,28 +1,46 @@
 ---
 const {
-  title = "Why Abba Unveiled?",
-  body = "Knowledge is increasing in the earth, just like Daniel prophesied. Texts, archeological finds and ancient scrolls have never been more available to the common man than is today. Institutional religion has less control over what people believe as people can now research for themselves. Come with us as we explore the idea that Jesus came to reveal a Father, that people had literally never seen or heard before. A Father who was not Yahweh. You have to be open minded and leave your fear and dogma behind, but there is real evidence that the god of this world has blinded even Christians into thinking Yahweh was the Father. Expect research, engaging blog posts, Youtube videos, practices for communion with the Father, and resources that empower seekers.",
-  image = "/images/about-stars.jpg" // default, but we'll allow "no image" if null/empty is passed
+  // Set eyebrow default to empty and render it only if provided
+  eyebrow = "",
+  title = "The Yahweh Deception",
+  body = "Reclaiming the Father Jesus Revealed.",
+  image = "/images/featured-book.jpg",
+  // Default primary can point to Store (optional)
+  primary = { href: "/store", label: "Go to Store" },
+  // IMPORTANT: default to null so no secondary button shows unless you pass one
+  secondary = null,
 } = Astro.props;
-
-const hasImage = Boolean(image);
 ---
-<section class="about">
-  <div class={`about__wrap ${hasImage ? "" : "about__wrap--full"}`}>
-    {hasImage && (
-      <div class="about__img">
-        <img src={image} alt="" loading="lazy" />
+
+<section class="feat">
+  <div class="feat__wrap">
+    <div class="feat__card">
+      <div class="feat__media">
+        <img src={image} alt={title} loading="lazy" />
       </div>
-    )}
-    <div class="about__content">
-      <h2>{title}</h2>
-      <p>{body}</p>
-      <div class="about__actions">
-        <a class="btn" href="/about">Learn More</a>
+      <div class="feat__body">
+        {eyebrow && <span class="feat__eyebrow">{eyebrow}</span>}
+        <h3>{title}</h3>
+        <p>{body}</p>
+        <div class="feat__actions">
+          {primary && (
+            <a href={primary.href} class="btn-cta" aria-label={primary.ariaLabel || primary.label || "Go to Store"}>
+              {primary.labelHTML ? <span set:html={primary.labelHTML} /> : <span>{primary.label}</span>}
+            </a>
+          )}
+
+          {secondary && (
+            <a class="btn btn--ghost" href={secondary.href}>{secondary.label}</a>
+          )}
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+
+</style>
+
 
 <style>
 .about { padding: 4rem 1.25rem; }
