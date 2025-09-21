@@ -21,7 +21,8 @@ const linkResources = [
 const book = {
   cover: "/images/ydbook2.png",
   title: "The Yahweh Deception",
-  blurb:"The Yahweh Deception uncovers how centuries of redaction blurred the Father’s identity, replacing El Elyon—the Most High—with a deity of law, wrath, and control. Drawing on ancient texts and fresh theological insight, this almost 400 page book challenges tradition and invites you into deeper intimacy with Abba.",
+  blurb:
+    "The Yahweh Deception uncovers how centuries of redaction blurred the Father’s identity, replacing El Elyon—the Most High—with a deity of law, wrath, and control. Drawing on ancient texts and fresh theological insight, this almost 400-page book challenges tradition and invites you into deeper intimacy with Abba.",
   buyUrl: "https://www.lulu.com/your-book-page",
 };
 ---
@@ -52,9 +53,17 @@ const book = {
     .item + .item{margin-top:.75rem}
     .item a{color:#0b57d0;text-decoration:underline}
     .disclaimer{font-size:.9rem;line-height:1.45;margin:.25rem 0 1rem;color:rgba(17,17,17,.75)}
-    .btn-row{display:flex;align-items:center;gap:10px;margin-top:.25rem}
 
-    /* Simple site-consistent CTA */
+    /* Button row */
+    .btn-row{
+      display:flex;
+      align-items:center;
+      justify-content:center; /* centers the button */
+      gap:10px;
+      margin-top:.25rem;
+    }
+
+    /* Site-consistent CTA + slim variant */
     .btn-cta{
       display:inline-block; padding:.75rem 1.25rem; border-radius:9999px;
       font-weight:600; border:1px solid #111; color:#111; background:#fff;
@@ -63,29 +72,17 @@ const book = {
     }
     .btn-cta:hover{ background:#111; color:#fff; transform:translateY(-1px); }
 
-    /* (Old styles kept only if needed elsewhere)
-       .lulu-btn, .coming, .lulu-logo, .note removed from markup */
-       /* slimmer pill + centered text */
-.btn-cta--slim{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:.45rem .9rem;     /* slimmer */
-  font-size:.95rem;         /* slightly smaller text */
-  line-height:1;            /* tighter line height */
-  border-radius:9999px;     /* keep the pill look */
-}
-
-/* center the row itself so the pill sits centered on the card */
-.btn-row{
-  display:flex;
-  align-items:center;
-  justify-content:center;   /* centers the button horizontally */
-  gap:10px;
-  margin-top:.25rem;
-}
-
+    .btn-cta--slim{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:.45rem .9rem;   /* slimmer */
+      font-size:.95rem;
+      line-height:1;
+      border-radius:9999px;
+      white-space:nowrap;
+    }
   </style>
 
   <div class="bg"></div>
@@ -121,18 +118,15 @@ const book = {
         <h2>{book.title}</h2>
         <p>{book.blurb}</p>
 
-        <!-- New single CTA to Store -->
-      <div class="btn-row">
-  <a href="/store" class="btn-cta btn-cta--slim" aria-label="Learn more about The Yahweh Deception">
-    Learn More
-  </a>
-</div>
-
-
+        <!-- Single CTA to Store -->
+        <div class="btn-row">
+          <a href="/store" class="btn-cta btn-cta--slim" aria-label="Learn more about The Yahweh Deception">
+            Learn More
+          </a>
+        </div>
       </section>
 
-      {/* RIGHT bubble remains commented out */}
-      {/*
+      <!-- RIGHT bubble remains commented out
       <aside class="frost">
         <h2>Links & References</h2>
         <p class="disclaimer">
@@ -153,7 +147,7 @@ const book = {
           }
         </div>
       </aside>
-      */}
+      -->
     </section>
   </main>
 </BaseLayout>
