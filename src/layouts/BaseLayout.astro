@@ -1,11 +1,12 @@
 ---
 /* FILE: src/layouts/BaseLayout.astro */
+import Footer from "@/components/Footer.astro";
+
 interface Props {
   pageTitle?: string;
   description?: string;
-  bodyClass?: string; // optional page-specific body class
+  bodyClass?: string;
 }
-
 const {
   pageTitle = "Abba Unveiled",
   description = "",
@@ -44,19 +45,20 @@ const {
         <ul class="site-nav">
           <li><a href="/">Home</a></li>
           <li><a href="/blog/">Blog</a></li>
-          <li><a href="https://buttondown.email/abbaunveiled" target="_blank" rel="noreferrer">Subscribe</a></li>
+          <!-- Removed paid Subscribe link -->
         </ul>
       </nav>
     </header>
 
     <slot />
+
+    <!-- Global footer -->
+    <Footer />
   </body>
 </html>
 
 <style is:global>
-  /* ---------------------------
-     Fonts
-  --------------------------- */
+  /* (unchanged styles from your version) */
   @font-face {
     font-family: "Finest Romance Script";
     src: url("/fonts/FinestRomanceScript.woff2") format("woff2");
@@ -64,42 +66,21 @@ const {
     font-style: normal;
     font-display: swap;
   }
-
-  :root{
-    --font-body: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
-  }
-
-  /* Apply Lato site-wide */
+  :root{ --font-body: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans"; }
   html, body { font-family: var(--font-body); }
-
-  /* Preserve the script logo/title anywhere you add this class */
-  .script-font, .script-font * {
-    font-family: "Finest Romance Script", serif !important;
-  }
-
-  /* ---------------------------
-     Backgrounds
-  --------------------------- */
+  .script-font, .script-font * { font-family: "Finest Romance Script", serif !important; }
   .site-bg{
     min-height: 100vh;
     background:
       linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.35)),
       url("/images/backgrounds/aurora-night-1920.jpg") center/cover no-repeat fixed;
   }
-  @media (max-width: 800px){
-    .site-bg{ background-attachment: scroll; }
-  }
-
-  /* Blog page override: use stars-northern-tall.png */
+  @media (max-width: 800px){ .site-bg{ background-attachment: scroll; } }
   .blog-bg{
     background:
       linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.35)),
       url("/images/stars-northern-tall.png") center/cover no-repeat fixed;
   }
-
-  /* ---------------------------
-     Nav
-  --------------------------- */
   .site-header{ padding: .75rem 1rem; }
   .site-nav{
     list-style: none; display:flex; gap:1rem; margin:0; padding:0;
@@ -108,85 +89,26 @@ const {
   .site-nav a{ color:#fff; text-decoration:none; font-weight:700; }
   .site-nav a:hover{ text-decoration: underline; }
 
-  /* Make Subscribe a pill */
-  .site-nav a[href*="buttondown.email"]{
-    background:#fff; color:#111; padding:.45rem .9rem; border-radius:999px;
-  }
-  .site-nav a[href*="buttondown.email"]:hover{ background:#f6f6f6; }
-
-  /* ---------------------------
-     CTA Pill (use anywhere)
-     Markup example (e.g., on home page):
-       <div class="footer-cta">
-         <a href="/store/the-yahweh-deception" class="btn-cta">
-           <span class="dot" aria-hidden="true"></span>
-           Get the book — <span style="opacity:.9">The Yahweh Deception</span>
-         </a>
-       </div>
-  --------------------------- */
-  .footer-cta{
-    display:flex; justify-content:center; align-items:center;
-    padding: 2rem 1rem 2.5rem;
-  }
-
+  .footer-cta{ display:flex; justify-content:center; align-items:center; padding: 2rem 1rem 2.5rem; }
   .btn-cta{
-    --cta-bg-1:#0f0f10;
-    --cta-bg-2:#2a2a2d;
-    --cta-ring:#7dd3fc;
-
-    position: relative;
-    display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
-    padding:1.05rem 1.5rem;
-    min-height:3.25rem;
-    border-radius:999px;
+    --cta-bg-1:#0f0f10; --cta-bg-2:#2a2a2d; --cta-ring:#7dd3fc;
+    position: relative; display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+    padding:1.05rem 1.5rem; min-height:3.25rem; border-radius:999px;
     background:linear-gradient(135deg,var(--cta-bg-1),var(--cta-bg-2));
-    color:#fff; text-decoration:none;
-    font-weight:800; letter-spacing:.02em; font-size:1.05rem;
+    color:#fff; text-decoration:none; font-weight:800; letter-spacing:.02em; font-size:1.05rem;
     box-shadow:0 8px 24px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.06);
     transform:translateY(0);
     transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, background .18s ease;
     will-change: transform, filter;
   }
-
-  .btn-cta::after{
-    content:""; position:absolute; inset:0; border-radius:inherit;
-    background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,0));
-    pointer-events:none; mix-blend-mode:screen;
-  }
-
-  .btn-cta:hover{
-    transform:translateY(-2px);
-    filter:brightness(1.06);
-    box-shadow:0 14px 32px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08);
-  }
-
-  .btn-cta:active{
-    transform:translateY(0);
-    box-shadow:0 6px 16px rgba(0,0,0,.22), inset 0 2px 0 rgba(0,0,0,.25);
-  }
-
+  .btn-cta::after{ content:""; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,0)); pointer-events:none; mix-blend-mode:screen; }
+  .btn-cta:hover{ transform:translateY(-2px); filter:brightness(1.06); box-shadow:0 14px 32px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08); }
+  .btn-cta:active{ transform:translateY(0); box-shadow:0 6px 16px rgba(0,0,0,.22), inset 0 2px 0 rgba(0,0,0,.25); }
   .btn-cta:focus-visible{
     outline:none;
-    box-shadow:
-      0 0 0 3px rgba(255,255,255,.9),
-      0 0 0 6px var(--cta-ring),
-      0 14px 32px rgba(0,0,0,.28);
+    box-shadow: 0 0 0 3px rgba(255,255,255,.9), 0 0 0 6px var(--cta-ring), 0 14px 32px rgba(0,0,0,.28);
   }
-
-  .btn-cta .dot{
-    width:.55rem;height:.55rem;border-radius:999px;background:#22d3ee;
-    box-shadow:0 0 0 0 rgba(34,211,238,.6);
-    animation:cta-pulse 2s ease-out infinite;
-  }
-  @keyframes cta-pulse{
-    0%{ box-shadow:0 0 0 0 rgba(34,211,238,.6) }
-    70%{ box-shadow:0 0 0 12px rgba(34,211,238,0) }
-    100%{ box-shadow:0 0 0 0 rgba(34,211,238,0) }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .btn-cta{ transition:none; transform:none }
-    .btn-cta:hover{ transform:none }
-    .btn-cta .dot{ animation:none }
-  }
+  .btn-cta .dot{ width:.55rem;height:.55rem;border-radius:999px;background:#22d3ee; box-shadow:0 0 0 0 rgba(34,211,238,.6); animation:cta-pulse 2s ease-out infinite; }
+  @keyframes cta-pulse{ 0%{ box-shadow:0 0 0 0 rgba(34,211,238,.6) } 70%{ box-shadow:0 0 0 12px rgba(34,211,238,0) } 100%{ box-shadow:0 0 0 0 rgba(34,211,238,0) } }
+  @media (prefers-reduced-motion: reduce){ .btn-cta{ transition:none; transform:none } .btn-cta:hover{ transform:none } .btn-cta .dot{ animation:none } }
 </style>
