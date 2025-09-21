@@ -57,34 +57,42 @@ const displayDate =
             {displayDate && <time class="post-date" datetime={isoDate}>{displayDate}</time>}
           </header>
 
-          <Content />
+          <!-- Everything below is forced to the nice sans-serif -->
+          <div class="post-body">
+            <Content />
+          </div>
         </article>
       </main>
     </div>
 
     <style>
+      :root{
+        /* Nice, modern sans stack (uses system/Inter/Roboto/etc if available) */
+        --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue",
+                     Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      }
+
       /* === Starry header area === */
       .post-hero-bg {
-  position: relative;
-  background: url("/images/stars-northern.png") center / cover no-repeat fixed;
-  min-height: clamp(240px, 30vw, 460px);
-  display: flex;                  /* use flexbox instead of grid */
-  align-items: center;             /* vertical center */
-  justify-content: center;         /* horizontal center */
-  text-align: center;
-}
-.post-banner-title {
-  color: #fff;
-  font-size: clamp(2.5rem, 5vw, 4rem);   /* scales with screen size */
-  font-family: "Georgia", "Times New Roman", serif; /* swap in your script font if you have one */
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  text-align: center;
-  margin: 0;
-  text-shadow: 0 3px 8px rgba(0,0,0,.55); /* glow against starry bg */
-}
+        position: relative;
+        background: url("/images/stars-northern.png") center / cover no-repeat fixed;
+        min-height: clamp(240px, 30vw, 460px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
 
-
+      /* Keep the hero script look */
+      .post-banner-title {
+        margin: 0;
+        color: #fff !important;
+        font-family: "Finest Romance Script", cursive;
+        font-weight: 400;
+        line-height: .9;
+        text-shadow: 0 2px 20px rgba(0,0,0,.55);
+        font-size: clamp(3.5rem, 9vw, 7.5rem);
+      }
 
       /* darken for contrast */
       .post-hero-bg::after {
@@ -97,16 +105,6 @@ const displayDate =
         padding: clamp(24px, 5vw, 48px) clamp(16px, 4vw, 32px);
         text-align: center;
       }
-      .post-banner-title {
-  margin: 0;
-  color: #fff !important;  /* ensure white */
-  font-family: "Finest Romance Script", cursive;
-  font-weight: 400;
-  line-height: .9;
-  text-shadow: 0 2px 20px rgba(0,0,0,.55);
-  font-size: clamp(3.5rem, 9vw, 7.5rem); /* bigger */
-}
-
 
       /* === White content card over neutral page bg === */
       .post-main {
@@ -124,16 +122,50 @@ const displayDate =
         padding: clamp(16px, 4vw, 32px);
       }
 
-      /* Title & meta inside the card (content font stays Wittgenstein from your global rules) */
+      /* Title & meta inside the card */
       .post-header { margin-bottom: .75rem; }
-      .post-title { margin: 0 0 .25rem; line-height: 1.15; }
+      .post-title {
+        margin: 0 0 .25rem;
+        line-height: 1.15;
+        font-family: var(--font-sans);
+        font-weight: 800;
+        letter-spacing: -.01em;
+      }
       .post-date { display: block; color: #6a6a6d; font-size: .95rem; }
 
-      /* Images already styled via your global .post-content rules; keep radius consistent */
-      .post-card img { border-radius: 10px; }
+      /* ✅ Force the entire article body to the sans stack */
+      .post-body{
+        font-family: var(--font-sans);
+        font-size: 1.05rem;
+        line-height: 1.65;
+        color: #0b0b0c;
+      }
+      .post-body :is(h1,h2,h3,h4,h5,h6){
+        font-family: var(--font-sans);
+        font-weight: 800;
+        letter-spacing: -.005em;
+        line-height: 1.2;
+        margin: 1.6rem 0 .7rem;
+        color: #0b0b0c;
+      }
+      .post-body p{ margin: .9rem 0; }
+      .post-body ul, .post-body ol{ padding-left: 1.2rem; margin: .9rem 0; }
+      .post-body li{ margin: .35rem 0; }
+      .post-body blockquote{
+        margin: 1.2rem 0; padding: .9rem 1rem;
+        background: #f7f7f9; border-left: 4px solid #e2e2ee; color: #333; border-radius: 6px;
+      }
 
-      /* Make sure prose paragraphs don’t get too loose */
-      .post-card.prose p { margin-bottom: 1.4em; }
+      /* Keep code/monospace readable */
+      .post-body :is(code, pre){
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+                     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+                     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+        font-size: .95em;
+      }
+
+      /* Images */
+      .post-card img { border-radius: 10px; }
 
       @media (max-width: 720px) {
         .post-card { margin: -2rem auto 2rem; }
