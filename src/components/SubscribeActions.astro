@@ -18,7 +18,7 @@ const feedUrl = "https://abbaunveiled.com/rss.xml";
   </div>
 
   <!-- Disclaimer -->
-  <p class="rss-note">
+  <p class="rss-note" role="note">
     Subscription to the RSS service is a free service and your information will not be collected by
     AbbaUnveiled.com. To be on our mailing list, you must subscribe separately via the
     <a
@@ -30,21 +30,36 @@ const feedUrl = "https://abbaunveiled.com/rss.xml";
 </div>
 
 <style>
-.sub-actions { display: grid; gap: .5rem; }
-.sub-actions__row { display:flex; gap:.75rem; align-items:center; flex-wrap:wrap; }
+/* Stack content vertically to guarantee space for the disclaimer */
+.sub-actions{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .5rem;
+}
 
-/* small, subtle disclaimer in white */
+/* Buttons row */
+.sub-actions__row{
+  display:flex;
+  gap:.75rem;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+/* Small, white disclaimer under the buttons */
 .rss-note{
+  display: block !important;           /* beat any global footer p rules */
   margin: .25rem 0 0;
   font-size: .85rem;
   line-height: 1.4;
-  color: rgba(255,255,255,.92);   /* ← white text, slightly softened */
+  color: rgba(255,255,255,.92) !important;   /* force white on dark footers */
   max-width: 60ch;
 }
+
+/* Link matches the white text and remains clearly clickable */
 .rss-note a{
-  color: inherit;                 /* stays white */
+  color: inherit;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-
 </style>
