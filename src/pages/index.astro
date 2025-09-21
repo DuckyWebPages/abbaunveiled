@@ -24,39 +24,38 @@ const COMING_SOON = true;
 
     <style>
       /* Force Lato on the HERO CTA only, beating the Wittgenstein !important */
-.hero-full .btn-cta{
-  font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans" !important;
-  /* add real button transitions */
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-}
+      .hero-full .btn-cta{
+        font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans" !important;
+        /* add real button transitions */
+        transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      }
 
-/* Make it lift on hover */
-.hero-full .btn-cta:hover{
-  transform: translateY(-3px);
-  filter: brightness(1.06);
-  box-shadow:
-    0 14px 32px rgba(0,0,0,.28),
-    inset 0 1px 0 rgba(255,255,255,.08);
-}
+      /* Make it lift on hover */
+      .hero-full .btn-cta:hover{
+        transform: translateY(-3px);
+        filter: brightness(1.06);
+        box-shadow:
+          0 14px 32px rgba(0,0,0,.28),
+          inset 0 1px 0 rgba(255,255,255,.08);
+      }
 
-/* Footer pill font + animation */
-#home-cta{
-  display: inline-flex; align-items:center; justify-content:center; gap:.6rem;
-  padding: 1.15rem 1.65rem; min-height: 3.4rem; font-size: 1.08rem;
-  border-radius: 999px; cursor: pointer;
-  transform: translateY(0);
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-  will-change: transform, filter;
-  font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
-}
-#home-cta:hover{
-  transform: translateY(-3px);
-  filter: brightness(1.06);
-  box-shadow:
-    0 14px 32px rgba(0,0,0,.28),
-    inset 0 1px 0 rgba(255,255,255,.08);
-}
-
+      /* Footer pill font + animation */
+      #home-cta{
+        display: inline-flex; align-items:center; justify-content:center; gap:.6rem;
+        padding: 1.15rem 1.65rem; min-height: 3.4rem; font-size: 1.08rem;
+        border-radius: 999px; cursor: pointer;
+        transform: translateY(0);
+        transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+        will-change: transform, filter;
+        font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      }
+      #home-cta:hover{
+        transform: translateY(-3px);
+        filter: brightness(1.06);
+        box-shadow:
+          0 14px 32px rgba(0,0,0,.28),
+          inset 0 1px 0 rgba(255,255,255,.08);
+      }
 
       /* Badge styling, scoped to this page */
       .home-featured{ position: relative; }
@@ -137,27 +136,28 @@ const COMING_SOON = true;
     </div>
 
     <main class="home">
-      <AboutSection />
+      <!-- A) About image updated -->
+      <AboutSection image="/images/ABBASmall1.png" />
 
       <section class="home-featured">
-       
-     <FeaturedShowcase
-  title="The Yahweh Deception"
-  body="Reclaiming the Father Jesus Revealed."
-  image="/images/ydlibrary.png"
-  primary={{ href: "/store", labelHTML: 'Go to Store' }}
-  secondary={{ href: "https://forms.gle/FHjY9GNhNDQZJPcm6", label: "Order Now" }}
-/>
-
-
+        <FeaturedShowcase
+          title="The Yahweh Deception"
+          body="Reclaiming the Father Jesus Revealed."
+          image="/images/ydlibrary.png"
+          primary={{ href: "/store", labelHTML: "Go to Store" }}   <!-- B) label tweak -->
+          secondary={{ href: "https://forms.gle/FHjY9GNhNDQZJPcm6", label: "Order Now" }}
+        />
       </section>
 
       <section class="home-newsletter">
-        <Newsletter />
+        <!-- C) Newsletter: copy + single Subscribe button to your Google Form -->
+        <Newsletter
+          title="Get Updates — Join the Mailing List"
+          note="Occasional emails, no spam."
+          ctaHref="https://forms.gle/8n3k4G4sLhQNMRSp6"
+          ctaLabel="Subscribe"
+        />
       </section>
-
-    
-      
     </main>
   </body>
 </html>
