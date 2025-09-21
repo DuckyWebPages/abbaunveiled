@@ -82,8 +82,11 @@ const pageDesc =
           </p>
 
           <p class="cta-wrap">
-            <a class="btn-cta" href="https://abbaunveiled.com">Get the Book: <em>The Yahweh Deception</em></a>
-          </p>
+  <a class="btn-cta btn-cta--slim" href="/store" aria-label="Go to Store to get The Yahweh Deception">
+    Get the Book: The Yahweh Deception
+  </a>
+</p>
+
         </article>
       </div>
     </div>
@@ -187,4 +190,12 @@ const pageDesc =
     .card__content { padding: 14px 18px 22px; }
     .card__header h1 { font-size: 1.8rem; }
   }
+  /* center the CTA and make it slimmer */
+.cta-wrap { margin-top: 1.2rem; text-align: center; }
+
+.btn-cta--slim{
+  display:inline-flex; align-items:center; justify-content:center; text-align:center;
+  padding:.5rem 1rem; font-size:1rem; line-height:1; border-radius:9999px; white-space:nowrap;
+}
+
 </style>
