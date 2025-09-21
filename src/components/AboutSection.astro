@@ -13,9 +13,27 @@ const {
     <div class="about__content">
       <h2>{title}</h2>
       <p>{body}</p>
+
       <div class="about__actions">
         <a class="btn" href="/about">Learn More</a>
       </div>
+
+      <!-- NEW: black pill row, including Mailing List -->
+      <nav class="about__pills" aria-label="Site sections">
+        <a class="pill pill--dark" href="/blog">Blog</a>
+        <a class="pill pill--dark" href="/podcast">Podcast</a>
+        <a class="pill pill--dark" href="/resources">Resources</a>
+        <a class="pill pill--dark" href="/contact">Contact</a>
+        <a
+          class="pill pill--dark"
+          href="https://forms.gle/8n3k4G4sLhQNMRSp6"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Join the Abba Unveiled mailing list (opens Google Form in a new tab)"
+        >
+          Mailing List
+        </a>
+      </nav>
     </div>
   </div>
 </section>
@@ -25,7 +43,7 @@ const {
 .about__wrap {
   max-width: 1100px; margin: 0 auto;
   display: grid; gap: 2rem; align-items: center;
-  grid-template-columns: minmax(0,1fr); 
+  grid-template-columns: minmax(0,1fr);
 }
 /* inside AboutSection.astro <style> */
 .about__img { display: none; }
@@ -41,6 +59,28 @@ const {
   transition:transform .16s ease, opacity .16s ease;
 }
 .btn:hover { transform: translateY(-1px); opacity:.96; }
+
+/* NEW: pill row under the button */
+.about__pills{
+  margin-top: .9rem;
+  display:flex; flex-wrap:wrap;
+  gap:.5rem;
+}
+
+/* Pills — these pick up Lato on the homepage via your index styles */
+.pill{
+  display:inline-block;
+  padding:.5rem .9rem;
+  border-radius:9999px;
+  font-weight:700;
+  text-decoration:none;
+  border:1px solid rgba(0,0,0,.7);
+}
+.pill--dark{
+  background:#000;
+  color:#fff;
+}
+.pill--dark:hover{ background:#111; }
 
 @media (min-width: 860px){
   .about__wrap { grid-template-columns: 1.2fr .9fr; }
