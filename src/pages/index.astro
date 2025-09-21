@@ -11,7 +11,7 @@ const pageTitle = "Abba Unveiled — Home";
 const COMING_SOON = true;
 ---
 <html lang="en">
-    <head>
+  <head>
     <meta charset="utf-8" />
     <title>{pageTitle}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,6 +37,7 @@ const COMING_SOON = true;
       }
 
       /* --- HOMEPAGE-ONLY TYPE FACE FOR PILLS --- */
+      /* Force Lato on pill-y links/buttons inside .home only */
       .home :is(a,button).pill,
       .home :is(a,button)[class*="pill"],
       .home :is(a,button)[class*="btn"],
@@ -47,30 +48,34 @@ const COMING_SOON = true;
         letter-spacing: .02em;
       }
 
-      /* --- BOTTOM CTA: SIZE + HOVER LIFT ON HOMEPAGE --- */
+      /* --- BOTTOM CTA: SIZE + HOVER LIFT (HOMEPAGE ONLY) --- */
       #home-cta{
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: .6rem;
+
+        /* size bump */
         padding: 1.15rem 1.65rem;
         min-height: 3.4rem;
         font-size: 1.08rem;
+
         border-radius: 999px;
         cursor: pointer;
-        transform: translateY(0) !important;
-        transition: transform .18s ease, box-shadow .18s ease, filter .18s ease !important;
+
+        transform: translateY(0);
+        transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
         will-change: transform, filter;
       }
       #home-cta:hover{
-        transform: translateY(-3px) !important;
+        transform: translateY(-3px);
         filter: brightness(1.06);
         box-shadow:
           0 14px 32px rgba(0,0,0,.28),
           inset 0 1px 0 rgba(255,255,255,.08);
       }
       #home-cta:active{
-        transform: translateY(0) !important;
+        transform: translateY(0);
         box-shadow:
           0 6px 16px rgba(0,0,0,.22),
           inset 0 2px 0 rgba(0,0,0,.25);
@@ -81,6 +86,12 @@ const COMING_SOON = true;
           0 0 0 3px rgba(255,255,255,.9),
           0 0 0 6px #7dd3fc,
           0 14px 32px rgba(0,0,0,.28);
+      }
+
+      /* Footer CTA wrapper (center & spacing) */
+      .footer-cta{
+        display:flex; justify-content:center; align-items:center;
+        padding: 2rem 1rem 2.5rem;
       }
     </style>
   </head>
@@ -107,14 +118,19 @@ const COMING_SOON = true;
       <section class="home-newsletter">
         <Newsletter />
       </section>
+
+      <!-- Bottom CTA pill -->
       <div class="footer-cta">
-  <a id="home-cta" href="/store/the-yahweh-deception" class="btn-cta" aria-label="Get the book: The Yahweh Deception by W.R. Selvig">
-    <span class="dot" aria-hidden="true"></span>
-    Get the book — <span style="opacity:.9">The Yahweh Deception</span>
-  </a>
-</div>
-
-
+        <a
+          id="home-cta"
+          href="/store/the-yahweh-deception"
+          class="btn-cta"
+          aria-label="Get the book: The Yahweh Deception by W.R. Selvig"
+        >
+          <span class="dot" aria-hidden="true"></span>
+          Get the book — <span style="opacity:.9">The Yahweh Deception</span>
+        </a>
+      </div>
     </main>
   </body>
 </html>
