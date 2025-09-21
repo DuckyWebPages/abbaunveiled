@@ -1,33 +1,48 @@
 ---
 const {
-  title = "Get updates & free study notes",
-  subtitle = "Occasional emails. No spam. Unsubscribe anytime.",
-  action = "/api/subscribe" // Swap for Formspree, Beehiiv, ConvertKit, etc.
+  title = "Get Updates — Join the Mailing List",
+  blurb = "Occasional emails. No spam."
 } = Astro.props;
 ---
+
 <section class="nl">
   <div class="nl__wrap">
     <h2>{title}</h2>
-    <p>{subtitle}</p>
-    <form class="nl__form" method="post" action={action}>
-      <input class="nl__input" type="email" name="email" placeholder="you@example.com" required />
-      <button class="nl__btn" type="submit">Subscribe</button>
-    </form>
+    <p>{blurb}</p>
+
+    <!-- Single button linking to Google Form -->
+    <a
+      class="nl__btn nl__btn--full"
+      href="https://forms.gle/8n3k4G4sLhQNMRSp6"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Subscribe
+    </a>
   </div>
 </section>
 
 <style>
-.nl { padding: 3.5rem 1.25rem; }
-.nl__wrap { max-width: 700px; margin: 0 auto; text-align:center; }
-h2 { margin:0 0 .5rem; font-size: clamp(1.3rem, 1.3vw + 1rem, 1.9rem); }
-p { margin:0 0 1rem; opacity:.85; }
-.nl__form { display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
-.nl__input {
-  min-width: 260px; padding:.85rem 1rem; border-radius:9999px; border:1px solid rgba(0,0,0,.15);
-}
-.nl__btn {
-  padding:.9rem 1.2rem; border-radius:9999px; font-weight:700; background:#121212; color:#fff; border:0;
-  box-shadow:0 6px 18px rgba(0,0,0,.18); cursor:pointer;
-}
-.nl__btn:hover { opacity:.96; transform: translateY(-1px); transition: transform .16s ease, opacity .16s ease; }
+  .nl { padding: 3rem 1.25rem; text-align: center; }
+  .nl__wrap { max-width: 600px; margin: 0 auto; }
+  .nl h2 { font-size: clamp(1.6rem, 1.5vw + 1rem, 2.2rem); margin-bottom: .5rem; }
+  .nl p { margin: 0 0 1.5rem; color: #444; }
+
+  /* Big subscribe button */
+  .nl__btn {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem 2.5rem;
+    border-radius: 9999px;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    transition: transform .16s ease, filter .16s ease;
+  }
+  .nl__btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+  }
 </style>
