@@ -21,18 +21,21 @@ function normTags(val: unknown): string[] {
 <!-- NOTE: bodyClass enables the stars-northern-tall.png backdrop on this page -->
 <BaseLayout pageTitle="Blog — Abba Unveiled" description="Latest posts from Abba Unveiled" bodyClass="blog-bg">
   <section class="page-hero blog-index">
-  <h1 class="post-banner-title">Abba Unveiled Blog</h1>
-  <p class="sub">Essays, research notes, and revelations about Abba the Father Jesus revealed.</p>
+    <h1 class="post-banner-title">Abba Unveiled Blog</h1>
+    <p class="sub">Essays, research notes, and revelations about Abba the Father Jesus revealed.</p>
 
-  <!-- Intro + CTA to Encounters -->
-  <div class="switcher">
-    <p class="intro">
-      This page holds all of the <strong>theology discussions</strong> on this site—research, scripture studies, and deeper dives.
-    </p>
+    <!-- Intro -->
+    <div class="switcher">
+      <p class="intro">
+        This page holds all of the <strong>theology discussions</strong> on this site—research, scripture studies, and deeper dives.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA placed between hero and cards -->
+  <div class="blog-cta-row">
     <a class="cta" href="/encounters/">Read the <em>Heaven Encounters</em> posts →</a>
-
   </div>
-</section>
 
   <section class="grid blog-index">
     {posts.map((post) => {
@@ -106,7 +109,7 @@ function normTags(val: unknown): string[] {
       text-shadow: 0 2px 6px rgba(0,0,0,.45);
     }
 
-    /* NEW: intro + CTA */
+    /* Intro container (no CTA inside anymore) */
     .switcher {
       margin: 1rem auto 0;
       display: grid;
@@ -120,55 +123,56 @@ function normTags(val: unknown): string[] {
       opacity: .95;
       text-shadow: 0 2px 6px rgba(0,0,0,.35);
     }
+
+    /* CTA row: centered and spaced between hero and grid */
+    .blog-cta-row{
+      max-width: 68rem;
+      margin: 1.75rem auto 2.25rem; /* space above & below the pill */
+      padding: 0 1rem;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
     /* CTA pill: white background, black text, 3D effect */
-.cta {
-  display:inline-block;
-  padding:.62rem 1.05rem;
-  border-radius:9999px;
-  background:#fff;
-  color:#000;
-  text-decoration:none;
-  font-weight:800;
-  letter-spacing:.01em;
-  border:1px solid rgba(0,0,0,.12);
-  box-shadow:
-    0 10px 20px rgba(0,0,0,.18),
-    0 4px  10px rgba(0,0,0,.10),
-    inset 0 1px 0 rgba(255,255,255,.7);
-  transform: translateY(0);
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-}
-
-.cta:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 14px 28px rgba(0,0,0,.22),
-    0 6px  14px rgba(0,0,0,.12),
-    inset 0 1px 0 rgba(255,255,255,.7);
-  filter: brightness(1.02);
-}
-
-.cta:active {
-  transform: translateY(0);
-  box-shadow:
-    0 6px 12px rgba(0,0,0,.20),
-    0 3px  8px rgba(0,0,0,.12),
-    inset 0 2px 6px rgba(0,0,0,.15);
-}
-
-.cta:focus-visible {
-  outline:3px solid rgba(0,0,0,.25);
-  outline-offset:3px;
-}
-.switcher {
-  margin: 1rem auto 0;
-  display: grid;
-  gap: .65rem;
-  justify-items: center;
-  max-width: 46rem;
-  margin-bottom: 100px; /* 👈 new spacing under the CTA section */
-}
-
+    .cta {
+      display:inline-block;
+      padding:.62rem 1.05rem;
+      border-radius:9999px;
+      background:#fff;
+      color:#000;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.01em;
+      border:1px solid rgba(0,0,0,.12);
+      box-shadow:
+        0 10px 20px rgba(0,0,0,.18),
+        0 4px  10px rgba(0,0,0,.10),
+        inset 0 1px 0 rgba(255,255,255,.7);
+      transform: translateY(0);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      text-align:center;
+      white-space:nowrap;
+    }
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 14px 28px rgba(0,0,0,.22),
+        0 6px  14px rgba(0,0,0,.12),
+        inset 0 1px 0 rgba(255,255,255,.7);
+      filter: brightness(1.02);
+    }
+    .cta:active {
+      transform: translateY(0);
+      box-shadow:
+        0 6px 12px rgba(0,0,0,.20),
+        0 3px  8px rgba(0,0,0,.12),
+        inset 0 2px 6px rgba(0,0,0,.15);
+    }
+    .cta:focus-visible {
+      outline:3px solid rgba(0,0,0,.25);
+      outline-offset:3px;
+    }
 
     /* GRID / CARDS */
     .grid {
