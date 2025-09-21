@@ -2,16 +2,47 @@
 // src/components/SubscribeActions.astro
 const feedUrl = "https://abbaunveiled.com/rss.xml";
 ---
-<div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
-  <a class="btn-cta" href="/rss.xml" rel="alternate" type="application/rss+xml">
-    RSS Feed
-  </a>
-  <a
-    class="btn-cta"
-    href={`https://blogtrottr.com/?subscribe=${encodeURIComponent(feedUrl)}`}
-    target="_blank" rel="noopener"
-    title="Get emails when the RSS feed updates (free)"
-  >
-    Get Email Alerts
-  </a>
+<div class="sub-actions">
+  <div class="sub-actions__row">
+    <a class="btn-cta" href="/rss.xml" rel="alternate" type="application/rss+xml">
+      RSS Feed
+    </a>
+    <a
+      class="btn-cta"
+      href={`https://blogtrottr.com/?subscribe=${encodeURIComponent(feedUrl)}`}
+      target="_blank" rel="noopener"
+      title="Get emails when the RSS feed updates (free)"
+    >
+      Get Email Alerts
+    </a>
+  </div>
+
+  <!-- Disclaimer -->
+  <p class="rss-note">
+    Subscription to the RSS service is a free service and your information will not be collected by
+    AbbaUnveiled.com. To be on our mailing list, you must subscribe separately via the
+    <a
+      href="https://forms.gle/8n3k4G4sLhQNMRSp6"
+      target="_blank"
+      rel="noopener noreferrer"
+    >mailing list link</a> on the home page.
+  </p>
 </div>
+
+<style>
+.sub-actions { display: grid; gap: .5rem; }
+.sub-actions__row { display:flex; gap:.75rem; align-items:center; flex-wrap:wrap; }
+
+/* small, subtle disclaimer that inherits footer colors */
+.rss-note{
+  margin: .25rem 0 0;
+  font-size: .85rem;
+  line-height: 1.4;
+  opacity: .85;            /* works on dark or light footers */
+  max-width: 60ch;
+}
+.rss-note a{
+  color: inherit;
+  text-decoration: underline;
+}
+</style>
