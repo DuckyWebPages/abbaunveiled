@@ -20,6 +20,18 @@ const pageDesc = "Get The Yahweh Deception and other resources from W.R. Selvig.
             loading="eager"
             decoding="async"
           />
+
+          <!-- NEW: small logo under the cover -->
+          <img
+            src="/images/scroll500.png"
+            alt="Abba Unveiled scroll logo"
+            class="product-card__logo"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <!-- NEW: small script-style price under the cover -->
+          <div class="price-script" aria-label="Price">$24.95</div>
         </div>
 
         <div class="product-card__body">
@@ -34,6 +46,7 @@ const pageDesc = "Get The Yahweh Deception and other resources from W.R. Selvig.
           </p>
 
           <ul class="product-card__bullets">
+            <li>Nearly 400 pages</li>
             <li>Scripture-based deep dive to remove the veil over the Old Testament</li>
             <li>Practical exercises for intimacy with the Father</li>
             <li>Seeing familiar scriptures from a new angle — that Jesus confronted Yahweh’s system, not supported it</li>
@@ -92,11 +105,27 @@ const pageDesc = "Get The Yahweh Deception and other resources from W.R. Selvig.
   .product-card__media {
     background: #fafafa;
     padding: 24px; display: grid; place-items: center;
+    text-align: center;
   }
   .product-card__img {
     width: 100%; max-width: 420px; height: auto;
     border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15);
   }
+  /* NEW: small logo display size (source image is 500px wide) */
+  .product-card__logo {
+    width: 120px;   /* reduce on-page size */
+    height: auto;
+    margin-top: 12px;
+    opacity: 0.95;
+  }
+  /* NEW: small 'script-like' price under cover */
+  .price-script {
+    margin-top: 6px;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: #374151;
+  }
+
   .product-card__body {
     padding: 28px 28px 32px;
   }
@@ -156,9 +185,10 @@ const pageDesc = "Get The Yahweh Deception and other resources from W.R. Selvig.
     .product-card__body { padding: 20px; }
     .product-card__title { font-size: 1.7rem; }
   }
-
   @media (max-width:420px){
     .btn-cta__eyebrow{ font-size:.8rem; }
     .btn-cta__main{ font-size:1rem; }
+    .product-card__logo { width: 100px; }
+    .price-script { font-size: 0.9rem; }
   }
 </style>
