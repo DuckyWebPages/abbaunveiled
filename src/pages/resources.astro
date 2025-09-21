@@ -65,6 +65,27 @@ const book = {
 
     /* (Old styles kept only if needed elsewhere)
        .lulu-btn, .coming, .lulu-logo, .note removed from markup */
+       /* slimmer pill + centered text */
+.btn-cta--slim{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:.45rem .9rem;     /* slimmer */
+  font-size:.95rem;         /* slightly smaller text */
+  line-height:1;            /* tighter line height */
+  border-radius:9999px;     /* keep the pill look */
+}
+
+/* center the row itself so the pill sits centered on the card */
+.btn-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;   /* centers the button horizontally */
+  gap:10px;
+  margin-top:.25rem;
+}
+
   </style>
 
   <div class="bg"></div>
@@ -101,11 +122,12 @@ const book = {
         <p>{book.blurb}</p>
 
         <!-- New single CTA to Store -->
-        <div class="btn-row">
-  <a href="/store" class="btn-cta" aria-label="Learn more or buy The Yahweh Deception">
+      <div class="btn-row">
+  <a href="/store" class="btn-cta btn-cta--slim" aria-label="Learn more about The Yahweh Deception">
     Learn More
   </a>
 </div>
+
 
       </section>
 
