@@ -1,5 +1,5 @@
 ---
-// src/components/HeroVideo.astro  (clean)
+// src/components/HeroVideo.astro  (updated)
 const {
   title = "Abba Unveiled",
   subtitle = "Getting to Know the Father Jesus Revealed",
@@ -85,44 +85,64 @@ const {
     margin: 0 0 .75rem; text-shadow: 0 3px 18px rgba(0,0,0,.35);
   }
 
- .hero__subtitle {
-  font-family: "Wittgenstein", serif !important;
-  font-size: clamp(1.25rem, 1.6vw + 0.6rem, 1.9rem) !important; /* smaller cap */
-  line-height: 1.35;
-  opacity: .95;
-  margin: 0 auto 1.25rem;
-  max-width: 48ch;
-  text-shadow: 0 2px 12px rgba(0,0,0,.3);
-}
-
+  /* Keep subtitle in your preferred serif */
+  .hero__subtitle {
+    font-family: "Wittgenstein", serif !important;
+    font-size: clamp(1.25rem, 1.6vw + 0.6rem, 1.9rem) !important;
+    line-height: 1.35;
+    opacity: .95;
+    margin: 0 auto 1.25rem;
+    max-width: 48ch;
+    text-shadow: 0 2px 12px rgba(0,0,0,.3);
+  }
 
   /* 4-button row */
   .front-nav { margin-top: 1rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
   .front-nav__row { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
 
+  /* Pills inside the hero: use Lato + hover lift */
   .btn-pill {
     display: inline-block; padding: .7rem 1.1rem; border-radius: 9999px;
     background: #121212; color: #fff; text-decoration: none;
-    font-family: 'Montserrat', sans-serif; font-weight: 600; line-height: 1;
+    font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+    font-weight: 700; line-height: 1;
     box-shadow: 0 6px 18px rgba(0,0,0,.18);
-    transition: opacity .15s ease; white-space: nowrap;
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    white-space: nowrap;
   }
-  .btn-pill:hover { opacity: .92; }
+  .btn-pill:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 10px 24px rgba(0,0,0,.24);
+  }
 
-  /* Bottom CTA */
+  /* Bottom CTA uses Lato + real hover animation */
   .btn-cta {
     display: inline-block; padding: 1rem 1.5rem; border-radius: 9999px;
     background: #222; color: #fff; text-decoration: none;
-    font-family: 'Montserrat', sans-serif; font-weight: 700; line-height: 1.1;
+    font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+    font-weight: 800; letter-spacing: .02em; line-height: 1.1;
     box-shadow: 0 10px 24px rgba(0,0,0,.22);
-    transition: opacity .15s ease; text-align: center;
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    text-align: center;
   }
-  .btn-cta:hover { opacity: .95; }
+  .btn-cta:hover {
+    /* If you ever use this outside the hero wrapper, it still lifts */
+    transform: translateY(-3px);
+    filter: brightness(1.06);
+    box-shadow: 0 14px 32px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08);
+  }
 
+  /* Keep the bottom CTA centered, and lift the WRAPPER on hover while preserving translateX(-50%) */
   .hero-cta-bottom {
     position: absolute; left: 50%; bottom: clamp(16px, 3vw, 32px);
     transform: translateX(-50%);
     z-index: 2;
+    transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+  }
+  .hero-cta-bottom:hover {
+    transform: translateX(-50%) translateY(-6px);
+    filter: brightness(1.06);
   }
 
   @media (max-width: 640px) {
