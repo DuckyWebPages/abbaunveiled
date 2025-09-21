@@ -1,6 +1,7 @@
 ---
 const {
-  eyebrow = "Featured",
+  // Set eyebrow default to empty and render it only if provided
+  eyebrow = "",
   title = "The Yahweh Deception",
   body = "Reclaiming the Father Jesus Revealed.",
   image = "/images/featured-book.jpg",
@@ -16,7 +17,7 @@ const {
         <img src={image} alt="" loading="lazy" />
       </div>
       <div class="feat__body">
-        <span class="feat__eyebrow">{eyebrow}</span>
+        {eyebrow && <span class="feat__eyebrow">{eyebrow}</span>}
         <h3>{title}</h3>
         <p>{body}</p>
         <div class="feat__actions">
