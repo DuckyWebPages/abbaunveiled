@@ -1,0 +1,17 @@
+---
+// src/components/SubscribeActions.astro
+const feedUrl = "https://abbaunveiled.com/rss.xml";
+---
+<div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
+  <a class="btn-cta" href="/rss.xml" rel="alternate" type="application/rss+xml">
+    RSS Feed
+  </a>
+  <a
+    class="btn-cta"
+    href={`https://blogtrottr.com/?subscribe=${encodeURIComponent(feedUrl)}`}
+    target="_blank" rel="noopener"
+    title="Get emails when the RSS feed updates (free)"
+  >
+    Get Email Alerts
+  </a>
+</div>
