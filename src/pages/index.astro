@@ -23,6 +23,41 @@ const COMING_SOON = true;
     <link rel="preload" href="/fonts/FinestRomanceScript.woff2" as="font" type="font/woff2" crossorigin />
 
     <style>
+      /* Force Lato on the HERO CTA only, beating the Wittgenstein !important */
+.hero-full .btn-cta{
+  font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans" !important;
+  /* add real button transitions */
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+/* Make it lift on hover */
+.hero-full .btn-cta:hover{
+  transform: translateY(-3px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 14px 32px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* Footer pill font + animation */
+#home-cta{
+  display: inline-flex; align-items:center; justify-content:center; gap:.6rem;
+  padding: 1.15rem 1.65rem; min-height: 3.4rem; font-size: 1.08rem;
+  border-radius: 999px; cursor: pointer;
+  transform: translateY(0);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  will-change: transform, filter;
+  font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+}
+#home-cta:hover{
+  transform: translateY(-3px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 14px 32px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+
       /* Badge styling, scoped to this page */
       .home-featured{ position: relative; }
       .coming-badge{
