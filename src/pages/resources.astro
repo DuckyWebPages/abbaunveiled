@@ -1,5 +1,6 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"; // adjust if your layout path differs
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SubscribeActions from "@/components/SubscribeActions.astro";
 
 const title = "Resources | Abba Unveiled";
 
@@ -27,7 +28,7 @@ const book = {
 };
 ---
 
-<BaseLayout title={title} description="Curated videos and links to learn more about Yahweh not being the Father Jesus revealed.">
+<BaseLayout pageTitle={title} description="Curated videos and links to learn more about Yahweh not being the Father Jesus revealed.">
   <style>
     .bg{position:fixed;inset:0;background:#000;z-index:0}
     .bg::before{
@@ -54,16 +55,10 @@ const book = {
     .item a{color:#0b57d0;text-decoration:underline}
     .disclaimer{font-size:.9rem;line-height:1.45;margin:.25rem 0 1rem;color:rgba(17,17,17,.75)}
 
-    /* Button row */
-    .btn-row{
-      display:flex;
-      align-items:center;
-      justify-content:center; /* centers the button */
-      gap:10px;
-      margin-top:.25rem;
-    }
+    /* CTA row used for the book button */
+    .btn-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:.25rem}
 
-    /* Site-consistent CTA + slim variant */
+    /* If your button styles are global, you can remove these two rules */
     .btn-cta{
       display:inline-block; padding:.75rem 1.25rem; border-radius:9999px;
       font-weight:600; border:1px solid #111; color:#111; background:#fff;
@@ -71,55 +66,15 @@ const book = {
       box-shadow:0 6px 16px rgba(0,0,0,.12);
     }
     .btn-cta:hover{ background:#111; color:#fff; transform:translateY(-1px); }
+    .btn-cta--slim{ display:inline-flex; align-items:center; justify-content:center; text-align:center; padding:.35rem 1.5rem; font-size:.95rem; line-height:1; border-radius:9999px; white-space:nowrap; min-width:90px; }
 
-        .btn-cta:hover{ background:#111; color:#fff; transform:translateY(-1px); }
-
-    .btn-cta--slim {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding: 0.35rem 1.5rem; 
-      font-size: .95rem;
-      line-height: 1;
-      border-radius: 9999px;
-      white-space: nowrap;
-      min-width: 90px;
-    }
-    /* RSS disclaimer on Resources page */
-.rss-disclaimer{
-  text-align:center;
-  margin: 1.25rem auto 0;
-  max-width: 60ch;
-}
-.rss-disclaimer p{
-  font-size:.9rem;
-  line-height:1.45;
-  color: rgba(255,255,255,.92);
-}
-.rss-disclaimer a{
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
+    /* spacing above the RSS actions block */
+    .rss-actions-wrap{ margin-top:1.25rem; }
   </style>
 
   <div class="bg"></div>
 
   <main class="page">
- <header class="site-header">
-  <nav aria-label="Primary">
-    <ul class="site-nav">
-      <li><a href="/">Home</a></li>
-      <li><a href="/blog/">Blog</a></li>
-      <li><a href="/podcast/">Podcast</a></li>
-      <li><a href="/resources/">Resources</a></li>
-    </ul>
-  </nav>
-</header>
-
-
     <header class="hdr">
       <h1>Resources</h1>
       <p>Videos and links collected for the discussion about the shocking idea of Yahweh not being the Father Jesus came to reveal. There is a lot to consider and think about when contemplating this idea. These videos are by people who have come to the same conclusion.</p>
@@ -181,19 +136,10 @@ const book = {
       </aside>
       -->
     </section>
-    <!-- RSS service disclaimer -->
-<div class="rss-disclaimer">
-  <p>
-    Subscription to the RSS service is a free service and your information will not be collected by
-    AbbaUnveiled.com. To be on our mailing list, you must subscribe separately via the
-    <a
-      href="https://forms.gle/8n3k4G4sLhQNMRSp6"
-      target="_blank"
-      rel="noopener noreferrer"
-    >mailing list link</a> on the home page.
-  </p>
-</div>
 
-
+    <!-- RSS buttons + built-in disclaimer (component renders both) -->
+    <div class="rss-actions-wrap">
+      <SubscribeActions />
+    </div>
   </main>
 </BaseLayout>
