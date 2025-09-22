@@ -38,23 +38,17 @@ const {
     <link rel="alternate" type="application/rss+xml" title="Abba Unveiled Blog" href="/rss.xml" />
   </head>
 
-  <body class={`site-bg ${bodyClass}`}>
-    <!-- Global header / nav -->
-    <header class="site-header">
-      <nav aria-label="Primary">
-        <ul class="site-nav">
-          <li><a href="/">Home</a></li>
-          <li><a href="/blog/">Blog</a></li>
-          <!-- Removed paid Subscribe link -->
-        </ul>
-      </nav>
-    </header>
+  <!-- Global header / nav -->
+<header class="site-header">
+  <nav aria-label="Primary">
+    <ul class="site-nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/resources/">Resources</a></li>
+    </ul>
+  </nav>
+</header>
 
-    <slot />
-
-    <!-- Global footer -->
-    <Footer />
-  </body>
 </html>
 
 <style is:global>
@@ -81,13 +75,27 @@ const {
       linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.35)),
       url("/images/stars-northern-tall.png") center/cover no-repeat fixed;
   }
-  .site-header{ padding: .75rem 1rem; }
-  .site-nav{
-    list-style: none; display:flex; gap:1rem; margin:0; padding:0;
-    align-items:center; justify-content:center;
-  }
-  .site-nav a{ color:#fff; text-decoration:none; font-weight:700; }
-  .site-nav a:hover{ text-decoration: underline; }
+  .site-header {
+  padding: .75rem 1rem;
+  text-align: center;
+}
+.site-nav {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+.site-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+.site-nav a:hover {
+  text-decoration: underline;
+}
+
 
   .footer-cta{ display:flex; justify-content:center; align-items:center; padding: 2rem 1rem 2.5rem; }
   .btn-cta{
