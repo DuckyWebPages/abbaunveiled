@@ -1,7 +1,5 @@
 ---
 // src/components/SubscribeActions.astro
-// Direct RSS + Blogtrottr email alerts (free, no data collected by your site)
-// NOTE: No Buttondown anywhere.
 const feedUrl = "https://abbaunveiled.com/rss.xml";
 ---
 
@@ -12,7 +10,7 @@ const feedUrl = "https://abbaunveiled.com/rss.xml";
       RSS Feed
     </a>
 
-    <!-- Email me when RSS updates (Blogtrottr) -->
+    <!-- Email RSS Alerts (Blogtrottr) -->
     <a
       class="btn-cta"
       href={`https://blogtrottr.com/?subscribe=${encodeURIComponent(feedUrl)}`}
@@ -23,7 +21,7 @@ const feedUrl = "https://abbaunveiled.com/rss.xml";
     </a>
   </div>
 
-  <!-- Disclaimer (keep) -->
+  <!-- Disclaimer -->
   <p class="rss-note" role="note">
     Subscription to the RSS service is a free service and your information will not be collected by
     AbbaUnveiled.com. To be on our mailing list, you must subscribe separately via the
@@ -36,19 +34,19 @@ const feedUrl = "https://abbaunveiled.com/rss.xml";
 </div>
 
 <style>
-.sub-actions{
+.sub-actions {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: .5rem;
 }
-.sub-actions__row{
+.sub-actions__row {
   display:flex;
   gap:.75rem;
   align-items:center;
   flex-wrap:wrap;
 }
-.rss-note{
+.rss-note {
   display: block !important;
   margin: .25rem 0 0;
   font-size: .85rem;
@@ -56,7 +54,7 @@ const feedUrl = "https://abbaunveiled.com/rss.xml";
   color: rgba(255,255,255,.92) !important;
   max-width: 60ch;
 }
-.rss-note a{
+.rss-note a {
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 2px;
