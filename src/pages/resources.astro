@@ -86,6 +86,23 @@ const book = {
       white-space: nowrap;
       min-width: 90px;
     }
+    /* RSS disclaimer on Resources page */
+.rss-disclaimer{
+  text-align:center;
+  margin: 1.25rem auto 0;
+  max-width: 60ch;
+}
+.rss-disclaimer p{
+  font-size:.9rem;
+  line-height:1.45;
+  color: rgba(255,255,255,.92);
+}
+.rss-disclaimer a{
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
   </style>
 
   <div class="bg"></div>
@@ -164,5 +181,19 @@ const book = {
       </aside>
       -->
     </section>
+    <!-- RSS service disclaimer -->
+<div class="rss-disclaimer">
+  <p>
+    Subscription to the RSS service is a free service and your information will not be collected by
+    AbbaUnveiled.com. To be on our mailing list, you must subscribe separately via the
+    <a
+      href="https://forms.gle/8n3k4G4sLhQNMRSp6"
+      target="_blank"
+      rel="noopener noreferrer"
+    >mailing list link</a> on the home page.
+  </p>
+</div>
+
+
   </main>
 </BaseLayout>
