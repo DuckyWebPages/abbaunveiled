@@ -72,18 +72,25 @@ const book = {
     }
     .btn-cta:hover{ background:#111; color:#fff; transform:translateY(-1px); }
 
-    .btn-cta--slim{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:.45rem .9rem;   /* slimmer */
-      font-size:.95rem;
-      line-height:1;
-      border-radius:9999px;
-      white-space:nowrap;
-    }
-  </style>
+    
+      .btn-cta--slim {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  /* NEW padding (less tall, more wide) */
+  padding: 0.35rem 1.5rem; 
+
+  font-size: .95rem;
+  line-height: 1;
+  border-radius: 9999px;
+  white-space: nowrap;
+
+  /* Optional: min-width so tiny words don't collapse into circles */
+  min-width: 90px;
+}
+
 
   <div class="bg"></div>
 
