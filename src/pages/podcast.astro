@@ -9,6 +9,8 @@ const title = "Podcast | Abba Unveiled";
     <meta name="description" content="Listen to the Abba Unveiled podcast." />
     <style>
       :root { --panel-bg: rgba(255,255,255,0.9); }
+
+      /* Base */
       body {
         margin: 0;
         font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -18,6 +20,48 @@ const title = "Podcast | Abba Unveiled";
         margin: 0 auto;
         padding: 2rem 1rem;
       }
+
+      /* Header */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: #fff;
+        border-bottom: 1px solid #eee;
+      }
+      .site-header__inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 10px 16px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .brand {
+        font-weight: 800;
+        text-decoration: none;
+        color: #111;
+        margin-right: auto;
+      }
+      .nav {
+        display: flex;
+        gap: 8px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav a {
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #111;
+      }
+      .nav a:hover { background: #f2f2f2; }
+      /* optional “active” look if you reuse this on other pages
+         .nav a[aria-current="page"] { background:#111; color:#fff; } */
+
+      /* Headline */
       h1 {
         font-size: 2rem;
         margin: 0 0 1rem 0;
@@ -27,6 +71,8 @@ const title = "Podcast | Abba Unveiled";
           0 1px 2px rgba(0,0,0,0.85),
           0 2px 8px rgba(0,0,0,0.65); /* BLACK SHADOW */
       }
+
+      /* Panel + Player */
       .panel {
         background: var(--panel-bg);
         backdrop-filter: blur(3px);
@@ -62,6 +108,18 @@ const title = "Podcast | Abba Unveiled";
   </head>
 
   <body>
+    <!-- NEW: Sticky header with tabs -->
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="/">Abba Unveiled</a>
+        <ul class="nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/resources/">Resources</a></li>
+        </ul>
+      </div>
+    </header>
+
     <section
       style="
         min-height: 100vh;
