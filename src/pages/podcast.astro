@@ -22,8 +22,8 @@ const title = "Podcast | Abba Unveiled";
         font-size: 2rem;
         margin: 0 0 1rem 0;
         text-align: center;
-        color: #222;
-        text-shadow: 1px 1px 3px rgba(255,255,255,0.7);
+        color: silver; /* changed from #222 */
+        text-shadow: 1px 1px 6px rgba(255,255,255,0.8);
       }
       .panel {
         background: var(--panel-bg);
@@ -34,7 +34,7 @@ const title = "Podcast | Abba Unveiled";
       }
       .player {
         width: 100%;
-        height: 520px; /* explicit height so it’s not “narrow” */
+        height: 520px;
         border: 0;
         display: block;
       }
@@ -42,7 +42,6 @@ const title = "Podcast | Abba Unveiled";
   </head>
 
   <body>
-    <!-- Section-level background so global styles can't override body -->
     <section
       style="
         min-height: 100vh;
@@ -52,13 +51,19 @@ const title = "Podcast | Abba Unveiled";
       <main class="wrap">
         <h1>🎙️ Abba Unveiled Podcast</h1>
         <div class="panel">
-          <!-- IFRAME SHOW PLAYER: lists ALL episodes; no JS required -->
           <iframe
             class="player"
             title="Abba Unveiled Podcast"
             src="https://widget.spreaker.com/player?show_id=6578036&theme=light&playlist=show&playlist-continuous=true"
             allow="autoplay"
           ></iframe>
+        </div>
+
+        <!-- CTA pill button using global style -->
+        <div style="text-align:center; margin-top:2rem;">
+          <a href="/store" class="btn-cta">
+            Grab the Yahweh Deception book here
+          </a>
         </div>
       </main>
     </section>
