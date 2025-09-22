@@ -1,16 +1,29 @@
 ---
 // src/components/SubscribeActions.astro
+// Direct RSS + Blogtrottr email alerts (free, no data collected by your site)
+// NOTE: No Buttondown anywhere.
 const feedUrl = "https://abbaunveiled.com/rss.xml";
 ---
 
 <div class="sub-actions">
   <div class="sub-actions__row">
+    <!-- Direct RSS -->
     <a class="btn-cta" href="/rss.xml" rel="alternate" type="application/rss+xml">
       RSS Feed
     </a>
+
+    <!-- Email me when RSS updates (Blogtrottr) -->
+    <a
+      class="btn-cta"
+      href={`https://blogtrottr.com/?subscribe=${encodeURIComponent(feedUrl)}`}
+      target="_blank" rel="noopener"
+      title="Get emails when the RSS feed updates (free service)"
+    >
+      Email RSS Alerts
+    </a>
   </div>
 
-  <!-- Disclaimer -->
+  <!-- Disclaimer (keep) -->
   <p class="rss-note" role="note">
     Subscription to the RSS service is a free service and your information will not be collected by
     AbbaUnveiled.com. To be on our mailing list, you must subscribe separately via the
@@ -23,33 +36,26 @@ const feedUrl = "https://abbaunveiled.com/rss.xml";
 </div>
 
 <style>
-/* Stack content vertically to guarantee space for the disclaimer */
 .sub-actions{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: .5rem;
 }
-
-/* Buttons row */
 .sub-actions__row{
   display:flex;
   gap:.75rem;
   align-items:center;
   flex-wrap:wrap;
 }
-
-/* Small, white disclaimer under the buttons */
 .rss-note{
-  display: block !important;           /* beat any global footer p rules */
+  display: block !important;
   margin: .25rem 0 0;
   font-size: .85rem;
   line-height: 1.4;
-  color: rgba(255,255,255,.92) !important;   /* force white on dark footers */
+  color: rgba(255,255,255,.92) !important;
   max-width: 60ch;
 }
-
-/* Link matches the white text and remains clearly clickable */
 .rss-note a{
   color: inherit;
   text-decoration: underline;
