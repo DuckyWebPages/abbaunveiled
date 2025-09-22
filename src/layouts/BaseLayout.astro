@@ -38,21 +38,27 @@ const {
     <link rel="alternate" type="application/rss+xml" title="Abba Unveiled Blog" href="/rss.xml" />
   </head>
 
-  <!-- Global header / nav -->
-<header class="site-header">
-  <nav aria-label="Primary">
-    <ul class="site-nav">
-      <li><a href="/">Home</a></li>
-      <li><a href="/blog/">Blog</a></li>
-      <li><a href="/resources/">Resources</a></li>
-    </ul>
-  </nav>
-</header>
+  <body class={`site-bg ${bodyClass}`}>
+    <!-- Global header / nav -->
+    <header class="site-header">
+      <nav aria-label="Primary">
+        <ul class="site-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/resources/">Resources</a></li>
+        </ul>
+      </nav>
+    </header>
 
+    <!-- Page content -->
+    <slot />
+
+    <!-- Global footer -->
+    <Footer />
+  </body>
 </html>
 
 <style is:global>
-  /* (unchanged styles from your version) */
   @font-face {
     font-family: "Finest Romance Script";
     src: url("/fonts/FinestRomanceScript.woff2") format("woff2");
@@ -62,7 +68,9 @@ const {
   }
   :root{ --font-body: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans"; }
   html, body { font-family: var(--font-body); }
+
   .script-font, .script-font * { font-family: "Finest Romance Script", serif !important; }
+
   .site-bg{
     min-height: 100vh;
     background:
@@ -70,33 +78,32 @@ const {
       url("/images/backgrounds/aurora-night-1920.jpg") center/cover no-repeat fixed;
   }
   @media (max-width: 800px){ .site-bg{ background-attachment: scroll; } }
+
   .blog-bg{
     background:
       linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.35)),
       url("/images/stars-northern-tall.png") center/cover no-repeat fixed;
   }
-  .site-header {
-  padding: .75rem 1rem;
-  text-align: center;
-}
-.site-nav {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-}
-.site-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-}
-.site-nav a:hover {
-  text-decoration: underline;
-}
 
+  /* Centered, simple text nav (white; underline on hover) */
+  .site-header { padding: .75rem 1rem; text-align: center; }
+  .site-nav {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .site-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .site-nav a:hover { text-decoration: underline; }
 
+  /* Existing CTA styles (unchanged) */
   .footer-cta{ display:flex; justify-content:center; align-items:center; padding: 2rem 1rem 2.5rem; }
   .btn-cta{
     --cta-bg-1:#0f0f10; --cta-bg-2:#2a2a2d; --cta-ring:#7dd3fc;
