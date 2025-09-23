@@ -87,62 +87,60 @@ const faithEncouragement = []; // leave empty for now or add items later
     </header>
 
     <section class="grid">
-      <!-- LEFT bubble -->
-      <aside class="frost">
-        <h2>Watch: Yahweh is Not Abba Featured Videos</h2>
-        <p class="disclaimer">
-          I respect the individuals who produced these videos, but inclusion here is not an endorsement of all of their theological positions. Please learn to lean on internal discernment by the Holy Spirit and be less "sheepish" in accepting everything anyone says as "truth." Including from me! Test the fruit!
-        </p>
-        <ul class="list">
-          {
-            videoLinks.map((v) => (
-              <li class="item">
-                <a href={v.url} target="_blank" rel="noopener noreferrer"><strong>{v.title}</strong></a>
-                {v.note && <div style="font-size:.92rem;opacity:.85">{v.note}</div>}
-              </li>
-            ))
-          }
-        </ul>
-      </aside>
-
-      <!-- CENTER bubble (book) -->
-      <section class="frost book">
-        <img src={book.cover} alt={book.title} loading="eager" />
-        <h2>{book.title}</h2>
-        <p>{book.blurb}</p>
-
-        <!-- Single CTA to Store -->
-        <div class="btn-row">
-          <a href="/store" class="btn-cta btn-cta--slim" aria-label="Learn more about The Yahweh Deception">
-            Learn More
-          </a>
-        </div>
-        <!-- NEW: Faith Encouragement card -->
-<aside class="frost">
-  <h2>Faith Encouragement</h2>
-
-  <!-- If you added the array above, render it here -->
-  {faithEncouragement?.length
-    ? (
-      <ul class="list">
-        {faithEncouragement.map((item) => (
+  <!-- LEFT bubble -->
+  <aside class="frost">
+    <h2>Watch: Yahweh is Not Abba Featured Videos</h2>
+    <p class="disclaimer">
+      I respect the individuals who produced these videos, but inclusion here is not an endorsement of all of their theological positions. Please learn to lean on internal discernment by the Holy Spirit and be less "sheepish" in accepting everything anyone says as "truth." Including from me! Test the fruit!
+    </p>
+    <ul class="list">
+      {
+        videoLinks.map((v) => (
           <li class="item">
-            <a href={item.url} target="_blank" rel="noopener noreferrer"><strong>{item.title}</strong></a>
-            {item.note && <div style="font-size:.92rem;opacity:.85">{item.note}</div>}
+            <a href={v.url} target="_blank" rel="noopener noreferrer"><strong>{v.title}</strong></a>
+            {v.note && <div style="font-size:.92rem;opacity:.85">{v.note}</div>}
           </li>
-        ))}
-      </ul>
-    ) : (
-      // Fallback if you haven't added items yet
-      <p class="disclaimer" style="margin:0">
-        I’ll be adding short teachings, prayers, and encouragement here.
-        Check back soon!
-      </p>
-    )
-  }
-</aside>
+        ))
+      }
+    </ul>
+  </aside>
 
-      </section>
+  <!-- CENTER bubble (book) -->
+  <section class="frost book">
+    <img src={book.cover} alt={book.title} loading="eager" />
+    <h2>{book.title}</h2>
+    <p>{book.blurb}</p>
+
+    <!-- Single CTA to Store -->
+    <div class="btn-row">
+      <a href="/store" class="btn-cta btn-cta--slim" aria-label="Learn more about The Yahweh Deception">
+        Learn More
+      </a>
+    </div>
+  </section>
+
+  <!-- RIGHT bubble: Faith Encouragement -->
+  <aside class="frost">
+    <h2>Faith Encouragement</h2>
+    {faithEncouragement?.length
+      ? (
+        <ul class="list">
+          {faithEncouragement.map((item) => (
+            <li class="item">
+              <a href={item.url} target="_blank" rel="noopener noreferrer"><strong>{item.title}</strong></a>
+              {item.note && <div style="font-size:.92rem;opacity:.85">{item.note}</div>}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="disclaimer" style="margin:0">
+          I’ll be adding short teachings, prayers, and encouragement here. Check back soon!
+        </p>
+      )
+    }
+  </aside>
+</section>
+
 
       <!-- RIGHT bubble remains commented out
       <aside class="frost">
