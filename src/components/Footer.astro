@@ -1,12 +1,21 @@
 ---
 import SubscribeActions from "./SubscribeActions.astro";
-const today = new Date();
+
+// Show subscribe only on blog index and posts (/blog and /blog/...)
+const path = Astro.url.pathname;
+const showSubscribe = path.startsWith("/blog/") || path === "/blog";
+
+const year = new Date().getFullYear();
 ---
 
 <footer>
-  &copy; {today.getFullYear()} AbbaUnveiled.com. All rights reserved.
+  &copy; {year} AbbaUnveiled.com. All rights reserved.
 
-  <SubscribeActions />
+  {showSubscribe && (
+    <section class="footer-subscribe">
+      <SubscribeActions />
+    </section>
+  )}
 </footer>
 
 <style>
@@ -15,5 +24,9 @@ const today = new Date();
     background: linear-gradient(var(--gray-gradient)) no-repeat;
     color: rgb(var(--gray));
     text-align: center;
+  }
+
+  .footer-subscribe {
+    margin-top: 1rem;
   }
 </style>
