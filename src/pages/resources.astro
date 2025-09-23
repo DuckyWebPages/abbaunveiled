@@ -33,11 +33,17 @@ const faithEncouragement = [
     note: "YouTube",
   },
   {
+    title: "Air Force Veteran Dies & Meets Jesus",
+    url: "https://youtu.be/CmY-Oa1kOHU?si=7661B_d03K4-Dvkb",
+    note: "YouTube",
+  },
+  {
     title: "Hindu Man Dies and Sees the Kingdom of Heaven",
-    url: "https://youtu.be/_aNMX4cooI4?si=UQwWO8WopVh43Hml", // replace with the correct link if different
+    url: "https://youtu.be/_aNMX4cooI4?si=UQwWO8WopVh43Hml",
     note: "YouTube",
   },
 ];
+
 
 ---
 
@@ -92,6 +98,7 @@ const faithEncouragement = [
   line-height: 1.5;
   opacity: .9;
 }
+.lead { margin: 0 0 .75rem; font-size: 1rem; line-height: 1.5; opacity: .9; }
 
 
   </style>
@@ -138,25 +145,24 @@ const faithEncouragement = [
   </section>
 
   <!-- RIGHT bubble: Faith Encouragement -->
-  <aside class="frost">
-    <h2>Faith Encouragement</h2>
-    {faithEncouragement?.length
-      ? (
-        <ul class="list">
-          {faithEncouragement.map((item) => (
-            <li class="item">
-              <a href={item.url} target="_blank" rel="noopener noreferrer"><strong>{item.title}</strong></a>
-              {item.note && <div style="font-size:.92rem;opacity:.85">{item.note}</div>}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p class="disclaimer" style="margin:0">
-          I’ll be adding short teachings, prayers, and encouragement here. Check back soon!
-        </p>
-      )
-    }
-  </aside>
+<aside class="frost">
+  <h2>Faith Encouragement</h2>
+
+  <!-- Intro paragraph -->
+  <p class="lead">
+    When I started processing the idea that Yahweh was not the Father, I walked through a dark valley of uncertainty for awhile. I was deconstructing some things that I had already believed and wasn't sure what to believe. Some of the videos I have listed on the left of this page are from people who have also come to the conclusion that Yahweh is not the Father, but I discern they don't always come to the same conclusions I do about the Father and Jesus. Everyone is on their own path and I don't want to lead anyone into confusion or darkness. I do believe this time we are in is one where great deceptions and lies that have been told are being revealed. This makes it hard to trust anything that has come from any institution, including religious ones. I want to encourage you with videos in this section. I think a picture is emerging of what has happened between Jesus and the bene-elohim. I think now it is obvious that He did die on the cross and "make a spectacle of the rulers and principalities". He and Abba won our freedom and Jesus came to rescue us. Because of that, we are in Him, He is in us. He is in the Father, we are in the Father. We are quantumly entangled and cannot be separated. It encourages me greatly to listen to NDE's (Near Death Experiences) and to see how many Jesus shows up in - especially for people who are athiest or of other faiths. I hope these videos will encourage you.
+  </p>
+   <ul class="list">
+    {faithEncouragement.map((item) => (
+      <li class="item">
+        <a href={item.url} target="_blank" rel="noopener noreferrer">
+          <strong>{item.title}</strong>
+        </a>
+        {item.note && <div style="font-size:.92rem;opacity:.85">{item.note}</div>}
+      </li>
+    ))}
+  </ul>
+</aside>
 </section>
 
 
