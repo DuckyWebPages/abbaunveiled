@@ -70,6 +70,10 @@ const book = {
 
     /* spacing above the RSS actions block */
     .rss-actions-wrap{ margin-top:1.25rem; }
+    @media (min-width: 1200px){
+  .grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+
   </style>
 
   <div class="bg"></div>
@@ -111,6 +115,31 @@ const book = {
             Learn More
           </a>
         </div>
+        <!-- NEW: Faith Encouragement card -->
+<aside class="frost">
+  <h2>Faith Encouragement</h2>
+
+  <!-- If you added the array above, render it here -->
+  {faithEncouragement?.length
+    ? (
+      <ul class="list">
+        {faithEncouragement.map((item) => (
+          <li class="item">
+            <a href={item.url} target="_blank" rel="noopener noreferrer"><strong>{item.title}</strong></a>
+            {item.note && <div style="font-size:.92rem;opacity:.85">{item.note}</div>}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      // Fallback if you haven't added items yet
+      <p class="disclaimer" style="margin:0">
+        I’ll be adding short teachings, prayers, and encouragement here.
+        Check back soon!
+      </p>
+    )
+  }
+</aside>
+
       </section>
 
       <!-- RIGHT bubble remains commented out
