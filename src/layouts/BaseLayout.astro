@@ -1,5 +1,5 @@
 ---
-/* FILE: src/layouts/BaseLayout.astro */
+
 import Footer from "@/components/Footer.astro";
 
 interface Props {
@@ -12,6 +12,23 @@ const {
   description = "",
   bodyClass = "",
 } = Astro.props as Props;
+
+/* Nav config: include ALL destinations, we'll hide the current one */
+const links = [
+  { href: '/',          label: 'Home' },
+  { href: '/blog/',     label: 'Blog' },
+  { href: '/podcast/',  label: 'Podcast' },
+  { href: '/resources/',label: 'Resources' },
+];
+
+const path = Astro.url.pathname;
+const isSelf = (link) => {
+  if (link.href === '/') return path === '/';
+  return path === link.href || path.startsWith(link.href);
+};
+const navLinks = links.filter((l) => !isSelf(l));
+
+
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -42,11 +59,18 @@ const {
     <!-- Global header / nav -->
     <header class="site-header">
       <nav aria-label="Primary">
-        <ul class="site-nav">
-          <li><a href="/">Home</a></li>
-          <li><a href="/blog/">Blog</a></li>
-          <li><a href="/resources/">Resources</a></li>
-        </ul>
+        <!-- Global header / nav -->
+<header class="site-header">
+  <nav aria-label="Primary">
+    <ul class="site-nav">
+      {navLinks.map(({ href, label }) => (
+        <li><a href={href}>{label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+
       </nav>
     </header>
 
@@ -86,7 +110,15 @@ const {
   }
 
   /* Centered, simple text nav (white; underline on hover) */
-  .site-header { padding: .75rem 1rem; text-align: center; }
+  .site-header {
+  padding: .75rem 1rem;
+  text-align: center;
+  position: sticky;  /* keeps it visible on scroll */
+  top: 0;
+  z-index: 20;       /* sits above any page-level backgrounds */
+  /* keep background transparent so it’s just white words */
+}
+
   .site-nav {
     list-style: none;
     display: flex;
