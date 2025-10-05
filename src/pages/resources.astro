@@ -12,6 +12,7 @@ const videoLinks = [
   { title: "How I Met El Elyon The God Most High", url: "https://youtu.be/tzGxQPXV0Jo?si=jeNfuAnrdZ7H9QEg", note: "Two Old Dudes YouTube Channel" },
   { title: "In Doing This.. They Governed the Entire Human Race", url: "https://youtu.be/_BohuXUx0yI?si=txs4_0L6QqMeboPm", note: "Mauro Biglino, Hebrew Scholar" },
   { title: "Yahweh is Not Who You Think! Vatican Translator Mauro Biglino & Paul Wallis", url: "https://youtu.be/c6tHzNfizE4?si=N4CGEKJz2dJpewIe", note: "Mauro Biglino, Hebrew Scholar" },
+  { title: "Jesus Never Called God YHVH – The Hebrew Kabbalah Name Game", url: "https://rumble.com/v6y3bwy-jesus-never-called-god-yhvh-the-hebrew-kabbalah-name-game.html", note: "Rumble Video" },
 ];
 
 const linkResources = [
@@ -24,8 +25,9 @@ const book = {
   title: "The Yahweh Deception",
   blurb:
     "The Yahweh Deception uncovers how centuries of redaction blurred the Father’s identity, replacing El Elyon—the Most High—with a deity of law, wrath, and control. Drawing on ancient texts and fresh theological insight, this almost 400-page book challenges tradition and invites you into deeper intimacy with Abba.",
-  buyUrl: "https://www.lulu.com/your-book-page",
+  buyUrl: "https://www.lulu.com/your-book-page", // change if needed
 };
+
 const faithEncouragement = [
   {
     title: "Atheist Meets Jesus in Near Death Experience",
@@ -39,12 +41,10 @@ const faithEncouragement = [
   },
   {
     title: "Hindu Man Dies and Sees the Kingdom of Heaven",
-    url: "https://youtu.be/_aNMX4cooI4?si=UQwWO8WopVh43Hml",
+    url: "https://youtu.be/REPLACE_ME", // TODO: update with the correct video link
     note: "YouTube",
   },
 ];
-
-
 ---
 
 <BaseLayout pageTitle={title} description="Curated videos and links to learn more about Yahweh not being the Father Jesus revealed.">
@@ -60,15 +60,20 @@ const faithEncouragement = [
     .hdr{color:var(--color-foreground,#fff);text-align:center;margin:0 0 1.75rem}
     .hdr h1{margin:0 0 .5rem;font-size:clamp(1.75rem,4vw,3rem)}
     .grid{display:grid;gap:1.25rem}
-    @media (min-width:1024px){.grid{grid-template-columns:1fr 1fr;align-items:start}}
+    @media (min-width:1024px){
+      .grid{grid-template-columns:1fr 1fr;align-items:start}
+    }
     .frost{
       background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.45);
       border-radius:16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
       box-shadow:0 10px 26px rgba(0,0,0,.28);padding:22px;color:#111
     }
     .frost h2{margin:0 0 .75rem}
-    .book img{width:100%;max-width:420px;margin:0 auto 1rem;display:block;border-radius:12px;box-shadow:0 18px 44px rgba(0,0,0,.4);background:#fff}
     .book{display:flex;flex-direction:column;align-items:center;text-align:center}
+    .book img{
+      width:100%;max-width:420px;margin:0 auto 1rem;display:block;border-radius:12px;
+      box-shadow:0 18px 44px rgba(0,0,0,.4);background:#fff;aspect-ratio:2/3;
+    }
     .list{list-style:none;padding:0;margin:0}
     .item + .item{margin-top:.75rem}
     .item a{color:#0b57d0;text-decoration:underline}
@@ -77,7 +82,6 @@ const faithEncouragement = [
     /* CTA row used for the book button */
     .btn-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:.25rem}
 
-    /* If your button styles are global, you can remove these two rules */
     .btn-cta{
       display:inline-block; padding:.75rem 1.25rem; border-radius:9999px;
       font-weight:600; border:1px solid #111; color:#111; background:#fff;
@@ -85,112 +89,108 @@ const faithEncouragement = [
       box-shadow:0 6px 16px rgba(0,0,0,.12);
     }
     .btn-cta:hover{ background:#111; color:#fff; transform:translateY(-1px); }
-    .btn-cta--slim{ display:inline-flex; align-items:center; justify-content:center; text-align:center; padding:.35rem 1.5rem; font-size:.95rem; line-height:1; border-radius:9999px; white-space:nowrap; min-width:90px; }
+    .btn-cta--slim{
+      display:inline-flex; align-items:center; justify-content:center; text-align:center;
+      padding:.35rem 1.5rem; font-size:.95rem; line-height:1; border-radius:9999px;
+      white-space:nowrap; min-width:90px;
+    }
 
-    /* spacing above the RSS actions block */
     .rss-actions-wrap{ margin-top:1.25rem; }
-    @media (min-width: 1200px){
-  .grid { grid-template-columns: 1fr 1fr 1fr; }
-}\/* Small intro paragraph at top of the card */
-.lead {
-  margin: 0 0 .75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  opacity: .9;
-}
-.lead { margin: 0 0 .75rem; font-size: 1rem; line-height: 1.5; opacity: .9; }
 
+    @media (min-width:1200px){
+      .grid{ grid-template-columns:1fr 1fr 1fr; }
+    }
 
+    /* Small intro paragraph at top of the card */
+    .lead{ margin:0 0 .75rem; font-size:1rem; line-height:1.5; opacity:.9; }
   </style>
 
-  <div class="bg"></div>
+  <div class="bg" aria-hidden="true"></div>
 
   <main class="page">
     <header class="hdr">
       <h1>Resources</h1>
-      <p>Videos and links collected for the discussion about the shocking idea of Yahweh not being the Father Jesus came to reveal. There is a lot to consider and think about when contemplating this idea. These videos are by people who have come to the same conclusion.</p>
+      <p>Videos and links collected for the discussion about the idea that Yahweh is not the Father Jesus came to reveal. There is a lot to weigh as you consider this. These videos are by people who’ve reached similar conclusions (not a blanket endorsement).</p>
     </header>
 
     <section class="grid">
-  <!-- LEFT bubble -->
-  <aside class="frost">
-    <h2>Watch: Yahweh is Not Abba Featured Videos</h2>
-    <p class="disclaimer">
-      I respect the individuals who produced these videos, but inclusion here is not an endorsement of all of their theological positions. Please learn to lean on internal discernment by the Holy Spirit and be less "sheepish" in accepting everything anyone says as "truth." Including from me! Test the fruit!
-    </p>
-    <ul class="list">
-      {
-        videoLinks.map((v) => (
-          <li class="item">
-            <a href={v.url} target="_blank" rel="noopener noreferrer"><strong>{v.title}</strong></a>
-            {v.note && <div style="font-size:.92rem;opacity:.85">{v.note}</div>}
-          </li>
-        ))
-      }
-    </ul>
-  </aside>
-
-  <!-- CENTER bubble (book) -->
-  <section class="frost book">
-    <img src={book.cover} alt={book.title} loading="eager" />
-    <h2>{book.title}</h2>
-    <p>{book.blurb}</p>
-
-    <!-- Single CTA to Store -->
-    <div class="btn-row">
-      <a href="/store" class="btn-cta btn-cta--slim" aria-label="Learn more about The Yahweh Deception">
-        Learn More
-      </a>
-    </div>
-  </section>
-
-  <!-- RIGHT bubble: Faith Encouragement -->
-<aside class="frost">
-  <h2>Faith Encouragement</h2>
-
-  <!-- Intro paragraph -->
-  <p class="lead">
-    When I started processing the idea that Yahweh was not the Father, I walked through a dark valley of uncertainty for awhile. I was deconstructing some things that I had already believed and wasn't sure what to believe. Some of the videos I have listed on the left of this page are from people who have also come to the conclusion that Yahweh is not the Father, but I discern they don't always come to the same conclusions I do about the Father and Jesus. Everyone is on their own path and I don't want to lead anyone into confusion or darkness. I do believe this time we are in is one where great deceptions and lies that have been told are being revealed. This makes it hard to trust anything that has come from any institution, including religious ones. I want to encourage you with videos in this section. I think a picture is emerging of what has happened between Jesus and the bene-elohim. I think now it is obvious that He did die on the cross and "make a spectacle of the rulers and principalities". He and Abba won our freedom and Jesus came to rescue us. Because of that, we are in Him, He is in us. He is in the Father, we are in the Father. We are quantumly entangled and cannot be separated. It encourages me greatly to listen to NDE's (Near Death Experiences) and to see how many Jesus shows up in - especially for people who are athiest or of other faiths. I hope these videos will encourage you.
-  </p>
-   <ul class="list">
-    {faithEncouragement.map((item) => (
-      <li class="item">
-        <a href={item.url} target="_blank" rel="noopener noreferrer">
-          <strong>{item.title}</strong>
-        </a>
-        {item.note && <div style="font-size:.92rem;opacity:.85">{item.note}</div>}
-      </li>
-    ))}
-  </ul>
-</aside>
-</section>
-
-
-      <!-- RIGHT bubble remains commented out
+      <!-- LEFT bubble -->
       <aside class="frost">
-        <h2>Links & References</h2>
+        <h2>Watch: Yahweh is Not Abba — Featured Videos</h2>
         <p class="disclaimer">
-          If you are interested in a Courts of Heaven session with our Abba Unveiled team,
-          please reach out via email to
-          <a href="mailto:AbbaUnveiled@gmail.com">AbbaUnveiled@gmail.com</a>.
-          Sessions run $150 for 1.5 hours with a minimum of 2 COH graduated facilitators
-          from RonHorner.com ministries.
+          I respect the creators here, but inclusion isn’t endorsement of every view. Please lean on the Holy Spirit for discernment—and test the fruit.
         </p>
-        <div>
+        <ul class="list">
           {
-            linkResources.map((l) => (
-              <div class="item">
-                <a href={l.url} target="_blank" rel="noopener noreferrer"><strong>{l.title}</strong></a>
-                {l.desc && <div style="font-size:.95rem;opacity:.9">{l.desc}</div>}
-              </div>
+            videoLinks.map((v) => (
+              <li class="item">
+                <a href={v.url} target="_blank" rel="noopener noreferrer"><strong>{v.title}</strong></a>
+                {v.note && <div style="font-size:.92rem;opacity:.85">{v.note}</div>}
+              </li>
             ))
           }
-        </div>
+        </ul>
       </aside>
-      -->
+
+      <!-- CENTER bubble (book) -->
+      <section class="frost book">
+        <img src={book.cover} alt={book.title} loading="lazy" decoding="async" />
+        <h2>{book.title}</h2>
+        <p>{book.blurb}</p>
+
+        <!-- Single CTA to Store (use buyUrl if you prefer) -->
+        <div class="btn-row">
+          <a href={book.buyUrl} class="btn-cta btn-cta--slim" aria-label={`Learn more about ${book.title}`}>
+            Learn More
+          </a>
+        </div>
+      </section>
+
+      <!-- RIGHT bubble: Faith Encouragement -->
+      <aside class="frost">
+        <h2>Faith Encouragement</h2>
+
+        <p class="lead">
+          When I first began considering that Yahweh is not the Father, I walked through a season of honest uncertainty. Some of the videos linked here come from people who reached similar conclusions, though they don’t always land where I do about the Father and Jesus. We’re each on a path—I don’t want to lead you into confusion or darkness. We’re also in a time when long-standing deceptions are being exposed. That can make it hard to trust institutions, including religious ones. So watch with prayerful discernment. Ask Jesus to guard your heart and highlight what is true.
+        </p>
+        <p class="lead">
+          For me, a picture is emerging of what has unfolded between Jesus and the <em>bene elohim</em>. Scripture says He “disarmed principalities and powers… making a public spectacle of them” (Colossians 2:15). He and Abba won our freedom. Because of that: we are in Him, He is in us, and He is in the Father (John 14; 17). Nothing can separate us from His love (Romans 8:39). I’m often encouraged by credible Near-Death Experience accounts where Jesus shows up—even for people who weren’t looking for Him. I share some of those here because they point to His kindness and pursuit. Take what bears good fruit; set aside what doesn’t. “Test everything; hold fast to what is good” (1 Thessalonians 5:21).
+        </p>
+
+        <ul class="list">
+          {faithEncouragement.map((item) => (
+            <li class="item">
+              <a href={item.url} target="_blank" rel="noopener noreferrer">
+                <strong>{item.title}</strong>
+              </a>
+              {item.note && <div style="font-size:.92rem;opacity:.85">{item.note}</div>}
+            </li>
+          ))}
+        </ul>
+      </aside>
     </section>
 
-    <!-- RSS buttons + built-in disclaimer (component renders both) -->
+    <!-- Optional: Links & References block (kept commented for now)
+    <aside class="frost">
+      <h2>Links & References</h2>
+      <div class="disclaimer">
+        If you are interested in a Courts of Heaven session with our Abba Unveiled team,
+        please reach out via email to
+        <a href="mailto:AbbaUnveiled@gmail.com">AbbaUnveiled@gmail.com</a>.
+      </div>
+      <div>
+        {
+          linkResources.map((l) => (
+            <div class="item">
+              <a href={l.url} target="_blank" rel="noopener noreferrer"><strong>{l.title}</strong></a>
+              {l.desc && <div style="font-size:.95rem;opacity:.9">{l.desc}</div>}
+            </div>
+          ))
+        }
+      </div>
+    </aside>
+    -->
+
     <div class="rss-actions-wrap">
       <SubscribeActions />
     </div>
