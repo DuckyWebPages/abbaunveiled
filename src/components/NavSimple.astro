@@ -1,0 +1,57 @@
+---
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/blog/", label: "Blog" },
+  { href: "/resources/", label: "Resources" },
+];
+---
+
+<header class="nav">
+  <nav class="inner">
+    <a href="/" class="brand">Abba Unveiled</a>
+    <ul class="menu">
+      {links.map(({ href, label }) => (
+        <li><a href={href}>{label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+.nav{
+  position:fixed; /* floats on top of various page backgrounds */
+  inset:0 auto auto 0;
+  top:0;
+  z-index:50;
+  background: transparent; /* no bar; just text */
+  padding: 10px 0;
+}
+.inner{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.brand{
+  margin-right:auto;
+  font-weight:800;
+  text-decoration:none;
+  color:#fff;               /* white title */
+}
+.menu{
+  display:flex;
+  gap:14px;
+  margin:0; padding:0; list-style:none;
+}
+.menu a{
+  color:#fff;               /* white links */
+  text-decoration:none;
+  font-weight:600;
+}
+.menu a:hover{ text-decoration:underline; }
+@media (max-width: 600px){
+  .menu a{ font-weight:500; }
+}
+</style>
