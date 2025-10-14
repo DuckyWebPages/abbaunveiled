@@ -71,9 +71,16 @@ const faithEncouragement = [
     .frost h2{margin:0 0 .75rem}
     .book{display:flex;flex-direction:column;align-items:center;text-align:center}
     .book img{
-      width:100%;max-width:420px;margin:0 auto 1rem;display:block;border-radius:12px;
-      box-shadow:0 18px 44px rgba(0,0,0,.4);background:#fff;aspect-ratio:2/3;
-    }
+  width:100%;
+  max-width:420px;
+  height:auto;            /* keep native aspect ratio */
+  margin:0 auto 1rem;
+  display:block;
+  border-radius:12px;
+  box-shadow:0 18px 44px rgba(0,0,0,.4);
+  background:#fff;
+}
+
     .list{list-style:none;padding:0;margin:0}
     .item + .item{margin-top:.75rem}
     .item a{color:#0b57d0;text-decoration:underline}
