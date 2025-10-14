@@ -102,70 +102,92 @@ const faithEncouragement = [
     }
 
     .lead{ margin:0 0 .75rem; font-size:1rem; line-height:1.5; opacity:.9; }
-  </style>
 
-  <!-- GLOBAL overrides that must reach into <SubscribeActions /> and normalize the book CTA -->
-  <style is:global>
-    /* Left-align and shorten the RSS buttons */
-    .rss-actions-wrap{
-      display:flex;
-      justify-content:flex-start;     /* left side */
-      align-items:center;
-      gap:10px;
-      margin-top:1.25rem;
-    }
 
-    .rss-actions-wrap :where(
-      a, button, [role="button"], .btn, .btn-cta, .cta,
-      input[type="button"], input[type="submit"]
-    ){
-      height:36px;                  /* shorter */
-      min-width:120px;              /* tidy width */
-      padding:0 .75rem !important;  /* compact padding */
-      border-radius:8px !important; /* square-ish */
-      font-weight:600;
-      line-height:1;
-      white-space:nowrap;
-      background:#fff !important;
-      color:#111 !important;
-      border:1px solid rgba(17,17,17,.8) !important;
-      box-shadow:0 6px 16px rgba(0,0,0,.12);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      transition:transform .12s ease, background .12s ease, color .12s ease, box-shadow .12s ease;
-    }
-    .rss-actions-wrap :where(
-      a, button, [role="button"], .btn, .btn-cta, .cta,
-      input[type="button"], input[type="submit"]
-    ):hover{
-      background:#111 !important;
-      color:#fff !important;
-      transform:translateY(-1px);
-      box-shadow:0 10px 22px rgba(0,0,0,.18);
-    }
+ <style is:global>
+  /* LEFT align, short buttons */
+  .rss-actions-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    flex-wrap:wrap;                 /* let text sit on the same line or wrap */
+    gap:10px;
+    margin-top:1.25rem;
+  }
 
-    /* Make the BOOK CTA match the same size/shape */
-    .book .btn-cta{
-      height:36px;
-      min-width:120px;
-      padding:0 .75rem !important;
-      border-radius:8px !important;
-      background:#fff;
-      color:#111;
-      border:1px solid rgba(17,17,17,.8);
-      box-shadow:0 6px 16px rgba(0,0,0,.12);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .book .btn-cta:hover{
-      background:#111;
-      color:#fff;
-      transform:translateY(-1px);
-      box-shadow:0 10px 22px rgba(0,0,0,.18);
-    }
-  </style>
+  /* Buttons */
+  .rss-actions-wrap :where(
+    a, button, [role="button"], .btn, .btn-cta, .cta,
+    input[type="button"], input[type="submit"]
+  ){
+    height:36px;
+    min-width:120px;
+    padding:0 .75rem !important;
+    border-radius:8px !important;
+    font-weight:600;
+    line-height:1;
+    white-space:nowrap;
+    background:#fff !important;
+    color:#111 !important;
+    border:1px solid rgba(17,17,17,.8) !important;
+    box-shadow:0 6px 16px rgba(0,0,0,.12);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    order:1;                        /* buttons first */
+    transition:transform .12s ease, background .12s ease, color .12s ease, box-shadow .12s ease;
+  }
+  .rss-actions-wrap :where(
+    a, button, [role="button"], .btn, .btn-cta, .cta,
+    input[type="button"], input[type="submit"]
+  ):hover{
+    background:#111 !important;
+    color:#fff !important;
+    transform:translateY(-1px);
+    box-shadow:0 10px 22px rgba(0,0,0,.18);
+  }
+
+  /* Put the mailing-list text/link inline and right after the buttons */
+  .rss-actions-wrap :where(p, small){
+    margin:0;
+    font-size:.95rem;
+    opacity:.85;
+    display:inline-flex;
+    align-items:center;
+    order:2;                        /* text after buttons */
+  }
+  /* If the mailing link is an <a> and not inside a <p>, catch it too */
+  .rss-actions-wrap > a:not([role="button"]):not(.btn):not(.btn-cta){
+    order:2;
+    display:inline-flex;
+    align-items:center;
+    font-size:.95rem;
+    opacity:.9;
+    text-decoration:underline;
+  }
+
+  /* Make the BOOK CTA match the same size/shape as the RSS buttons */
+  .book .btn-cta{
+    height:36px;
+    min-width:120px;
+    padding:0 .75rem !important;
+    border-radius:8px !important;
+    background:#fff;
+    color:#111;
+    border:1px solid rgba(17,17,17,.8);
+    box-shadow:0 6px 16px rgba(0,0,0,.12);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .book .btn-cta:hover{
+    background:#111;
+    color:#fff;
+    transform:translateY(-1px);
+    box-shadow:0 10px 22px rgba(0,0,0,.18);
+  }
+</style>
+
 
   <div class="bg" aria-hidden="true"></div>
 
