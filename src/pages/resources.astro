@@ -21,7 +21,7 @@ const linkResources = [
 ];
 
 const book = {
-  cover: "/images/ydbook2.png",
+  cover: "/images/public/images/ydmockup.png",
   title: "The Yahweh Deception",
   blurb:
     "The Yahweh Deception uncovers how centuries of redaction blurred the Father’s identity, replacing El Elyon—the Most High—with a deity of law, wrath, and control. Drawing on ancient texts and fresh theological insight, this almost 400-page book challenges tradition and invites you into deeper intimacy with Abba.",
@@ -110,6 +110,61 @@ const faithEncouragement = [
 
     /* Small intro paragraph at top of the card */
     .lead{ margin:0 0 .75rem; font-size:1rem; line-height:1.5; opacity:.9; }
+
+    /* --- Override pill-y RSS buttons to squared rectangles --- */
+.rss-actions-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.rss-actions-wrap a,
+.rss-actions-wrap button {
+  /* kill the pill look */
+  border-radius: 8px !important;
+
+  /* rein in the width */
+  padding: 0.6rem 0.9rem !important;
+  min-width: 140px;            /* keeps them neat */
+  height: 44px;                /* consistent button height */
+
+  /* tidy text */
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+
+  /* visual polish (matches the glassy cards) */
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid rgba(17,17,17,.8) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  transition: transform .12s ease, background .12s ease, color .12s ease, box-shadow .12s ease;
+}
+
+.rss-actions-wrap a:hover,
+.rss-actions-wrap button:hover {
+  background: #111 !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+}
+
+/* Lay them out side-by-side with nice spacing */
+.rss-actions-wrap :is(a, button) + :is(a, button) {
+  margin-left: 10px;
+}
+
+/* Optional: make them stack nicely on small screens */
+@media (max-width: 520px) {
+  .rss-actions-wrap {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .rss-actions-wrap :is(a, button) + :is(a, button) {
+    margin-left: 0;
+  }
+}
+
   </style>
 
   <div class="bg" aria-hidden="true"></div>
