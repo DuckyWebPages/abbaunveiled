@@ -1,4 +1,5 @@
 ---
+// FILE: src/pages/resources.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SubscribeActions from "@/components/SubscribeActions.astro";
 
@@ -21,7 +22,7 @@ const linkResources = [
 ];
 
 const book = {
-  cover: "/images/public/images/ydmockup.png",
+  cover: "/images/ydmockup.png", // <-- served from /public/images/ydmockup.png
   title: "The Yahweh Deception",
   blurb:
     "The Yahweh Deception uncovers how centuries of redaction blurred the Father’s identity, replacing El Elyon—the Most High—with a deity of law, wrath, and control. Drawing on ancient texts and fresh theological insight, this almost 400-page book challenges tradition and invites you into deeper intimacy with Abba.",
@@ -29,25 +30,14 @@ const book = {
 };
 
 const faithEncouragement = [
-  {
-    title: "Atheist Meets Jesus in Near Death Experience",
-    url: "https://youtu.be/_aNMX4cooI4?si=UQwWO8WopVh43Hml",
-    note: "YouTube",
-  },
-  {
-    title: "Air Force Veteran Dies & Meets Jesus",
-    url: "https://youtu.be/CmY-Oa1kOHU?si=7661B_d03K4-Dvkb",
-    note: "YouTube",
-  },
-  {
-    title: "Hindu Man Dies and Sees the Kingdom of Heaven",
-    url: "https://youtu.be/REPLACE_ME", // TODO: update with the correct video link
-    note: "YouTube",
-  },
+  { title: "Atheist Meets Jesus in Near Death Experience", url: "https://youtu.be/_aNMX4cooI4?si=UQwWO8WopVh43Hml", note: "YouTube" },
+  { title: "Air Force Veteran Dies & Meets Jesus", url: "https://youtu.be/CmY-Oa1kOHU?si=7661B_d03K4-Dvkb", note: "YouTube" },
+  { title: "Hindu Man Dies and Sees the Kingdom of Heaven", url: "https://youtu.be/REPLACE_ME", note: "YouTube" }, // TODO: update link
 ];
 ---
 
 <BaseLayout pageTitle={title} description="Curated videos and links to learn more about Yahweh not being the Father Jesus revealed.">
+  <!-- SCOPED styles for this page -->
   <style>
     .bg{position:fixed;inset:0;background:#000;z-index:0}
     .bg::before{
@@ -60,26 +50,26 @@ const faithEncouragement = [
     .hdr{color:var(--color-foreground,#fff);text-align:center;margin:0 0 1.75rem}
     .hdr h1{margin:0 0 .5rem;font-size:clamp(1.75rem,4vw,3rem)}
     .grid{display:grid;gap:1.25rem}
-    @media (min-width:1024px){
-      .grid{grid-template-columns:1fr 1fr;align-items:start}
-    }
+    @media (min-width:1024px){ .grid{grid-template-columns:1fr 1fr;align-items:start} }
+
     .frost{
       background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.45);
       border-radius:16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
       box-shadow:0 10px 26px rgba(0,0,0,.28);padding:22px;color:#111
     }
     .frost h2{margin:0 0 .75rem}
+
     .book{display:flex;flex-direction:column;align-items:center;text-align:center}
     .book img{
-  width:100%;
-  max-width:420px;
-  height:auto;            /* keep native aspect ratio */
-  margin:0 auto 1rem;
-  display:block;
-  border-radius:12px;
-  box-shadow:0 18px 44px rgba(0,0,0,.4);
-  background:#fff;
-}
+      width:100%;
+      max-width:420px;
+      height:auto;            /* keep native aspect ratio */
+      margin:0 auto 1rem;
+      display:block;
+      border-radius:12px;
+      box-shadow:0 18px 44px rgba(0,0,0,.4);
+      background:#fff;
+    }
 
     .list{list-style:none;padding:0;margin:0}
     .item + .item{margin-top:.75rem}
@@ -90,12 +80,15 @@ const faithEncouragement = [
     .btn-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:.25rem}
 
     .btn-cta{
-      display:inline-block; padding:.75rem 1.25rem; border-radius:9999px;
+      display:inline-block;
+      padding:.75rem 1.25rem;
+      border-radius:9999px; /* default pill, gets overridden globally below */
       font-weight:600; border:1px solid #111; color:#111; background:#fff;
       text-decoration:none; transition:transform .12s ease, background .12s ease, color .12s ease;
       box-shadow:0 6px 16px rgba(0,0,0,.12);
     }
     .btn-cta:hover{ background:#111; color:#fff; transform:translateY(-1px); }
+
     .btn-cta--slim{
       display:inline-flex; align-items:center; justify-content:center; text-align:center;
       padding:.35rem 1.5rem; font-size:.95rem; line-height:1; border-radius:9999px;
@@ -108,77 +101,70 @@ const faithEncouragement = [
       .grid{ grid-template-columns:1fr 1fr 1fr; }
     }
 
-    /* Small intro paragraph at top of the card */
     .lead{ margin:0 0 .75rem; font-size:1rem; line-height:1.5; opacity:.9; }
+  </style>
 
- <!-- keep your existing scoped styles -->
-<style>
-  .rss-actions-wrap{ margin-top:1.25rem; }
+  <!-- GLOBAL overrides that must reach into <SubscribeActions /> and normalize the book CTA -->
+  <style is:global>
+    /* Left-align and shorten the RSS buttons */
+    .rss-actions-wrap{
+      display:flex;
+      justify-content:flex-start;     /* left side */
+      align-items:center;
+      gap:10px;
+      margin-top:1.25rem;
+    }
 
-  @media (min-width:1200px){
-    .grid{ grid-template-columns:1fr 1fr 1fr; }
-  }
-
-  .lead{ margin:0 0 .75rem; font-size:1rem; line-height:1.5; opacity:.9; }
-</style>
-
-<!-- new block: global overrides that reach into <SubscribeActions /> -->
-<style is:global>
-  .rss-actions-wrap {
-    display: flex;
-    justify-content: center;
-    margin-top: 1.25rem;
-  }
-
-  .rss-actions-wrap :where(
-    a, button, [role="button"], .btn, .btn-cta, .cta,
-    input[type="button"], input[type="submit"]
-  ) {
-    border-radius: 8px !important;
-    padding: 0.6rem 0.9rem !important;
-    min-width: 140px;
-    height: 44px;
-    font-weight: 600;
-    line-height: 1;
-    white-space: nowrap;
-    background: #fff !important;
-    color: #111 !important;
-    border: 1px solid rgba(17,17,17,.8) !important;
-    box-shadow: 0 6px 16px rgba(0,0,0,.12);
-    transition: transform .12s ease, background .12s ease, color .12s ease, box-shadow .12s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .rss-actions-wrap :where(
-    a,button,[role="button"],.btn,.btn-cta,.cta,input[type="button"],input[type="submit"]
-  ):hover {
-    background: #111 !important;
-    color: #fff !important;
-    transform: translateY(-1px);
-    box-shadow: 0 10px 22px rgba(0,0,0,.18);
-  }
-
-  .rss-actions-wrap :where(
-    a,button,[role="button"],.btn,.btn-cta,.cta,input[type="button"],input[type="submit"]
-  ) + :where(
-    a,button,[role="button"],.btn,.btn-cta,.cta,input[type="button"],input[type="submit"]
-  ) {
-    margin-left: 10px;
-  }
-
-  @media (max-width: 520px) {
-    .rss-actions-wrap { flex-wrap: wrap; gap: 10px; }
     .rss-actions-wrap :where(
-      a,button,[role="button"],.btn,.btn-cta,.cta,input[type="button"],input[type="submit"]
-    ) + :where(
-      a,button,[role="button"],.btn,.btn-cta,.cta,input[type="button"],input[type="submit"]
-    ) { margin-left: 0; }
-  }
-</style>
+      a, button, [role="button"], .btn, .btn-cta, .cta,
+      input[type="button"], input[type="submit"]
+    ){
+      height:36px;                  /* shorter */
+      min-width:120px;              /* tidy width */
+      padding:0 .75rem !important;  /* compact padding */
+      border-radius:8px !important; /* square-ish */
+      font-weight:600;
+      line-height:1;
+      white-space:nowrap;
+      background:#fff !important;
+      color:#111 !important;
+      border:1px solid rgba(17,17,17,.8) !important;
+      box-shadow:0 6px 16px rgba(0,0,0,.12);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition:transform .12s ease, background .12s ease, color .12s ease, box-shadow .12s ease;
+    }
+    .rss-actions-wrap :where(
+      a, button, [role="button"], .btn, .btn-cta, .cta,
+      input[type="button"], input[type="submit"]
+    ):hover{
+      background:#111 !important;
+      color:#fff !important;
+      transform:translateY(-1px);
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+    }
 
-
+    /* Make the BOOK CTA match the same size/shape */
+    .book .btn-cta{
+      height:36px;
+      min-width:120px;
+      padding:0 .75rem !important;
+      border-radius:8px !important;
+      background:#fff;
+      color:#111;
+      border:1px solid rgba(17,17,17,.8);
+      box-shadow:0 6px 16px rgba(0,0,0,.12);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .book .btn-cta:hover{
+      background:#111;
+      color:#fff;
+      transform:translateY(-1px);
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+    }
   </style>
 
   <div class="bg" aria-hidden="true"></div>
@@ -214,7 +200,6 @@ const faithEncouragement = [
         <h2>{book.title}</h2>
         <p>{book.blurb}</p>
 
-        <!-- Single CTA to Store (use buyUrl if you prefer) -->
         <div class="btn-row">
           <a href={book.buyUrl} class="btn-cta btn-cta--slim" aria-label={`Learn more about ${book.title}`}>
             Learn More
@@ -225,7 +210,6 @@ const faithEncouragement = [
       <!-- RIGHT bubble: Faith Encouragement -->
       <aside class="frost">
         <h2>Faith Encouragement</h2>
-
         <p class="lead">
           When I first began considering that Yahweh is not the Father, I walked through a season of honest uncertainty. Some of the videos linked here come from people who reached similar conclusions, though they don’t always land where I do about the Father and Jesus. We’re each on a path—I don’t want to lead you into confusion or darkness. We’re also in a time when long-standing deceptions are being exposed. That can make it hard to trust institutions, including religious ones. So watch with prayerful discernment. Ask Jesus to guard your heart and highlight what is true.
         </p>
