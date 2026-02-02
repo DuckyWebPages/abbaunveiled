@@ -1,0 +1,497 @@
+---
+import Header from "@/components/Header.astro";
+import HeaderLink from "@/components/HeaderLink.astro";
+
+/**
+ * Songs page
+ * - YouTube playlist player for free listening
+ * - One-time artist links (Apple / Spotify / Amazon)
+ * - Song cards show cover + title + year + description only (no per-song links)
+ */
+
+const artist = {
+  name: "WendySelvigMusic on YouTube, Apple Music, Spotify, Amazon and over 20 other platforms.",
+  tagline: "Songs created to point hearts back to the Father.",
+  bio: `Wendy Selvig is a writer of music and of books. She has multiple degrees in music composition and theology. She loves Jesus. She walks in hearing God's voice. These songs reflect an unveiling of the true Father Jesus came to reveal.
+The songs may be challenging to some listeners, but are meant as a gift of truth.`,
+  image: "/images/wendy2.png",
+  links: {
+    appleMusic: "https://music.apple.com/us/artist/wendy-selvig-music/1860316729",
+    spotify: "https://open.spotify.com/artist/5laWQ8i6F04MQEugRqOXm3",
+    amazon: "https://music.amazon.com/artists/B0G672WJ9P/wendy-selvig-music",
+  },
+};
+
+const songs = [
+  {
+    title: "The God of This World",
+    year: "2026",
+    description:
+      `A song that asks questions for all Christians. Who is the god of this world? Is it Yahweh, the god of Sinai? Why have we allowed the Jewish faith and scribes to guard the scriptures as if we believe the same things?
+
+They killed Jesus and His disciples. They don't believe the same things. Their Kabbalistic beliefs are even considered satanic to some.
+
+Jesus never once spoke the name YHWH as His Father. As a matter of fact, He chose not to use the Greek word "Kyrios" that was known for "The Name"—but hundreds of years later Hebrew scribes wrote "YHWH" into Jesus's words, when instead He chose terms like "Theos" and "Abba".
+
+There has been a great deception as Christians allowed their faith to be stapled to the Jewish Old Testament. It's time to unveil the Yahweh Deception.
+
+Grab the book "The Yahweh Deception," by W.R. Selvig to learn more about this topic.`,
+    cover: "/images/songs/godofthisworld.png",
+  },
+
+  {
+    title: "The Priest King",
+    year: "2026",
+    description:
+      `A reverent, cinematic worship track honoring Christ as the eternal Melchizedek Priest-King.
+
+Jesus came in the line of Melchizedek. Some say Jesus may have appeared even as Melchizedek. Whether that is true or not, it is significant that Jesus did not come in the line of Levi. He did not come to represent Yahweh, as many have been taught.
+
+Jesus came to reveal a Father "no one had seen or heard" (John 8:55; John 17:25–26; John 1:18; John 5:37). The story of Melchizedek is not an odd footnote in Genesis. It is a foreshadowing of the gospel itself: a better priest, a better covenant, a better hope.
+
+Christianity has taught that Yahweh is the Father who had to teach us a lesson through the law, and then He sent Jesus to fulfill the law (terrible as it was) and restore us to Himself. This is how Judeo Christianity has postured the Father. But this viewpoint was first of all, created by Jewish scribes who promoted Yahweh as the only God, and secondly compromises the character of the Father who Jesus came to reveal. Jesus said that no one had ever seen or heard the Father and that if you had seen Jesus, you had seen the Father. Jesus’s character represented the Father. The fruit Jesus showed in his life and ministry revealed the Father. This fruit doesn’t match up with the entity of Yahweh, and so reveals the truth of who the Father is not. Read more about this topic in the book, The Yahweh Deception, by WR Selvig. Available at AbbaUnveiled.com.`,
+    cover: "/images/songs/priest-king.png",
+  },
+
+  {
+    title: "Ancient Paths",
+    year: "2026",
+    description:
+      `A song pointing to the Kingdom within that Jesus points us to (Luke 17:20), and an encouragement not to fear going within to find the Spirit of the Father—who is entangled with you. The ancient paths are established within our hearts, waiting for us to step into the heavenly realms by faith, and to encounter Jesus and the Father. I invite you to close your eyes, see yourself in a cabin in the forest, and invite the Father and Jesus to come meet you there. This is a basic exercise that shows you how to create a "secret place" only accessable by you and the Spirit of God. They WILL meet you there. I encourage you to try it.`,
+    cover: "/images/songs/ancientpaths2.png",
+  },
+
+  {
+    title: "Before The Name",
+    year: "2026",
+    description:
+      `A song that recreates Jesus's conversation with the Sadducees (from Luke 20), using an argument from sequence (sequential exegesis)—where the order in which words are presented has meaning. Most English speakers miss this understanding because they don't know the way Hebrew Grammar works. The reason Jesus impressed the scholars here is because He used a sequence argument to make several points.
+Jesus used sequence to not only challenge the idea of resurrection, but to point out that the God of the Living was before the god of Sinai. Jesus is making a resurrection argument based on the verb tense "I am" (not "I was"), relational continuity (God is still God of the patriarchs), and textual authority of Torah (Exodus, not prophets).He is also anchoring God's identity in the patriarchal relationship, not in Sinai, Law, Covenant stipulations, National Israel, or Temple theology. He deliberately chooses a pre-Sinai moment to define God's identity.Jesus is grounding divine identity in a pre-Sinai framework, and that has theological consequences. Jesus defines God's true identity and nature by who He was before Sinai, not by what was instituted at Sinai. While framed as a resurrection argument, this sequential placement also relativizes the God before Sinai as the defining revelation of the true God.`,
+    cover: "/images/songs/before-the-name.png",
+  },
+
+  {
+    title: "Ancient Glory Soundscape",
+    year: "2026",
+    description:
+      `An instrumental soundscape inspired by the other songs on the Ancient Paths album, and by the ancient history of those who sought to find God in the desert.
+
+After the reign of Solomon, the tribes of Israel divided into two kingdoms—the Northern Kingdom (Israel) and the Southern Kingdom (Judah). This political fracture was accompanied by a theological divergence that remains visible within the biblical texts themselves. The northern traditions preserve a strong and persistent use of El-language—El, Elohim, El Elyon (God Most High)—reflecting an older West Semitic understanding of God rooted in the patriarchal period, emphasizing divine identity before Sinai, before law, and before temple centralization. In contrast, the southern kingdom increasingly advanced a Yahweh-centered theology through royal, prophetic, and later scribal reforms, gradually absorbing El’s titles and attributes into a single theological identity.
+
+Modern scholarship, including the work of Mark S. Smith and Frank Moore Cross, documents this historical process, demonstrating that El and Yahweh were originally distinct figures whose identification emerged over time. This song is rooted in that earlier memory—an echo of the Most High known before law, before empire, and before theological consolidation. `,
+    cover: "/images/songs/ancientpaths2.png",
+  },
+
+  {
+    title: "The Lamb Enthroned",
+    year: "2026",
+    description:
+      `Jesus came from a higher place than the archons and principalities that rule this world. He came and paid the ridiculous price of blood sacrifice to free humanity from slavery to the archons (the bene-elohim of Deuteronomy 32).
+
+Yahweh was one of those archons we were freed from. He is the "god of this world" who "deceives the whole world."
+
+All of Heaven was silent as Jesus stepped up and took the scroll—took the assignment—and was willing to be sacrificed to pay the legal cost that had been set. He did this for His Father and to restore humanity to His Father. We owe Him everything.`,
+    cover: "/images/songs/ancientpaths2.png",
+  },
+
+  {
+    title: "Timeline of Faith",
+    year: "2026",
+    description:
+      `A processional, worship-anthem style piece about quantum physics and creating and holding ourselves in a timeline of faith and goodness.`,
+    cover: "/images/songs/timeline-of-faith.png",
+  },
+
+  {
+    title: "El Elyon, My Father",
+    year: "2025",
+    description:
+      `An ancient cry from the heart of one longing for—and finding—her Father, the Most High.`,
+    cover: "/images/songs/elelyonfather.png",
+  },
+
+  {
+    title: "Arise (Sons of God)",
+    year: "2025",
+    description:
+      `It's time to arise as sons and daughters of the Most High God.`,
+    cover: "/images/songs/arise.png",
+  },
+
+  {
+    title: "El Elyon, Forever One",
+    year: "2025",
+    description:
+      `We are fully known in communion with Jesus and His Father, the Most High God.`,
+    cover: "/images/songs/ELELYON.png",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{artist.name} — Songs</title>
+    <meta
+      name="description"
+      content={`Listen to ${artist.name} on YouTube and find the artist profiles on Apple Music, Spotify, and Amazon Music.`}
+    />
+  </head>
+
+  <body>
+    <main class="page">
+      <header class="hero">
+  <h1 class="title">Songs</h1>
+  <p class="subtitle">
+    Listen free on YouTube, then find the artist profiles on Apple Music, Spotify, and Amazon Music.
+  </p>
+</header>
+
+<section class="card artist">
+  <div class="artist-media">
+    <img
+      src={artist.image}
+      alt={`${artist.name} artist profile image`}
+      loading="lazy"
+      width="320"
+      height="320"
+    />
+  </div>
+
+  <div class="artist-info">
+    <h2 class="h2">{artist.name}</h2>
+    <p class="tagline">{artist.tagline}</p>
+    <p class="bio">{artist.bio}</p>
+
+    <div class="buttons">
+      <a class="btn primary" href={artist.links.appleMusic} target="_blank" rel="noopener noreferrer">
+        Open on Apple Music
+      </a>
+
+      <div class="btn-row">
+        <a class="btn" href={artist.links.spotify} target="_blank" rel="noopener noreferrer">
+          Spotify
+        </a>
+        <a class="btn" href={artist.links.amazon} target="_blank" rel="noopener noreferrer">
+          Amazon Music
+        </a>
+      </div>
+    </div>
+
+    <p class="hint">
+      Tip: If you prefer starting with iTunes, Apple’s links usually route through Apple Music now—this is normal.
+    </p>
+  </div>
+</section>
+
+<section class="card yt">
+  <div class="yt-head">
+    <h2 class="h2">Watch / Listen Free on YouTube</h2>
+    <p class="section-sub">
+      All songs are available here for free. Click on the three lines in the top right corner of the video to see the playlist. If you prefer Apple Music, Spotify, or Amazon Music, use the artist links above.
+    </p>
+  </div>
+
+  <div class="videoWrap">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/videoseries?list=PLxNymckCVINt-jUTe2FXB5WgTDKWORVhI"
+      title="Abba Unveiled — Songs (YouTube Playlist)"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy"
+    ></iframe>
+  </div>
+</section>
+
+
+      
+
+      <section class="section">
+        <div class="section-head">
+          <h2 class="h2">All Songs</h2>
+          <p class="section-sub">
+            Each song includes a short explanation so listeners understand why it was written.
+          </p>
+        </div>
+
+        <div class="grid">
+          {songs.map((song) => (
+            <article class="card song">
+              <div class="song-cover">
+                <img
+                  src={song.cover}
+                  alt={`${song.title} cover art`}
+                  loading="lazy"
+                  width="640"
+                  height="640"
+                />
+              </div>
+
+              <div class="song-body">
+                <div class="song-top">
+                  <h3 class="h3">{song.title}</h3>
+                  {song.year ? <span class="year">{song.year}</span> : null}
+                </div>
+
+                <p class="desc">{song.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <style>
+      :global(body) {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background: #0b0e14;
+        color: #e9edf5;
+      }
+      :global(a) {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 48px 18px 80px;
+      }
+
+      .hero {
+        margin-bottom: 18px;
+      }
+      .title {
+        font-size: 40px;
+        line-height: 1.1;
+        margin: 0 0 10px;
+        letter-spacing: -0.02em;
+      }
+      .subtitle {
+        margin: 0;
+        opacity: 0.85;
+        max-width: 70ch;
+      }
+
+      .section {
+        margin-top: 24px;
+      }
+
+      .section-head {
+        display: grid;
+        gap: 6px;
+        margin: 18px 0 14px;
+      }
+      .section-sub {
+        margin: 0;
+        opacity: 0.8;
+        max-width: 80ch;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      /* YouTube playlist player */
+      .yt {
+        padding: 18px;
+        margin-top: 18px;
+      }
+      .yt-head {
+        display: grid;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+      .videoWrap {
+        position: relative;
+        width: 100%;
+        padding-top: 36%; /* shorter, more restrained */
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .videoWrap iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .artist {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 0;
+        margin-top: 18px;
+      }
+
+      .artist-media {
+        background: rgba(255, 255, 255, 0.02);
+        display: grid;
+        place-items: center;
+        padding: 18px;
+      }
+      .artist-media img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .artist-info {
+        padding: 22px 22px 18px;
+      }
+
+      .h2 {
+        margin: 0;
+        font-size: 22px;
+        letter-spacing: -0.01em;
+      }
+
+      .tagline {
+        margin: 8px 0 10px;
+        opacity: 0.9;
+      }
+
+      .bio {
+        margin: 0 0 14px;
+        opacity: 0.82;
+        line-height: 1.55;
+        max-width: 85ch;
+        white-space: pre-line;
+      }
+
+      .buttons {
+        display: grid;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .btn-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+        font-weight: 600;
+        transition: transform 0.08s ease, background 0.08s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.09);
+      }
+      .btn.primary {
+        background: rgba(120, 167, 255, 0.18);
+        border-color: rgba(120, 167, 255, 0.35);
+      }
+      .btn.primary:hover {
+        background: rgba(120, 167, 255, 0.25);
+      }
+
+      .hint {
+  margin: 10px 0 0;
+  font-size: 13px;
+  opacity: 0.65;
+}
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .song {
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      .song-cover {
+  display: flex;
+  justify-content: center;
+  padding: 14px 14px 0;
+}
+
+.song-cover img {
+  width: 220px;          /* ~2.5–3 inches on desktop */
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+      .song-body {
+        padding: 14px 14px 16px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .song-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .h3 {
+        margin: 0;
+        font-size: 16px;
+        letter-spacing: -0.01em;
+      }
+
+      .year {
+        font-size: 12px;
+        opacity: 0.65;
+      }
+
+      .desc {
+        margin: 0;
+        opacity: 0.8;
+        line-height: 1.5;
+        font-size: 14px;
+        white-space: pre-line;
+      }
+
+      @media (max-width: 980px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .artist {
+          grid-template-columns: 260px 1fr;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .artist {
+          grid-template-columns: 1fr;
+        }
+        .artist-media {
+          padding-bottom: 0;
+        }
+      }
+     
+
+    </style>
+  </body>
+</html>
