@@ -5,6 +5,17 @@ import HeaderLink from './HeaderLink.astro'; // if this file doesn't exist, see 
 ---
 
 <header>
+ 
+  <HeaderLink href="/songs">The Music</HeaderLink>
+
+<HeaderLink
+  href="https://www.youtube.com/channel/UCmH4bZ95_Tot8wU_EDyDcQA"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  YouTube
+</HeaderLink>
+
   <nav>
     <h2><a href="/">{SITE_TITLE}</a></h2>
 
@@ -15,6 +26,17 @@ import HeaderLink from './HeaderLink.astro'; // if this file doesn't exist, see 
       <HeaderLink href="/podcast">Podcast</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
       <HeaderLink href="/resources">Resources</HeaderLink>
+      <HeaderLink href="/songs">The Music</HeaderLink>
+
+<HeaderLink
+  href="https://www.youtube.com/channel/UCmH4bZ95_Tot8wU_EDyDcQA"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  YouTube
+</HeaderLink>
+
+
     </div>
 
     <div class="social-links">
@@ -50,15 +72,75 @@ import HeaderLink from './HeaderLink.astro'; // if this file doesn't exist, see 
   h2 { margin: 0; font-size: 1em; }
   h2 a, h2 a.active { text-decoration: none; }
 
+
   nav { display: flex; align-items: center; justify-content: space-between; }
   nav a {
-    padding: 1em 0.5em;
-    color: var(--black);
-    border-bottom: 4px solid transparent;
-    text-decoration: none;
-  }
+  padding: 1em 0.5em;
+  color: inherit;
+  border-bottom: 4px solid transparent;
+  text-decoration: none;
+}
+/* Default (light pages) */
+header {
+  color: var(--black);
+}
+
+/* Dark pages (Songs uses bodyClass="theme-dark") */
+:global(body.theme-dark) header {
+  color: #fff !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
   nav a.active { border-bottom-color: var(--accent); }
 
   .social-links, .social-links a { display: flex; }
   @media (max-width: 720px) { .social-links { display: none; } }
+
+  /* DARK THEME OVERRIDES (songs page, etc.) */
+:global(body.theme-dark) header {
+  background: transparent;
+  box-shadow: none;
+}
+
+:global(body.theme-dark) nav a,
+:global(body.theme-dark) h2 a,
+:global(body.theme-dark) header a {
+  color: #fff;
+}
+
+:global(body.theme-dark) nav a.active {
+  border-bottom-color: rgba(255,255,255,.75);
+}
+/* Dark theme overrides (when <body class="theme-dark">) */
+:global(body.theme-dark) header {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+:global(body.theme-dark) header h2 a,
+:global(body.theme-dark) header nav a {
+  color: #fff !important;
+  border-bottom-color: transparent;
+}
+
+:global(body.theme-dark) header nav a.active {
+  border-bottom-color: rgba(255,255,255,.7) !important;
+}
+/* ===== Dark theme override (Songs page uses bodyClass="theme-dark") ===== */
+:global(body.theme-dark) header {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Make the site title + nav links white on dark pages */
+:global(body.theme-dark) header a,
+:global(body.theme-dark) header h2 a {
+  color: #fff !important;
+}
+:global(body.theme-dark) nav a {
+  color: #fff !important;
+}
+
+
 </style>

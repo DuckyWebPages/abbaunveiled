@@ -1,13 +1,26 @@
 ---
-// src/components/HeroVideo.astro  (final)
+// src/components/HeroVideo.astro
 const {
   title = "Abba Unveiled",
   subtitle = "Getting to Know the Father Jesus Revealed",
+
+  // Primary CTA (existing)
   bookCtaHref = "/store",
   bookCtaLabel = "Get the Book! The Yahweh Deception, by WR Selvig",
-  overlayImageSrc = "/images/tetrawhite.png"
+
+  // ✅ NEW: CTA #2
+  musicCtaHref = "/songs",
+  musicCtaLabel = "The Music",
+
+  // ✅ NEW: CTA #3
+  youtubeCtaHref = "https://www.youtube.com/channel/UCmH4bZ95_Tot8wU_EDyDcQA",
+  youtubeCtaLabel = "YouTube",
+
+  overlayImageSrc = "/images/tetrawhite.png",
 } = Astro.props;
 ---
+
+
 
 <section class="hero">
   <video class="hero__video" autoplay loop muted playsinline preload="auto" poster="/images/night-sky-poster.jpg">
@@ -49,9 +62,26 @@ const {
     </div>
   </div>
 
-  <a class="btn-cta hero-cta-bottom" href={bookCtaHref}>
+  <div class="hero-cta-row" role="navigation" aria-label="Primary calls to action">
+  <a class="btn-cta" href={bookCtaHref}>
     {bookCtaLabel}
   </a>
+
+  <a class="btn-cta btn-cta-secondary" href={musicCtaHref}>
+    {musicCtaLabel}
+  </a>
+
+  <a
+    class="btn-cta btn-cta-secondary"
+    href={youtubeCtaHref}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Open the Abba Unveiled YouTube channel (opens in a new tab)"
+  >
+    {youtubeCtaLabel}
+  </a>
+</div>
+
 </section>
 
 <style>
@@ -161,16 +191,48 @@ const {
   }
 
   /* Keep the bottom CTA centered */
-  .hero-cta-bottom {
-    position: absolute; left: 50%; bottom: clamp(16px, 3vw, 32px);
-    transform: translateX(-50%);
-    z-index: 2;
-    transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+/* ✅ Bottom CTA row (3 buttons) */
+.hero-cta-row{
+  position: absolute;
+  left: 50%;
+  bottom: clamp(16px, 3vw, 32px);
+  transform: translateX(-50%);
+  z-index: 2;
+
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+}
+
+/* Secondary CTAs look like “ghost” buttons */
+.btn-cta-secondary{
+  background: transparent;
+  border: 2px solid rgba(255,255,255,.85);
+  color: #fff;
+}
+
+.btn-cta-secondary:hover{
+  background: rgba(255,255,255,.12);
+}
+
+/* Keep your hover lift, but applied to all CTAs in the row */
+.hero-cta-row .btn-cta:hover{
+  transform: translateY(-6px);
+}
+
+/* Mobile: stack and widen */
+@media (max-width: 640px){
+  .hero-cta-row{
+    flex-direction: column;
   }
-  .hero-cta-bottom:hover {
-    transform: translateX(-50%) translateY(-6px);
-    filter: brightness(1.06);
+  .hero-cta-row .btn-cta{
+    width: min(520px, 92vw);
   }
+}
+
 
   @media (max-width: 640px) {
     .hero { min-height: 70vh; }

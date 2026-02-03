@@ -4,6 +4,7 @@ import "../styles/global.css";
 const {
   pageTitle = "Abba Unveiled",
   description = "Abba Unveiled",
+  bodyClass = ""
 } = Astro.props;
 ---
 
@@ -16,7 +17,8 @@ const {
     <slot name="head" />
   </head>
 
-  <body>
+  <body class={bodyClass}>
     <slot />
   </body>
 </html>
+

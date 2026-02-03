@@ -290,6 +290,58 @@ blockquote {
   .site-bg{ background-attachment: scroll; }
 }
 
+/* Dark theme helper */
+.theme-dark {
+  background: #000;
+  color: #fff;
+}
+.theme-dark a { color: #fff; 
+}
+/* =========================
+   Dark theme header override
+   ========================= */
+
+.theme-dark header {
+  background: transparent; /* or #000 if you want a bar */
+}
+
+.theme-dark header a,
+.theme-dark header h1,
+.theme-dark header h2,
+.theme-dark .brand {
+  color: #fff;
+}
+
+.theme-dark header a:hover {
+  color: #e5e7eb; /* subtle hover */
+}
+/* Force header/nav text to white on dark-themed pages (beats scoped component CSS) */
+.theme-dark header,
+.theme-dark header * {
+  color: #fff !important;
+}
+
+/* If your header has a white background, kill it on dark pages */
+.theme-dark header {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Links hover (optional) */
+.theme-dark header a:hover {
+  opacity: 0.9;
+}
+
+/* Extra safety net if the top nav isn't inside <header> */
+.theme-dark nav,
+.theme-dark nav * {
+  color: #fff !important;
+}
+/* Force any .h2 class heading to be white on dark pages */
+body.theme-dark .h2 {
+  color: #fff !important;
+}
+
 /* ------------------ Kill-switch: ensure CTAs use Lato ------------------ */
 .hero-full a,
 .hero-full button,
