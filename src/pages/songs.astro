@@ -15,10 +15,13 @@ const artist = {
 The songs may be challenging to some listeners, but are meant as a gift of truth.`,
   image: "/images/wendy2.png",
   links: {
-    appleMusic: "https://music.apple.com/us/artist/wendy-selvig-music/1860316729",
-    spotify: "https://open.spotify.com/artist/5laWQ8i6F04MQEugRqOXm3",
-    amazon: "https://music.amazon.com/artists/B0G672WJ9P/wendy-selvig-music",
-  },
+  appleMusic: "https://music.apple.com/us/artist/wendy-selvig-music/1860316729",
+  spotify: "https://open.spotify.com/artist/5laWQ8i6F04MQEugRqOXm3",
+  amazon: "https://music.amazon.com/artists/B0G672WJ9P/wendy-selvig-music",
+  pandora: "https://www.pandora.com/artist/wendy-selvig-music/ARlrtvktvhncXb4",
+  iheart: "https://www.iheart.com/artist/wendy-selvig-music-48913333/",
+},
+
 };
 
 const songs = [
@@ -137,14 +140,20 @@ All of Heaven was silent as Jesus stepped up and took the scroll—took the assi
           </a>
 
           <div class="btn-row">
-            <a class="btn" href={artist.links.spotify} target="_blank" rel="noopener noreferrer">
-              Spotify
-            </a>
-            <a class="btn" href={artist.links.amazon} target="_blank" rel="noopener noreferrer">
-              Amazon Music
-            </a>
-          </div>
-        </div>
+  <a class="btn" href={artist.links.spotify} target="_blank" rel="noopener noreferrer">
+    Spotify
+  </a>
+  <a class="btn" href={artist.links.amazon} target="_blank" rel="noopener noreferrer">
+    Amazon Music
+  </a>
+  <a class="btn" href={artist.links.pandora} target="_blank" rel="noopener noreferrer">
+    Pandora
+  </a>
+  <a class="btn" href={artist.links.iheart} target="_blank" rel="noopener noreferrer">
+    iHeartRadio
+  </a>
+</div>
+
 
         <p class="hint">
           Tip: If you prefer starting with iTunes, Apple’s links usually route through Apple Music now—this is normal.
