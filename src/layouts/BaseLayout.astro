@@ -1,161 +1,22 @@
 ---
+import "../styles/global.css";
 
-import Footer from "@/components/Footer.astro";
-
-interface Props {
-  pageTitle?: string;
-  description?: string;
-  bodyClass?: string;
-}
 const {
   pageTitle = "Abba Unveiled",
-  description = "",
-  bodyClass = "",
-} = Astro.props as Props;
-
-/* Nav config: include ALL destinations, we'll hide the current one */
-const links = [
-  { href: '/',          label: 'Home' },
-  { href: '/blog/',     label: 'Blog' },
-  { href: '/podcast/',  label: 'Podcast' },
-  { href: '/resources/',label: 'Resources' },
-];
-
-const path = Astro.url.pathname;
-const isSelf = (link) => {
-  if (link.href === '/') return path === '/';
-  return path === link.href || path.startsWith(link.href);
-};
-const navLinks = links.filter((l) => !isSelf(l));
-
-
+  description = "Abba Unveiled",
+} = Astro.props;
 ---
-<!DOCTYPE html>
+
 <html lang="en">
   <head>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Lato for site-wide body text -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-
-    <!-- Script logo font (already in your project) -->
-    <link
-      rel="preload"
-      href="/fonts/FinestRomanceScript.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-
     <meta charset="utf-8" />
+    <title>{pageTitle}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {pageTitle && <title>{pageTitle}</title>}
-    {description && <meta name="description" content={description} />}
-    <link rel="alternate" type="application/rss+xml" title="Abba Unveiled Blog" href="/rss.xml" />
+    <meta name="description" content={description} />
+    <slot name="head" />
   </head>
 
-  <body class={`site-bg ${bodyClass}`}>
-    <!-- Global header / nav -->
-    <header class="site-header">
-      <nav aria-label="Primary">
-        <!-- Global header / nav -->
-<header class="site-header">
-  <nav aria-label="Primary">
-    <ul class="site-nav">
-      {navLinks.map(({ href, label }) => (
-        <li><a href={href}>{label}</a></li>
-      ))}
-    </ul>
-  </nav>
-</header>
-
-
-      </nav>
-    </header>
-
-    <!-- Page content -->
+  <body>
     <slot />
-
-    <!-- Global footer -->
-    <Footer />
   </body>
 </html>
-
-<style is:global>
-  @font-face {
-    font-family: "Finest Romance Script";
-    src: url("/fonts/FinestRomanceScript.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-  :root{ --font-body: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans"; }
-  html, body { font-family: var(--font-body); }
-
-  .script-font, .script-font * { font-family: "Finest Romance Script", serif !important; }
-
-  .site-bg{
-    min-height: 100vh;
-    background:
-      linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.35)),
-      url("/images/backgrounds/aurora-night-1920.jpg") center/cover no-repeat fixed;
-  }
-  @media (max-width: 800px){ .site-bg{ background-attachment: scroll; } }
-
-  .blog-bg{
-    background:
-      linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.35)),
-      url("/images/stars-northern-tall.png") center/cover no-repeat fixed;
-  }
-
-  /* Centered, simple text nav (white; underline on hover) */
-  .site-header {
-  padding: .75rem 1rem;
-  text-align: center;
-  position: sticky;  /* keeps it visible on scroll */
-  top: 0;
-  z-index: 20;       /* sits above any page-level backgrounds */
-  /* keep background transparent so it’s just white words */
-}
-
-  .site-nav {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-  }
-  .site-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 700;
-  }
-  .site-nav a:hover { text-decoration: underline; }
-
-  /* Existing CTA styles (unchanged) */
-  .footer-cta{ display:flex; justify-content:center; align-items:center; padding: 2rem 1rem 2.5rem; }
-  .btn-cta{
-    --cta-bg-1:#0f0f10; --cta-bg-2:#2a2a2d; --cta-ring:#7dd3fc;
-    position: relative; display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
-    padding:1.05rem 1.5rem; min-height:3.25rem; border-radius:999px;
-    background:linear-gradient(135deg,var(--cta-bg-1),var(--cta-bg-2));
-    color:#fff; text-decoration:none; font-weight:800; letter-spacing:.02em; font-size:1.05rem;
-    box-shadow:0 8px 24px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.06);
-    transform:translateY(0);
-    transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, background .18s ease;
-    will-change: transform, filter;
-  }
-  .btn-cta::after{ content:""; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,0)); pointer-events:none; mix-blend-mode:screen; }
-  .btn-cta:hover{ transform:translateY(-2px); filter:brightness(1.06); box-shadow:0 14px 32px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08); }
-  .btn-cta:active{ transform:translateY(0); box-shadow:0 6px 16px rgba(0,0,0,.22), inset 0 2px 0 rgba(0,0,0,.25); }
-  .btn-cta:focus-visible{
-    outline:none;
-    box-shadow: 0 0 0 3px rgba(255,255,255,.9), 0 0 0 6px var(--cta-ring), 0 14px 32px rgba(0,0,0,.28);
-  }
-  .btn-cta .dot{ width:.55rem;height:.55rem;border-radius:999px;background:#22d3ee; box-shadow:0 0 0 0 rgba(34,211,238,.6); animation:cta-pulse 2s ease-out infinite; }
-  @keyframes cta-pulse{ 0%{ box-shadow:0 0 0 0 rgba(34,211,238,.6) } 70%{ box-shadow:0 0 0 12px rgba(34,211,238,0) } 100%{ box-shadow:0 0 0 0 rgba(34,211,238,0) } }
-  @media (prefers-reduced-motion: reduce){ .btn-cta{ transition:none; transform:none } .btn-cta:hover{ transform:none } .btn-cta .dot{ animation:none } }
-</style>

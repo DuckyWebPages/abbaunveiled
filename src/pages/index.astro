@@ -1,167 +1,54 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroVideo from "../components/HeroVideo.astro";
 import AboutSection from "../components/AboutSection.astro";
 import FeaturedShowcase from "../components/FeaturedShowcase.astro";
 import Newsletter from "../components/Newsletter.astro";
 
 const pageTitle = "Abba Unveiled — Home";
-
-/** flip to false when live */
-const COMING_SOON = true;
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>{pageTitle}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Abba Unveiled: intimacy with the Father and unveiling the story behind the Name."
+
+<BaseLayout
+  pageTitle={pageTitle}
+  description="Abba Unveiled: intimacy with the Father and unveiling the story behind the Name."
+>
+  <div class="hero-full">
+    <HeroVideo
+      overlayImageSrc="/images/tetrawhite.png?v=20250903"
+      subtitle="Getting to Know the Father Jesus Revealed"
+      bookCtaHref="/store"
+      bookCtaLabel="Get the Book! The Yahweh Deception, by WR Selvig"
+      musicCtaHref="/songs"
+      musicCtaLabel="The Music"
+      youtubeCtaHref="https://www.youtube.com/channel/UCmH4bZ95_Tot8wU_EDyDcQA"
+      youtubeCtaLabel="YouTube Channel"
     />
-    <link rel="preload" href="/images/night-sky-poster.jpg" as="image" />
-    <link rel="preload" href="/fonts/FinestRomanceScript.woff2" as="font" type="font/woff2" crossorigin />
+  </div>
 
-    <style>
-      /* Force Lato on the HERO CTA only, beating the Wittgenstein !important */
-      .hero-full .btn-cta{
-        font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans" !important;
-        /* add real button transitions */
-        transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-      }
+  <main class="home">
+    <AboutSection
+      image={null}
+      title="Why Abba Unveiled?"
+      body="Knowledge is increasing in the earth, just like Daniel prophesied..."
+    />
 
-      /* Make it lift on hover */
-      .hero-full .btn-cta:hover{
-        transform: translateY(-3px);
-        filter: brightness(1.06);
-        box-shadow:
-          0 14px 32px rgba(0,0,0,.28),
-          inset 0 1px 0 rgba(255,255,255,.08);
-      }
+    <section class="home-featured">
+      <FeaturedShowcase
+        title="The Yahweh Deception"
+        body="Reclaiming the Father Jesus Revealed."
+        image="/images/ydlibrary.png"
+        primary={{ href: "/store", label: "Go to Store" }}
+        secondary={{ href: "/songs", label: "The Music" }}
+      />
+    </section>
 
-      /* Footer pill font + animation */
-      #home-cta{
-        display: inline-flex; align-items:center; justify-content:center; gap:.6rem;
-        padding: 1.15rem 1.65rem; min-height: 3.4rem; font-size: 1.08rem;
-        border-radius: 999px; cursor: pointer;
-        transform: translateY(0);
-        transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-        will-change: transform, filter;
-        font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
-      }
-      #home-cta:hover{
-        transform: translateY(-3px);
-        filter: brightness(1.06);
-        box-shadow:
-          0 14px 32px rgba(0,0,0,.28),
-          inset 0 1px 0 rgba(255,255,255,.08);
-      }
-
-      /* Badge styling, scoped to this page */
-      .home-featured{ position: relative; }
-      .coming-badge{
-        position: absolute;
-        top: 12px; right: 12px;
-        background: #111; color: #fff;
-        padding: 6px 10px; border-radius: 999px;
-        font-weight: 800; letter-spacing: .04em;
-        box-shadow: 0 8px 20px rgba(0,0,0,.35);
-        pointer-events: none; /* don’t block clicks on buttons beneath */
-        z-index: 2;
-      }
-
-      /* --- HOMEPAGE-ONLY TYPE FACE FOR PILLS --- */
-      /* Force Lato on pill-y links/buttons inside .home only */
-      .home :is(a,button).pill,
-      .home :is(a,button)[class*="pill"],
-      .home :is(a,button)[class*="btn"],
-      .home :is(a,button)[data-variant="pill"],
-      .home :is(a,button)[data-style="pill"]{
-        font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans" !important;
-        font-weight: 700;
-        letter-spacing: .02em;
-      }
-
-      /* --- BOTTOM CTA: SIZE + HOVER LIFT (HOMEPAGE ONLY) --- */
-      #home-cta{
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: .6rem;
-
-        /* size bump */
-        padding: 1.15rem 1.65rem;
-        min-height: 3.4rem;
-        font-size: 1.08rem;
-
-        border-radius: 999px;
-        cursor: pointer;
-
-        transform: translateY(0);
-        transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-        will-change: transform, filter;
-      }
-      #home-cta:hover{
-        transform: translateY(-3px);
-        filter: brightness(1.06);
-        box-shadow:
-          0 14px 32px rgba(0,0,0,.28),
-          inset 0 1px 0 rgba(255,255,255,.08);
-      }
-      #home-cta:active{
-        transform: translateY(0);
-        box-shadow:
-          0 6px 16px rgba(0,0,0,.22),
-          inset 0 2px 0 rgba(0,0,0,.25);
-      }
-      #home-cta:focus-visible{
-        outline: none;
-        box-shadow:
-          0 0 0 3px rgba(255,255,255,.9),
-          0 0 0 6px #7dd3fc,
-          0 14px 32px rgba(0,0,0,.28);
-      }
-
-      /* Footer CTA wrapper (center & spacing) */
-      .footer-cta{
-        display:flex; justify-content:center; align-items:center;
-        padding: 2rem 1rem 2.5rem;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="hero-full">
-      <HeroVideo overlayImageSrc="/images/tetrawhite.png?v=20250903" subtitle="Getting to Know the Father Jesus Revealed" />
-    </div>
-
-    <main class="home">
-     <AboutSection
-  image={null}
-  title="Why Abba Unveiled?"
-  body="Knowledge is increasing in the earth, just like Daniel prophesied. Texts, archeological finds and ancient scrolls have never been more available to the common man than is today. Institutional religion has less control over what people believe as people can now research for themselves. Come with us as we explore the idea that Jesus came to reveal a Father, that people had literally never seen or heard before. A Father who was not Yahweh. You have to be open minded and leave your fear and dogma behind, but there is real evidence that the god of this world has blinded even Christians into thinking Yahweh was the Father. Expect research, engaging blog posts, Youtube videos, practices for communion with the Father, and resources that empower seekers."
-/>
-
-
-      <section class="home-featured">
-       <FeaturedShowcase
-  title="The Yahweh Deception"
-  body="Reclaiming the Father Jesus Revealed."
-  image="/images/ydlibrary.png"
-  primary={{ href: "/store", labelHTML: "Go to Store" }}
-/>
-
-      </section>
-
-      <section class="home-newsletter">
-        <!-- C) Newsletter: copy + single Subscribe button to your Google Form -->
-        <Newsletter
-          title="Get Updates — Join the Mailing List"
-          note="Occasional emails, no spam."
-          ctaHref="https://forms.gle/8n3k4G4sLhQNMRSp6"
-          ctaLabel="Subscribe"
-        />
-      </section>
-    </main>
-  </body>
-</html>
+    <section class="home-newsletter">
+      <Newsletter
+        title="Get Updates — Join the Mailing List"
+        note="Occasional emails, no spam."
+        ctaHref="https://forms.gle/8n3k4G4sLhQNMRSp6"
+        ctaLabel="Subscribe"
+      />
+    </section>
+  </main>
+</BaseLayout>
