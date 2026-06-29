@@ -1,0 +1,204 @@
+---
+// FILE: src/pages/books.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SubscribeActions from "@/components/SubscribeActions.astro";
+
+const title = "Books | Abba Unveiled";
+
+const seeingBook = {
+  cover: "/images/seeing-in-the-spirit.png",
+  title: "Seeing in the Spirit",
+  blurb:
+    "Discover how God speaks through spiritual perception, imagination, visions, dreams, and the language of Heaven. This practical guide explores growing in intimacy with the Father and learning to recognize His voice through the Holy Spirit.",
+  buyUrl: "/seeing-in-the-spirit",
+};
+
+const yahwehBook = {
+  cover: "/images/ydmockup.png",
+  title: "The Yahweh Deception",
+  blurb:
+    "The Yahweh Deception uncovers how centuries of redaction blurred the Father’s identity, replacing El Elyon—the Most High—with a deity of law, wrath, and control. Drawing on ancient texts and fresh theological insight, this almost 400-page book challenges tradition and invites you into deeper intimacy with Abba.",
+  buyUrl:
+    "https://www.lulu.com/shop/w-r-selvig/the-yahweh-deception/paperback/product-kvd25kw.html?page=1&pageSize=4",
+};
+
+const books = [seeingBook, yahwehBook];
+---
+
+<BaseLayout
+  pageTitle={title}
+  description="Books by W.R. Selvig exploring the Father Jesus revealed, the Kingdom of God, and spiritual awakening."
+>
+  <style>
+    .bg {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #faf8f3,
+    #f3eee4
+  );
+  z-index: 0;
+}
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      padding: 2rem 1rem 3rem;
+    }
+
+    .hdr {
+  color: #222;
+      text-align: center;
+      margin: 0 0 1.75rem;
+    }
+
+    .hdr h1 {
+      margin: 0 0 0.5rem;
+      font-size: clamp(1.75rem, 4vw, 3rem);
+    }
+
+    .hdr p {
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+    }
+
+    .frost {
+      background: rgba(255, 255, 255, 0.66);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+      padding: 22px;
+      color: #111;
+    }
+
+    .book {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .book img {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      margin: 0 auto 1rem;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
+      background: #fff;
+    }
+
+    .book h2 {
+      margin: 0 0 0.75rem;
+    }
+
+    .book p {
+      line-height: 1.5;
+    }
+
+    .btn-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 0.25rem;
+    }
+
+    .btn-cta {
+      height: 36px;
+      min-width: 120px;
+      padding: 0 0.75rem;
+      border-radius: 8px;
+      background: #fff;
+      color: #111;
+      border: 1px solid rgba(17, 17, 17, 0.8);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 600;
+      transition:
+        transform 0.12s ease,
+        background 0.12s ease,
+        color 0.12s ease,
+        box-shadow 0.12s ease;
+    }
+
+    .btn-cta:hover {
+      background: #111;
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+    }
+
+    .rss-actions-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 1.5rem auto 0;
+      max-width: 1100px;
+    }
+  </style>
+
+  <div class="bg" aria-hidden="true"></div>
+
+  <main class="page">
+    <header class="hdr">
+      <h1>Books</h1>
+      <p>
+        Explore the books published by W.R. Selvig. These works examine the
+        identity of the Father Jesus revealed, the Kingdom of God, spiritual
+        perception, and the restoration of intimacy with Abba.
+      </p>
+    </header>
+
+    <section class="grid">
+      {books.map((book) => (
+        <section class="frost book">
+          <img src={book.cover} alt={book.title} loading="lazy" decoding="async" />
+
+          <h2>{book.title}</h2>
+
+          <p>{book.blurb}</p>
+
+          <div class="btn-row">
+            <a
+              href={book.buyUrl}
+              class="btn-cta"
+              aria-label={`Learn more about ${book.title}`}
+            >
+              Learn More
+            </a>
+          </div>
+        </section>
+      ))}
+    </section>
+
+    <div class="rss-actions-wrap">
+      <SubscribeActions />
+    </div>
+  </main>
+</BaseLayout>
